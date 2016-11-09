@@ -11,7 +11,7 @@ _rdmBuildingPos = selectRandom (_rdmBuilding buildingPos -1);
 _capObject      = createVehicle [capObjectClass,_rdmBuildingPos,[], 0, "NONE"];
 _capObject setPosATL _rdmBuildingPos;
 
-_capObject addAction["Take Object","scripts\takeCapObj.sqf",[],6,true,false,"","",2,false];
+[_capObject] call addTakeCapObjectAction;
 
 // Debug
 _markerstr = createMarker ["CapObjDebug", [_rdmBuildingPos select 0,_rdmBuildingPos select 1]];
