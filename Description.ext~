@@ -105,12 +105,12 @@ class RscTitles
         onLoad = "uiNamespace setVariable ['ct_detectorGUI', _this select 0];";
 
         class controls {
-            class ct_detector_dot: RscPicture 
+            class ct_detector_dot: RscPicture
             {
                 idc = 1200;
                 text = "images\visualDetector.paa";
-                x = 0.964063 * safezoneW + safezoneX;
-                y = 0.950824 * safezoneH + safezoneY;
+                x = 0.700521 * safezoneW + safezoneX;
+                y = 0.73091 * safezoneH + safezoneY;
                 w = 0.0286458 * safezoneW;
                 h = 0.0439828 * safezoneH;
             };
