@@ -100,13 +100,13 @@ class RscTitles
         duration = 4;
     };
 
-    class ct_transmitter_gui
+    class ct_gui
     {
         idd = 6900;
         movingEnable = 0;
         duration = 100000;
-        name = "ct_transmitterGUI";
-        onLoad = "uiNamespace setVariable ['ct_transmitterGUI', _this select 0];";
+        name = "ctGUI";
+        onLoad = "uiNamespace setVariable ['ctGUI', _this select 0];";
 
         class controls {
             class ct_transmitter_dot: RscPicture
@@ -118,45 +118,42 @@ class RscTitles
                 w = 0.0286458 * safezoneW;
                 h = 0.0439828 * safezoneH;
             };
-        };
-    };
 
-    class ct_scoreboard_gui
-    {
-        idd = 6901;
-        movingEnable = 0;
-        duration = 100000;
-        name = "ct_scoreboardGUI";
-        onLoad = "uiNamespace setVariable ['ct_scoreboardGUI', _this select 0];";
-
-        class controls {
-            class ct_score_west:RscText {
-            		idc = 1201;
-                    type = 0;
-            		style = 0x02;
-            		text = "0";
-            		sizeEx = 0.023;
-            		colorBackground[] = { 0, 0, 1, 1 };
-            		colorText[] = { 1, 1, 1, 1 };
-                    w = 0.03 * safezoneW;
-                    h = 0.03 * safezoneH;
-                    x = 1.2 * safezoneW + safezoneX;
-                    y = 0.950824 * safezoneH + safezoneY;
-            	};
+            class ct_score_west: RscText
+            {
+            	idc = 1000;
+                style = 0x0c;
+            	text = "0"; //--- ToDo: Localize;
+            	x = 0.797917 * safezoneW + safezoneX;
+            	y = 0.939828 * safezoneH + safezoneY;
+            	w = 0.0458333 * safezoneW;
+            	h = 0.0549786 * safezoneH;
+            	colorText[] = {1,1,1,1};
+            	colorBackground[] = {0,0,0.4,1};
             };
-            class ct_score_east:ct_score_west {
-            		idc = 1202;
-            		text = "0";
-            		colorBackground[] = { 1, 0, 0, 1 };
-                    x = 1.6 * safezoneW + safezoneX;
-            	};
+            class ct_score_east: RscText
+            {
+            	idc = 1001;
+                style = 0x0c;
+            	text = "0"; //--- ToDo: Localize;
+            	x = 0.84375 * safezoneW + safezoneX;
+            	y = 0.939828 * safezoneH + safezoneY;
+            	w = 0.0458333 * safezoneW;
+            	h = 0.0549786 * safezoneH;
+            	colorText[] = {1,1,1,1};
+            	colorBackground[] = {0.4,0,0,1};
             };
-            class ct_score_resistance:ct_score_west {
-            		idc = 1203;
-            		text = "0";
-            		colorBackground[] = { 0, 1, 0, 1 };
-                    x = 2.0 * safezoneW + safezoneX;
-            	};
+            class ct_score_resistance: RscText
+            {
+            	idc = 1002;
+                style = 0x0c;
+            	text = "0"; //--- ToDo: Localize;
+            	x = 0.889583 * safezoneW + safezoneX;
+            	y = 0.939828 * safezoneH + safezoneY;
+            	w = 0.0458333 * safezoneW;
+            	h = 0.0549786 * safezoneH;
+            	colorText[] = {1,1,1,1};
+            	colorBackground[] = {0,0.4,0,1};
             };
         };
     };
