@@ -28,6 +28,10 @@ respawn = "BASE";
 respawnButton = 0;
 respawnOnStart = 0;
 
+minScore = 0;
+avgScore = 500;
+maxScore = 1000;
+
 // Revive
 ReviveMode = 0;                         //0: disabled, 1: enabled, 2: controlled by player attributes
 ReviveUnconsciousStateMode = 2;         //0: basic, 1: advanced, 2: realistic
