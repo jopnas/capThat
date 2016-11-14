@@ -46,14 +46,14 @@ enableDebugConsole = 1; // 2 = dangerous in MP
 allowFunctionsLog = 1;  // Allow RPT loging
 
 // Sounds
-/*class CfgSounds {
+class CfgSounds {
     sounds[] = {};
-    class detectorBeep {
+    class transmitterBeep {
         name = "";
-        sound[] = {"\sound\detectorbeep.ogg", 0.5, 1};
+        sound[] = {"\sounds\transmitterbeep.ogg", 0.5, 1};
         titles[] = {};
     };
-};*/
+};
 
 // GUI
 class RscText
@@ -96,19 +96,19 @@ class RscTitles
         duration = 4;
     };
 
-    class ct_detector_gui
+    class ct_transmitter_gui
     {
         idd = 6900;
         movingEnable = 0;
         duration = 100000;
-        name = "ct_detectorGUI";
-        onLoad = "uiNamespace setVariable ['ct_detectorGUI', _this select 0];";
+        name = "ct_transmitterGUI";
+        onLoad = "uiNamespace setVariable ['ct_transmitterGUI', _this select 0];";
 
         class controls {
-            class ct_detector_dot: RscPicture 
+            class ct_transmitter_dot: RscPicture
             {
                 idc = 1200;
-                text = "images\visualDetector.paa";
+                text = "images\visualTransmitter.paa";
                 x = 0.964063 * safezoneW + safezoneX;
                 y = 0.950824 * safezoneH + safezoneY;
                 w = 0.0286458 * safezoneW;
