@@ -6,7 +6,7 @@ player setVariable["hasCapObj",false,true];
 
 while{true}do{
     _hasCapObj  = player getVariable["hasCapObj",false];
-    [_hasCapObj] execVM "scripts\transmitter.sqf";
+    [_hasCapObj] execVM "scripts\client\transmitter.sqf";
 
     // DEBUG
     sleep 0.1;

@@ -5,5 +5,4 @@ _respawn = _this select 2;
 _respawnDelay = _this select 3;
 
 _capObject = createVehicle [capObjectClass,getPos _oldUnit,[], 0, "CAN_COLLIDE"];
-//[_capObject] remoteExec ["addTakeCapObjectAction", 2, false];
 _oldUnit setVariable["hasCapObj",false,true];

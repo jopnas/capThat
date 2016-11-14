@@ -13,7 +13,6 @@ while{true}do{
             _sidePlayer addScoreSide (_playerSideScore + 1);
             nextSearch = nextSearch + 30;
         };
-        //systemChat format["side _player: %1, _hasCapObj: %2",side _player,  _hasCapObj];
     } forEach _justPlayers;
 
     sleep 0.1;

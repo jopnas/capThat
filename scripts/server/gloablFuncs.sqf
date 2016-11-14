@@ -1,6 +1,6 @@
 addTakeCapObjectAction = {
     params["_capObject"];
-    _capObject addAction["Take Object","scripts\takeCapObj.sqf",[],6,true,false,"","",2,false];
+    _capObject addAction["Take Object","scripts\server\takeCapObj.sqf",[],6,true,false,"","",2,false];
 };
 
 addDropCapObjectAction = {

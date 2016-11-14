@@ -3,12 +3,12 @@ capObjectClass  = "Land_Laptop_unfolded_F";
 
 if(isServer)then{
 
-    execVM "scripts\gloablFuncs.sqf";
-    execVM "scripts\initCapObject.sqf";
-    execVM "scripts\serverCore.sqf";
+    execVM "scripts\server\gloablFuncs.sqf";
+    execVM "scripts\server\initCapObject.sqf";
+    execVM "scripts\server\serverCore.sqf";
 
 };
 
 if(!isDedicated)then{
-    player execVM "scripts\playerWhileAlive.sqf";
+    player execVM "scripts\client\playerWhileAlive.sqf";
 };
