@@ -116,5 +116,45 @@ class RscTitles
             };
         };
     };
+
+    class ct_scoreboard_gui
+    {
+        idd = 6901;
+        movingEnable = 0;
+        duration = 100000;
+        name = "ct_scoreboardGUI";
+        onLoad = "uiNamespace setVariable ['ct_scoreboardGUI', _this select 0];";
+
+        class controls {
+            class ct_score_west:RscText {
+            		idc = 1201;
+                    type = 0;
+            		style = 0x02;
+            		text = "0";
+            		sizeEx = 0.023;
+            		colorBackground[] = { 0, 0, 1, 1 };
+            		colorText[] = { 1, 1, 1, 1 };
+                    w = 0.03 * safezoneW;
+                    h = 0.03 * safezoneH;
+                    x = 1.2 * safezoneW + safezoneX;
+                    y = 0.950824 * safezoneH + safezoneY;
+            	};
+            };
+            class ct_score_east:ct_score_west {
+            		idc = 1202;
+            		text = "0";
+            		colorBackground[] = { 1, 0, 0, 1 };
+                    x = 1.6 * safezoneW + safezoneX;
+            	};
+            };
+            class ct_score_resistance:ct_score_west {
+            		idc = 1203;
+            		text = "0";
+            		colorBackground[] = { 0, 1, 0, 1 };
+                    x = 2.0 * safezoneW + safezoneX;
+            	};
+            };
+        };
+    };
 };
 
