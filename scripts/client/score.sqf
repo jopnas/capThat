@@ -1,14 +1,16 @@
 disableSerialization;
 
-_namespaceScoreUI       = uiNamespace getVariable "ctGUI";
-_ctrlScoreWest          = _namespaceScoreUI displayCtrl 1000;
-_ctrlScoreEast          = _namespaceScoreUI displayCtrl 1001;
-_ctrlScoreResistance    = _namespaceScoreUI displayCtrl 1002;
+_namespaceUI            = uiNamespace getVariable "ctGUI";
+_ctrlScoreWest          = _namespaceUI displayCtrl 1201;
+_ctrlScoreEast          = _namespaceUI displayCtrl 1202;
+_ctrlScoreResistance    = _namespaceUI displayCtrl 1203;
 
 _scoreSideWest          = scoreSide west;
 _scoreSideEast          = scoreSide east;
 _scoreSideResistance    = scoreSide resistance;
 
-_ctrlScoreWest ctrlSetText (str _scoreSideWest);
-_ctrlScoreEast ctrlSetText (str _scoreSideEast);
-_ctrlScoreResistance ctrlSetText (str _scoreSideResistance);
+_ctrlScoreWest ctrlSetText format["%1 MB]",_scoreSideWest/1000];
+_ctrlScoreEast ctrlSetText format["%1 MB]",_scoreSideEast/1000];
+_ctrlScoreResistance ctrlSetText format["%1 MB]",_scoreSideResistance/1000];
+
+systemChat format["score: [%1,%2,%3]",_scoreSideWest,_scoreSideEast,_scoreSideResistance];

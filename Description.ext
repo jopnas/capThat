@@ -29,21 +29,21 @@ respawnButton = 0;
 respawnOnStart = 0;
 
 minScore = 0;
-avgScore = 500;
-maxScore = 1000;
+avgScore = 5000;
+maxScore = 10000;
 
 // Revive
-ReviveMode = 0;                         //0: disabled, 1: enabled, 2: controlled by player attributes
+ReviveMode = 1;                         //0: disabled, 1: enabled, 2: controlled by player attributes
 ReviveUnconsciousStateMode = 2;         //0: basic, 1: advanced, 2: realistic
 ReviveRequiredTrait = 0;                //0: none, 1: medic trait is required
-ReviveRequiredItems = 2;                //0: none, 1: medkit, 2: medkit or first aid kit
+ReviveRequiredItems = 0;                //0: none, 1: medkit, 2: medkit or first aid kit
 ReviveRequiredItemsFakConsumed = 0;     //0: first aid kit is not consumed upon revive, 1: first aid kit is consumed
-ReviveDelay = 6;                        //time needed to revive someone (in secs)
-ReviveMedicSpeedMultiplier = 2;         //speed multiplier for revive performed by medic
+ReviveDelay = 20;                        //time needed to revive someone (in secs)
+ReviveMedicSpeedMultiplier = 3;         //speed multiplier for revive performed by medic
 ReviveForceRespawnDelay = 3;            //time needed to perform force respawn (in secs)
 ReviveBleedOutDelay = 120;              //unconscious state duration (in secs)
 
-showGroupIndicator = 0;
+showGroupIndicator = 1;
 enableTeamSwitch = 0;
 
 enableDebugConsole = 1; // 2 = dangerous in MP
@@ -62,27 +62,27 @@ class CfgSounds {
 // GUI
 class RscText
 {
-    type = 0;
     idc = -1;
-    x = 0;
-    y = 0;
-    h = 0.037;
-    w = 0.3;
-    style = 0x100;
-    font="TahomaB";
-    SizeEx = 0.03921;
+    access = 0;
+    type = 0;
+    style = 2; //centre text
+    w = 0.1;
+    h = 0.05;
+    font = "TahomaB";
+    sizeEx = 0.04;
+    colorBackground[] = {0,0,0,0};
     colorText[] = {1,1,1,1};
-    colorBackground[] = {0, 0, 0, 1};
-    linespacing = 1;
-    shadow = 1;
+    text = "";
+    fixedWidth = 0;
+    shadow = 0;
 };
 
 class RscPicture
 {
-    access=0;
-    type=0;
     idc=-1;
+    type=0;
     style=48;
+    access=0;
     colorBackground[]={0,0,0,0};
     colorText[]={1,1,1,1};
     font="TahomaB";
@@ -105,10 +105,11 @@ class RscTitles
         idd = 6900;
         movingEnable = 0;
         duration = 100000;
-        name = "ctGUI";
+        name = "GUIct";
         onLoad = "uiNamespace setVariable ['ctGUI', _this select 0];";
 
         class controls {
+            // Transmitter LED
             class ct_transmitter_dot: RscPicture
             {
                 idc = 1200;
@@ -119,11 +120,45 @@ class RscTitles
                 h = 0.0439828 * safezoneH;
             };
 
+            // Score
             class ct_score_west: RscText
             {
-            	idc = 1000;
-                style = 0x0c;
-            	text = "0"; //--- ToDo: Localize;
+            	idc = 1201;
+            	text = "0.0 MB";
+            	x = 0.797917 * safezoneW + safezoneX;
+            	y = 0.939828 * safezoneH + safezoneY;
+            	w = 0.0458333 * safezoneW;
+            	h = 0.0549786 * safezoneH;
+                colorText[] = {0,0,0,1};
+            	colorBackground[] = {1,1,1,1};
+            };
+            class ct_score_east: RscText
+            {
+            	idc = 1202;
+                text = "0.0 MB";
+            	x = 0.84375 * safezoneW + safezoneX;
+            	y = 0.939828 * safezoneH + safezoneY;
+            	w = 0.0458333 * safezoneW;
+            	h = 0.0549786 * safezoneH;
+                colorText[] = {0,0,0,1};
+            	colorBackground[] = {1,1,1,1};
+            };
+            class ct_score_resistance: RscText
+            {
+            	idc = 1203;
+                text = "0.0 MB";
+            	x = 0.889583 * safezoneW + safezoneX;
+            	y = 0.939828 * safezoneH + safezoneY;
+            	w = 0.0458333 * safezoneW;
+            	h = 0.0549786 * safezoneH;
+            	colorText[] = {0,0,0,1};
+            	colorBackground[] = {1,1,1,1};
+            };
+
+            class ct_score_west: RscPicture
+            {
+            	idc = 1204;
+            	text = "";
             	x = 0.797917 * safezoneW + safezoneX;
             	y = 0.939828 * safezoneH + safezoneY;
             	w = 0.0458333 * safezoneW;
@@ -131,11 +166,10 @@ class RscTitles
             	colorText[] = {1,1,1,1};
             	colorBackground[] = {0,0,0.4,1};
             };
-            class ct_score_east: RscText
+            class ct_score_east: RscPicture
             {
-            	idc = 1001;
-                style = 0x0c;
-            	text = "0"; //--- ToDo: Localize;
+            	idc = 1205;
+            	text = "";
             	x = 0.84375 * safezoneW + safezoneX;
             	y = 0.939828 * safezoneH + safezoneY;
             	w = 0.0458333 * safezoneW;
@@ -143,11 +177,10 @@ class RscTitles
             	colorText[] = {1,1,1,1};
             	colorBackground[] = {0.4,0,0,1};
             };
-            class ct_score_resistance: RscText
+            class ct_score_resistance: RscPicture
             {
-            	idc = 1002;
-                style = 0x0c;
-            	text = "0"; //--- ToDo: Localize;
+            	idc = 1206;
+            	text = "";
             	x = 0.889583 * safezoneW + safezoneX;
             	y = 0.939828 * safezoneH + safezoneY;
             	w = 0.0458333 * safezoneW;
