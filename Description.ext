@@ -91,6 +91,26 @@ class RscPicture
     text="";
 };
 
+class ct_score_text: RscText
+{
+    sizeEx = 0.03;
+    y = 0.939828 * safezoneH + safezoneY;
+    w = 0.0458333 * safezoneW;
+    h = 0.0549786 * safezoneH;
+    colorText[] = {0,0,0,1};
+    colorBackground[] = {1,1,1,0};
+    text = "0.0 MB";
+};
+
+class ct_score_bg: RscPicture
+{
+    text = "images\scoreicon.paa";
+    y = 0.9 * safezoneH + safezoneY;
+    w = 0.0458333 * safezoneW;
+    h = 0.0549786 * safezoneH;
+    colorBackground[] = {0,0,0,0};
+};
+
 class RscTitles
 {
     class Default
@@ -121,72 +141,39 @@ class RscTitles
             };
 
             // Score
-            class ct_score_west: RscText
+            class ct_score_west: ct_score_text
             {
             	idc = 1201;
-            	text = "0.0 MB";
             	x = 0.797917 * safezoneW + safezoneX;
-            	y = 0.939828 * safezoneH + safezoneY;
-            	w = 0.0458333 * safezoneW;
-            	h = 0.0549786 * safezoneH;
-                colorText[] = {0,0,0,1};
-            	colorBackground[] = {1,1,1,1};
             };
-            class ct_score_east: RscText
+            class ct_score_east: ct_score_text
             {
             	idc = 1202;
-                text = "0.0 MB";
             	x = 0.84375 * safezoneW + safezoneX;
-            	y = 0.939828 * safezoneH + safezoneY;
-            	w = 0.0458333 * safezoneW;
-            	h = 0.0549786 * safezoneH;
-                colorText[] = {0,0,0,1};
-            	colorBackground[] = {1,1,1,1};
             };
-            class ct_score_resistance: RscText
+            class ct_score_resistance: ct_score_text
             {
             	idc = 1203;
-                text = "0.0 MB";
             	x = 0.889583 * safezoneW + safezoneX;
-            	y = 0.939828 * safezoneH + safezoneY;
-            	w = 0.0458333 * safezoneW;
-            	h = 0.0549786 * safezoneH;
-            	colorText[] = {0,0,0,1};
-            	colorBackground[] = {1,1,1,1};
             };
 
-            class ct_score_west: RscPicture
+            class ct_score_bg_west: ct_score_bg
             {
             	idc = 1204;
-                text = "images\scoreicon.paa";
             	x = 0.797917 * safezoneW + safezoneX;
-            	y = 0.939828 * safezoneH + safezoneY;
-            	w = 0.0458333 * safezoneW;
-            	h = 0.0549786 * safezoneH;
             	colorText[] = {0,0,0.4,1};
-            	colorBackground[] = {0,0,0,0};
             };
-            class ct_score_east: RscPicture
+            class ct_score_bg_east: ct_score_bg
             {
             	idc = 1205;
-                text = "images\scoreicon.paa";
             	x = 0.84375 * safezoneW + safezoneX;
-            	y = 0.939828 * safezoneH + safezoneY;
-            	w = 0.0458333 * safezoneW;
-            	h = 0.0549786 * safezoneH;
             	colorText[] = {0.4,0,0,1};
-            	colorBackground[] = {0,0,0,0};
             };
-            class ct_score_resistance: RscPicture
+            class ct_score_bg_resistance: ct_score_bg
             {
             	idc = 1206;
-            	text = "images\scoreicon.paa";
             	x = 0.889583 * safezoneW + safezoneX;
-            	y = 0.939828 * safezoneH + safezoneY;
-            	w = 0.0458333 * safezoneW;
-            	h = 0.0549786 * safezoneH;
             	colorText[] = {0,0.4,0,1};
-            	colorBackground[] = {0,0,0,0};
             };
         };
     };

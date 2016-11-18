@@ -9,8 +9,8 @@ _scoreSideWest          = scoreSide west;
 _scoreSideEast          = scoreSide east;
 _scoreSideResistance    = scoreSide resistance;
 
-_ctrlScoreWest ctrlSetText format["%1 MB]",_scoreSideWest/1000];
-_ctrlScoreEast ctrlSetText format["%1 MB]",_scoreSideEast/1000];
-_ctrlScoreResistance ctrlSetText format["%1 MB]",_scoreSideResistance/1000];
+_ctrlScoreWest ctrlSetText format["%1 MB",_scoreSideWest/1000];
+_ctrlScoreEast ctrlSetText format["%1 MB",_scoreSideEast/1000];
+_ctrlScoreResistance ctrlSetText format["%1 MB",_scoreSideResistance/1000];
 
 systemChat format["score: [%1,%2,%3]",_scoreSideWest,_scoreSideEast,_scoreSideResistance];
