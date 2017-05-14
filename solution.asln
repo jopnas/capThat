@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Solution>
+  <Project ArmAPath="C:\Program Files (x86)\Steam\steamapps\common\Arma 3" Name="CapThat_0001.VR" FilePath="C:\Users\Jonas\Documents\Arma 3\missions\CapThat_0001.VR" ProjectType="Mission">
+    <ProjectFile ProjectRelativePath="description.ext" />
+    <ProjectFile ProjectRelativePath="init.sqf" />
+  </Project>
+</Solution>
