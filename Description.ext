@@ -1,24 +1,92 @@
-onLoadMission = "CapThat v0.01";
-onLoadIntro = "Welcome to CapThat!"
-onLoadMissionTime = 0;
-onLoadIntroTime = 0;
-loadScreen =  "images\loadScreen.paa";
+class Header
+{
+	gameType   = CTF;  // Game type, see 'class' columns in the table below
+	minPlayers = 1;    //min # of players the mission supports
+	maxPlayers = 4;    //max # of players the mission supports
+};
 
-minScore = 0;                   // must set lower then avgScore
-avgScore = 1800;                // must set lower then maxScore
-maxScore = 75000;
+author              = "NotSure";
+OnLoadName          = "CapThat v0.01";
+OnLoadMission       = "Welcome to CapThat!";
 
-respawn = 3;                    // 3 or "BASE" - Respawn in base. Requires a marker named "respawn_west", "respawn_east", "respawn_guerrila" or "respawn_civilian". (eg: respawn_westABC, respawn_west1, respawn_west_2, etc)
-enableTeamSwitch = 0;           // Enables or disables Team Switch functionality in MP when respawn type is 5 (SIDE). Default is 1.
+onLoadMission       = "onLoadMission text";
+onLoadIntro         = "onLoadIntro text"
+onLoadMissionTime   = 0;
+onLoadIntroTime     = 0;
+loadScreen          =  "images\loadScreen.paa";
 
-respawnButton = 0;              // Enable or disable the respawn button in the menu for INSTANT and BASE respawn types. Default is 1 (enabled).
-respawnDelay = 42;              // Set respawn delay in seconds.
-respawnVehicleDelay = 11;       // Set vehicle respawn delay in seconds.
-respawnDialog = 0;              // Show the scoreboard and respawn countdown timer for a player if he is killed with respawnType 3. Default is 1 (true).
-respawnOnStart = -1;            // 1 to respawn player when he joins the game. Available only for INSTANT and BASE respawn types.
+overviewTextLocked  = "overviewTextLocked text";
+overviewText        = "overviewText text";
+overviewPicture     =  "images\loadScreen.paa";
 
-respawnTemplates[] = {};        // Respawn templates from CfgRespawnTemplates. You can combine any number of them together.
+minScore            = 0;            // must set lower then avgScore
+avgScore            = 1800;         // must set lower then maxScore
+maxScore            = 75000;
 
-ReviveMode = 1;                 // 0: disabled, 1: enabled, 2: controlled by player attributes
-ReviveUnconsciousStateMode = 2; // 0: basic, 1: advanced, 2: realistic
-ReviveRequiredTrait = 0;        // 0: none, 1: medic trait is required
+respawn             = 3;            // 3 or "BASE" - Respawn in base. Requires a marker named "respawn_west", "respawn_east", "respawn_guerrila" or "respawn_civilian". (eg: respawn_westABC, respawn_west1, respawn_west_2, etc)
+enableTeamSwitch    = 0;            // Enables or disables Team Switch functionality in MP when respawn type is 5 (SIDE). Default is 1.
+
+respawnButton       = 0;            // Enable or disable the respawn button in the menu for INSTANT and BASE respawn types. Default is 1 (enabled).
+respawnDelay        = 42;           // Set respawn delay in seconds.
+respawnVehicleDelay = 11;           // Set vehicle respawn delay in seconds.
+respawnDialog       = 0;            // Show the scoreboard and respawn countdown timer for a player if he is killed with respawnType 3. Default is 1 (true).
+respawnOnStart      = -1;           // 1 to respawn player when he joins the game. Available only for INSTANT and BASE respawn types.
+
+respawnTemplates[]  = {};           // Respawn templates from CfgRespawnTemplates. You can combine any number of them together.
+
+ReviveMode          = 1;            // 0: disabled, 1: enabled, 2: controlled by player attributes
+ReviveUnconsciousStateMode = 2;     // 0: basic, 1: advanced, 2: realistic
+ReviveRequiredTrait = 0;            // 0: none, 1: medic trait is required
+ReviveRequiredItems = 0;            // 0: none, 1: medkit, 2: medkit or first aid
+ReviveRequiredItemsFakConsumed = 0; // 0: first aid kit is not consumed upon revive, 1: first aid kit is
+ReviveMedicSpeedMultiplier = 2;     // speed multiplier for revive performed by medic
+reviveDelay         = 20;           // The time it takes to revive an incapacitated unit (default: 6 seconds). Having a Medikit will halve this time.
+reviveForceRespawnDelay = 3;        // The time it takes for an incapacitated unit to force their respawn (default: 3 seconds).
+reviveBleedOutDelay = 180;          // The time it takes for a unit to bleed out (default: 2 minutes).
+
+disabledAI          = 1;
+aiKills             = 0;
+
+showHUD[] = {
+	true,	// Scripted HUD (same as showHUD command)
+	true,	// Vehicle + soldier info
+	true,	// Vehicle radar
+	true,	// Vehicle compass
+	true,	// Tank direction indicator
+	true,	// Commanding menu
+	true,	// Group Bar
+	true	// HUD Weapon Cursors
+};
+
+showGPS = 0;
+showCompass = 0;
+showMap = 0;
+showNotePad = 0;
+showPad = 0;
+showWatch = 0;
+showUAVFeed = 0;
+showSquadRadar = 0;
+
+scriptedPlayer = 1; // When scripted player is enabled, game no longer shows "No player select" error message upon mission start when no player unit is present.
+
+disableChannels[]={
+    // {channelID<number>, disableChat<bool>, disableVoice<bool>}
+    {0,false,true}, // 0 = Global
+    {1,true,true} // 1 = Side
+    {2,true,true} // 2 = Command
+    {3,false,false} // 3 = Group
+    {4,false,false} // 4 = Vehicle
+    {5,true,true} // 5 = Direct
+    {6,false,false} // 6 = System
+};
+
+enableItemsDropping = 0;
+joinUnassigned      = 0;
+skipLobby           = 1;
+allowFunctionsLog   = 1; // Allows functions to log to the RPT file. Set it to 1/true to allow RPT logging.
+enableDebugConsole  = 1; // 0 = Default behavior, available only in editor, 1 = Available in SP and for hosts / logged in admins, 2 = Available for everyone
+
+saving              = 0;
+disableRandomization[] = {"All"};
+showGroupIndicator  = 1;
+allowFunctionsRecompile = 0;
