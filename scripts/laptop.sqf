@@ -3,18 +3,22 @@ _laptop addAction["Take Laptop", {
 	_laptop = _this select 0;
 	_caller = _this select 1;
 
+    [_laptop, true] remoteExec ["hideLaptopGlobal", 2];
 	_laptop attachTo[_caller, [0.1, 0.1, 0.15], "Pelvis"];
 	_caller setVariable["hasLaptop", true, true];
-    [_laptop, true] remoteExec ["hideLaptopGlobal", 2];
 
 	_caller addAction["Release Laptop",{
 		_caller = _this select 1;
+        _actID  = _this select 2;
 		_args 	= _this select 3;
 		_laptop = _args select 0;
 
 		detach _laptop;
 		_caller setVariable["hasLaptop", false, true];
-        [_laptop, false] remoteExec ["hideLaptopGlobal", 2];
-	}, [_laptop], 6];
+        _caller removeAction _actID;
 
-}, [], 6];
+        [_laptop, false] remoteExec ["hideLaptopGlobal", 2];
+	}, [_laptop], 6, false];
+
+}, [], 6, true, true, "", "", 2];
+// object addAction [title, script, arguments, priority, showWindow, hideOnUse, shortcut, condition, radius, unconscious, selection]
