@@ -1,0 +1,24 @@
+onLoadMission = "CapThat v0.01";
+onLoadIntro = "Welcome to CapThat!"
+onLoadMissionTime = 0;
+onLoadIntroTime = 0;
+loadScreen =  "images\loadScreen.paa";
+
+minScore = 0;                   // must set lower then avgScore
+avgScore = 1800;                // must set lower then maxScore
+maxScore = 75000;
+
+respawn = 3;                    // 3 or "BASE" - Respawn in base. Requires a marker named "respawn_west", "respawn_east", "respawn_guerrila" or "respawn_civilian". (eg: respawn_westABC, respawn_west1, respawn_west_2, etc)
+enableTeamSwitch = 0;           // Enables or disables Team Switch functionality in MP when respawn type is 5 (SIDE). Default is 1.
+
+respawnButton = 0;              // Enable or disable the respawn button in the menu for INSTANT and BASE respawn types. Default is 1 (enabled).
+respawnDelay = 42;              // Set respawn delay in seconds.
+respawnVehicleDelay = 11;       // Set vehicle respawn delay in seconds.
+respawnDialog = 0;              // Show the scoreboard and respawn countdown timer for a player if he is killed with respawnType 3. Default is 1 (true).
+respawnOnStart = -1;            // 1 to respawn player when he joins the game. Available only for INSTANT and BASE respawn types.
+
+respawnTemplates[] = {};        // Respawn templates from CfgRespawnTemplates. You can combine any number of them together.
+
+ReviveMode = 1;                 // 0: disabled, 1: enabled, 2: controlled by player attributes
+ReviveUnconsciousStateMode = 2; // 0: basic, 1: advanced, 2: realistic
+ReviveRequiredTrait = 0;        // 0: none, 1: medic trait is required
