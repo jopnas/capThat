@@ -25,16 +25,16 @@ maxScore                        = 75000;
 respawn                         = 3;            // 3 or "BASE" - Respawn in base. Requires a marker named "respawn_west", "respawn_east", "respawn_guerrila" or "respawn_civilian". (eg: respawn_westABC, respawn_west1, respawn_west_2, etc)
 enableTeamSwitch                = 0;            // Enables or disables Team Switch functionality in MP when respawn type is 5 (SIDE). Default is 1.
 
-respawnButton                   = 0;            // Enable or disable the respawn button in the menu for INSTANT and BASE respawn types. Default is 1 (enabled).
+respawnButton                   = 1;            // Enable or disable the respawn button in the menu for INSTANT and BASE respawn types. Default is 1 (enabled).
 respawnDelay                    = 42;           // Set respawn delay in seconds.
 respawnVehicleDelay             = 11;           // Set vehicle respawn delay in seconds.
-respawnDialog                   = 0;            // Show the scoreboard and respawn countdown timer for a player if he is killed with respawnType 3. Default is 1 (true).
+respawnDialog                   = 1;            // Show the scoreboard and respawn countdown timer for a player if he is killed with respawnType 3. Default is 1 (true).
 respawnOnStart                  = -1;           // 1 to respawn player when he joins the game. Available only for INSTANT and BASE respawn types.
 
 respawnTemplates[]              = {};           // Respawn templates from CfgRespawnTemplates. You can combine any number of them together.
 
 ReviveMode                      = 1;            // 0: disabled, 1: enabled, 2: controlled by player attributes
-ReviveUnconsciousStateMode      = 1;            // 0: basic, 1: advanced, 2: realistic
+ReviveUnconsciousStateMode      = 0;            // 0: basic, 1: advanced, 2: realistic
 ReviveRequiredTrait             = 0;            // 0: none, 1: medic trait is required
 ReviveRequiredItems             = 0;            // 0: none, 1: medkit, 2: medkit or first aid kit
 ReviveRequiredItemsFakConsumed  = 0;            // 0: first aid kit is not consumed upon revive, 1: first aid kit is consumed
@@ -80,7 +80,7 @@ disableChannels[]               = {             // {channelID<number>, disableCh
 
 enableItemsDropping             = 0;
 joinUnassigned                  = 0;
-skipLobby                       = 1;
+skipLobby                       = 0;
 allowFunctionsLog               = 1;            // Allows functions to log to the RPT file. Set it to 1/true to allow RPT logging.
 enableDebugConsole              = 1;            // 0 = Default behavior, available only in editor, 1 = Available in SP and for hosts / logged in admins, 2 = Available for everyone
 
