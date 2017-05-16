@@ -1,17 +1,18 @@
 player setVariable["hasLaptop",false,true];
 
-[] spawn {
-    3 cutRsc ['scores', 'PLAIN',0,false];
-    player addEventHandler ["killed", {
-        _unit       = _this select 0; // Object - Object the event handler is assigned to
-        _killer     = _this select 1; // Object - Object that killed the unit. Contains the unit itself in case of collisions
-        _instigator = _this select 1; // Object - Person who pulled the trigger
-        _useEffects = _this select 1; // Boolean - same as useEffects in setDamage alt syntax
+3 cutRsc ['scores', 'PLAIN',0,false];
 
-        {
-            detach _x;
-        } forEach attachedObjects _unit;
-    }];
+/*player addEventHandler ["killed", {
+    _unit       = _this select 0; // Object - Object the event handler is assigned to
+    _killer     = _this select 1; // Object - Object that killed the unit. Contains the unit itself in case of collisions
+    _instigator = _this select 1; // Object - Person who pulled the trigger
+    _useEffects = _this select 1; // Boolean - same as useEffects in setDamage alt syntax
+
+    _laptop = player getVariable "laptopObj";
+    detach _laptop;
+}];*/
+
+[] spawn {
 	_nextScoreUp = time;
 	while{alive player}do{
 		_hasLaptop 	= player getVariable["hasLaptop",false];
