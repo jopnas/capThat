@@ -27,7 +27,7 @@ player addEventHandler ["killed", {
 		_resiScore = scoreSide resistance;
 
 		if(_hasLaptop && time > _nextScoreUp)then{
-			_team addScoreSide 1;
+            {_team addScoreSide 1;} remoteExec ["bis_fnc_call", 2];
 			_nextScoreUp = time + 5;
 		};
 

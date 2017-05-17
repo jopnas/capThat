@@ -1,5 +1,5 @@
 if(isServer)then{
-	[] execVM "scripts\gameLogic.sqf";
+	[] execVM "scripts\server.sqf";
 };
 
 if(!isDedicated)then{
