@@ -1,3 +1,4 @@
+// Mission Variables
 player setVariable["hasLaptop",false,true];
 
 3 cutRsc ['scores', 'PLAIN', 0, false];
@@ -17,6 +18,7 @@ player addEventHandler ["killed", {
 }];
 
 [] spawn {
+    _namespace = profileNamespace;
 	_nextScoreUp = time;
 	while{true}do{
 		_hasLaptop 	= player getVariable["hasLaptop",false];
@@ -28,13 +30,22 @@ player addEventHandler ["killed", {
 
 		if(_hasLaptop && time > _nextScoreUp)then{
             {_team addScoreSide 1;} remoteExec ["bis_fnc_call", 2];
-			_nextScoreUp = time + 5;
+
+            _player_credits = _namespace getVariable "var_ct_credits";
+            _player_xp      = _namespace getVariable "var_ct_xp";
+
+            _namespace setVariable ["var_ct_credits",_player_credits + 1];
+            _namespace setVariable ["var_ct_xp",_player_xp + 1];
+
+            saveProfileNamespace;
+
+            _nextScoreUp = time + 5;
 		};
 
         // GUI Score
         [] execVM "scripts\updateGUI.sqf";
 
-        hintSilent format ["hasLaptop: %1\nteam: %2\nwestScore: %3\neastScore: %4\nguerScore: %5",_hasLaptop,_team,_westScore,_eastScore,_resiScore];
+        hintSilent format ["hasLaptop: %1\nteam: %2\nwestScore: %3\neastScore: %4\nguerScore: %5\$: %6\nXP: %7",_hasLaptop,_team,_westScore,_eastScore,_resiScore,_namespace getVariable "var_ct_credits",_namespace getVariable "var_ct_xp"];
 		sleep 0.1;
 	};
 };
