@@ -1,10 +1,5 @@
-hideLaptopGlobal = {
-    params["_laptop", "_state"];
-    _laptop hideObjectGlobal _state;
-};
-
-[] spawn ={
+/*[] spawn ={
     while(true)do{
 
     };
-};
+};*/

@@ -4,7 +4,8 @@ _laptop addAction["Take Laptop", {
 	_laptop = _this select 0;
 	_caller = _this select 1;
 
-    [_laptop, true] remoteExec ["hideLaptopGlobal", 2];
+    {_laptop hideObjectGlobal true;} remoteExec ["bis_fnc_call", 2];
+
 	_laptop attachTo[_caller, [0.1, 0.1, 0.15], "Pelvis"];
 	_caller setVariable["hasLaptop", true, true];
 
@@ -18,7 +19,8 @@ _laptop addAction["Take Laptop", {
 		_caller setVariable["hasLaptop", false, true];
         _caller removeAction _actID;
 
-        [_laptop, false] remoteExec ["hideLaptopGlobal", 2];
+        {_laptop hideObjectGlobal false;} remoteExec ["bis_fnc_call", 2];
+
 	}, [_laptop], 5, false];
 
 }, [], 6, true, true, "", "", 3];

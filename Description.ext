@@ -157,38 +157,39 @@ class RscTitles {
                 colorBackground[] = {0,0,0,1};
             };
 
-            class scoreResi: scoreDefault {
+            class scoreWest: scoreDefault {
             	idc = 1200;
-            	x = 0.929688 * safezoneW + safezoneX;
-            	colorText[] = {0.1,0.8,0.1,1};
+            	x = 0.820833 * safezoneW + safezoneX;
+            	colorText[] = {0.1,0.1,0.8,1};
             };
             class scoreEast: scoreDefault {
             	idc = 1201;
             	x = 0.878125 * safezoneW + safezoneX;
             	colorText[] = {0.8,0.1,0.1,1};
             };
-            class scoreWest: scoreDefault {
+            class scoreResi: scoreDefault {
             	idc = 1202;
-            	x = 0.820833 * safezoneW + safezoneX;
-            	colorText[] = {0.1,0.1,0.8,1};
+            	x = 0.929688 * safezoneW + safezoneX;
+            	colorText[] = {0.1,0.8,0.1,1};
             };
+            
             class scoreWestText: scoreDefaultText {
             	idc = 1000;
             	x = 0.825 * safezoneW + safezoneX;
             	colorText[] = {1,1,1,1};
-            	colorBackground[] = {0.2,0.2,0.8,1};
+            	colorBackground[] = {0.1,0.1,0.8,1};
             };
             class scoreEastText: scoreDefaultText {
             	idc = 1001;
             	x = 0.883854 * safezoneW + safezoneX;
             	colorText[] = {1,1,1,1};
-            	colorBackground[] = {0.2,0.2,0.8,1};
+            	colorBackground[] = {0.8,0.1,0.1,1};
             };
             class scoreResiText: scoreDefaultText {
             	idc = 1002;
             	x = 0.935417 * safezoneW + safezoneX;
             	colorText[] = {1,1,1,1};
-            	colorBackground[] = {0.2,0.2,0.8,1};
+            	colorBackground[] = {0.1,0.8,0.1,1};
             };
         };
     };
