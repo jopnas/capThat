@@ -147,7 +147,7 @@ class RscTitles {
             };
             class scoreDefaultText: RscText {
                 idd = -1;
-                text = "0 kb"; //--- ToDo: Localize;
+                text = "0 MB";
                 style = 0x01 + 0x0c;
                 x = 0.825 * safezoneW + safezoneX;
                 y = 0.950824 * safezoneH + safezoneY;
@@ -172,7 +172,7 @@ class RscTitles {
             	x = 0.929688 * safezoneW + safezoneX;
             	colorText[] = {0.1,0.8,0.1,1};
             };
-            
+
             class scoreWestText: scoreDefaultText {
             	idc = 1000;
             	x = 0.825 * safezoneW + safezoneX;
