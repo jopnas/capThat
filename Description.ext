@@ -139,6 +139,7 @@ class RscTitles {
             class scoreDefault: RscPicture {
                 idd = -1;
                 text = "images\scoreicon.paa";
+                style = 48;
                 x = 0.929688 * safezoneW + safezoneX;
                 y = 0.88485 * safezoneH + safezoneY;
                 w = 0.0458333 * safezoneW;
@@ -149,12 +150,12 @@ class RscTitles {
                 idd = -1;
                 text = "0 MB";
                 style = 0x01 + 0x0c;
-                x = 0.825 * safezoneW + safezoneX;
+                x = 0.929688 * safezoneW + safezoneX;
                 y = 0.950824 * safezoneH + safezoneY;
-                w = 0.038 * safezoneW;
+                w = 0.0458333 * safezoneW;
                 h = 0.04 * safezoneH;
                 colorText[] = {1,1,1,1};
-                colorBackground[] = {0,0,0,1};
+                colorBackground[] = {0,0,0,0.5};
             };
 
             class scoreWest: scoreDefault {
@@ -175,21 +176,15 @@ class RscTitles {
 
             class scoreWestText: scoreDefaultText {
             	idc = 1000;
-            	x = 0.825 * safezoneW + safezoneX;
-            	colorText[] = {1,1,1,1};
-            	colorBackground[] = {0.1,0.1,0.8,1};
+                x = 0.820833 * safezoneW + safezoneX;
             };
             class scoreEastText: scoreDefaultText {
             	idc = 1001;
-            	x = 0.883854 * safezoneW + safezoneX;
-            	colorText[] = {1,1,1,1};
-            	colorBackground[] = {0.8,0.1,0.1,1};
+                x = 0.878125 * safezoneW + safezoneX;
             };
             class scoreResiText: scoreDefaultText {
             	idc = 1002;
-            	x = 0.935417 * safezoneW + safezoneX;
-            	colorText[] = {1,1,1,1};
-            	colorBackground[] = {0.1,0.8,0.1,1};
+                x = 0.929688 * safezoneW + safezoneX;
             };
         };
     };
