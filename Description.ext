@@ -19,8 +19,8 @@ overviewText                    = "overviewText text";
 overviewPicture                 =  "images\loadScreen.paa";
 
 minScore                        = 0;            // must set lower then avgScore
-avgScore                        = 1800;         // must set lower then maxScore
-maxScore                        = 75000;
+avgScore                        = 99999999998;  // must set lower then maxScore
+maxScore                        = 99999999999;
 
 respawn                         = 3;            // 3 or "BASE" - Respawn in base. Requires a marker named "respawn_west", "respawn_east", "respawn_guerrila" or "respawn_civilian". (eg: respawn_westABC, respawn_west1, respawn_west_2, etc)
 enableTeamSwitch                = 0;            // Enables or disables Team Switch functionality in MP when respawn type is 5 (SIDE). Default is 1.
@@ -44,7 +44,7 @@ ReviveForceRespawnDelay         = 3;            // time needed to perform force 
 ReviveBleedOutDelay             = 120;          // unconscious state duration (in secs)
 
 disabledAI                      = 1;
-aiKills                         = 0;
+aiKills                         = 1;
 
 showHUD[]                       = {
 	true,	// Scripted HUD (same as showHUD command)
@@ -87,8 +87,19 @@ enableDebugConsole              = 1;            // 0 = Default behavior, availab
 saving                          = 0;
 disableRandomization[]          = {"All"};
 showGroupIndicator              = 1;
-allowFunctionsRecompile         = 0;
+allowFunctionsRecompile         = 1;
 
+// Sounds
+class CfgSounds {
+    sounds[] = {};
+    class transmitterBeep {
+        name = "";
+        sound[] = {"\sounds\transmitterbeep.ogg", 0.5, 1};
+        titles[] = {};
+    };
+};
+
+// GUI
 class RscText
 {
     type = 0;
@@ -120,6 +131,28 @@ class RscPicture
     text="";
 };
 
+class scoreDefault: RscPicture {
+    idd = -1;
+    text = "images\scoreicon.paa";
+    style = 48;
+    x = 0.929688 * safezoneW + safezoneX;
+    y = 0.88485 * safezoneH + safezoneY;
+    w = 0.0458333 * safezoneW;
+    h = 0.0549786 * safezoneH;
+    colorText[] = {0,0,0,1};
+};
+class scoreDefaultText: RscText {
+    idd = -1;
+    text = "0 MB";
+    style = 0x01 + 0x0c;
+    x = 0.929688 * safezoneW + safezoneX;
+    y = 0.950824 * safezoneH + safezoneY;
+    w = 0.0458333 * safezoneW;
+    h = 0.04 * safezoneH;
+    colorText[] = {1,1,1,1};
+    colorBackground[] = {0,0,0,0.5};
+};
+
 class RscTitles {
     class Default
     {
@@ -128,36 +161,23 @@ class RscTitles {
         duration = 4;
     };
 
-    class scores {
+    class player_gui {
         idd = 6900;
         movingEnable = 0;
         duration = 100000;
-        name = "scoresGui";
-        onLoad = "uiNamespace setVariable ['scores_display', _this select 0];";
+        name = "playerGUI";
+        onLoad = "uiNamespace setVariable ['player_display', _this select 0];";
 
         class controls {
-            class scoreDefault: RscPicture {
-                idd = -1;
-                text = "images\scoreicon.paa";
-                style = 48;
-                x = 0.929688 * safezoneW + safezoneX;
-                y = 0.88485 * safezoneH + safezoneY;
-                w = 0.0458333 * safezoneW;
-                h = 0.0549786 * safezoneH;
-                colorText[] = {0,0,0,1};
-            };
-            class scoreDefaultText: RscText {
-                idd = -1;
-                text = "0 MB";
-                style = 0x01 + 0x0c;
-                x = 0.929688 * safezoneW + safezoneX;
+            class ct_transmitter_dot: RscPicture
+            {
+                idc = 1203;
+                text = "images\visualTransmitter.paa";
+                x = 0.800833 * safezoneW + safezoneX;
                 y = 0.950824 * safezoneH + safezoneY;
-                w = 0.0458333 * safezoneW;
-                h = 0.04 * safezoneH;
-                colorText[] = {1,1,1,1};
-                colorBackground[] = {0,0,0,0.5};
+                w = 0.0286458 * safezoneW;
+                h = 0.0439828 * safezoneH;
             };
-
             class scoreWest: scoreDefault {
             	idc = 1200;
             	x = 0.820833 * safezoneW + safezoneX;
