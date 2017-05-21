@@ -173,7 +173,7 @@ class RscTitles {
             {
                 idc = 1203;
                 text = "images\visualTransmitter.paa";
-                x = 0.800833 * safezoneW + safezoneX;
+                x = 0.79 * safezoneW + safezoneX;
                 y = 0.950824 * safezoneH + safezoneY;
                 w = 0.0286458 * safezoneW;
                 h = 0.0439828 * safezoneH;

@@ -12,8 +12,7 @@ if(_hasCapObj)then{
     _capObjDistance = 0;
     _showDotDelay = 0;
 }else{
-    //_capObject      = nearestObjects [getPos player,["Land_Laptop_unfolded_F"],5000] select 0;
-    _capObjDistance = player distance schleppi; //_capObject;
+    _capObjDistance = player distance capthat_object;
     _showDotDelay   = _capObjDistance/100;
     if(time > nextShowDot && _capObjDistance > 0 && _showDotDelay > 0)then{
         _ctrlTransmitterDot ctrlSetTextColor [1,1,1,1];
@@ -30,4 +29,4 @@ if(_hasCapObj)then{
     }
 };
 
-systemChat format["hasCapObj: %1, capObj distance: %2, _showDotDelay: %3",_hasCapObj,_capObjDistance,_showDotDelay];
+//systemChat format["hasCapObj: %1, capObj distance: %2, _showDotDelay: %3",_hasCapObj,_capObjDistance,_showDotDelay];

@@ -55,7 +55,7 @@ nul = [] spawn {
         [_hasLaptop] spawn updateTransmitter;
         [] execVM "scripts\updateGUI.sqf";
 
-        hintSilent format ["hasLaptop: %1\nteam: %2\nwestScore: %3\neastScore: %4\nresiScore: %5\nCredits: %6\nXP: %7",_hasLaptop,_team,scoreTeamWest,scoreTeamEast,scoreTeamResi,_profileNamespace getVariable "var_ct_credits",_profileNamespace getVariable "var_ct_xp"];
+        //hintSilent format ["hasLaptop: %1\nteam: %2\nwestScore: %3\neastScore: %4\nresiScore: %5\nCredits: %6\nXP: %7",_hasLaptop,_team,scoreTeamWest,scoreTeamEast,scoreTeamResi,_profileNamespace getVariable "var_ct_credits",_profileNamespace getVariable "var_ct_xp"];
 		sleep 0.1;
 	};
 };
