@@ -26,7 +26,7 @@ respawn                         = 3;            // 3 or "BASE" - Respawn in base
 enableTeamSwitch                = 0;            // Enables or disables Team Switch functionality in MP when respawn type is 5 (SIDE). Default is 1.
 
 respawnButton                   = 1;            // Enable or disable the respawn button in the menu for INSTANT and BASE respawn types. Default is 1 (enabled).
-respawnDelay                    = 42;           // Set respawn delay in seconds.
+respawnDelay                    = 0;           // Set respawn delay in seconds.
 respawnVehicleDelay             = 11;           // Set vehicle respawn delay in seconds.
 respawnDialog                   = 1;            // Show the scoreboard and respawn countdown timer for a player if he is killed with respawnType 3. Default is 1 (true).
 respawnOnStart                  = -1;           // 1 to respawn player when he joins the game. Available only for INSTANT and BASE respawn types.
