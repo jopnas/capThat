@@ -208,4 +208,23 @@ class RscTitles {
             };
         };
     };
+
+    class CfgDebriefing {
+    	class wonCapThat {
+    		title = "Download Complete";
+    		subtitle = "You Won The Match";
+    		description = "you successfully downloaded the file";
+    		pictureBackground = "";
+    		picture = "";
+    		pictureColor[] = {0.0,0.3,0.6,1};
+    	};
+        class failedCapThat {
+    		title = "Download Incomplete";
+    		subtitle = "You Lost The Match";
+    		description = "you failed to downloaded the file";
+    		pictureBackground = "";
+    		picture = "";
+    		pictureColor[] = {0.0,0.3,0.6,1};
+    	};
+    };
 };

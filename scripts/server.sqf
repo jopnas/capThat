@@ -10,29 +10,35 @@ raiseTeamScore = {
         case "WEST": {
             scoreTeamWest = scoreTeamWest + _add;
             publicVariable "scoreTeamWest";
-
-            if(scoreTeamWest >= maxTeamScore)then{
-                systemChat "Team West Wins";
-                endMission "END1";
-            };
         };
         case "EAST": {
             scoreTeamEast = scoreTeamEast + _add;
             publicVariable "scoreTeamEast";
-
-            if(scoreTeamEast >= maxTeamScore)then{
-                systemChat "Team East Wins";
-                endMission "END1";
-            };
         };
         case "GUER": {
             scoreTeamResi = scoreTeamResi + _add;
             publicVariable "scoreTeamResi";
+        };
+    };
 
-            if(scoreTeamResi >= maxTeamScore)then{
-                systemChat "Team Resistance Wins";
-                endMission "END1";
-            };
+    if(scoreTeamWest >= maxTeamScore || scoreTeamEast >= maxTeamScore || scoreTeamResi >= maxTeamScore)then{
+        // [endName,isVictory,fadeType,playMusic,completeTasks] spawn BIS_fnc_endMission;
+        if(scoreTeamWest >= maxTeamScore) then {
+            ["wonCapThat",true,2,false,true] remoteExec["BIS_fnc_endMission",West];
+        }else{
+            ["failedCapThat",false,2,false,true] remoteExec["BIS_fnc_endMission",West];
+        };
+
+        if(scoreTeamEast >= maxTeamScore) then {
+            ["wonCapThat",true,2,false,true] remoteExec["BIS_fnc_endMission",East];
+        }else{
+            ["failedCapThat",false,2,false,true] remoteExec["BIS_fnc_endMission",East];
+        };
+
+        if(scoreTeamResi >= maxTeamScore) then {
+            ["wonCapThat",true,2,false,true] remoteExec["BIS_fnc_endMission",Resistance];
+        }else{
+            ["failedCapThat",false,2,false,true] remoteExec["BIS_fnc_endMission",Resistance];
         };
     };
 };
