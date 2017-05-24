@@ -119,38 +119,40 @@ class RscText
 
 class RscPicture
 {
-    access=0;
-    type=0;
-    idc=-1;
-    style=48;
-    colorBackground[]={0,0,0,0};
-    colorText[]={1,1,1,1};
-    font="TahomaB";
-    sizeEx=0;
-    lineSpacing=0;
-    text="";
+    access = 0;
+    type = 0;
+    idc = -1;
+    style = 48;
+    colorBackground[] = {0,0,0,0};
+    colorText[] = {1,1,1,1};
+    font = "TahomaB";
+    sizeEx = 0;
+    lineSpacing = 0;
+    text = "";
 };
 
-class scoreDefault: RscPicture {
+class scoreDefaultPicture: RscPicture {
     idd = -1;
     text = "images\scoreicon.paa";
     style = 48;
     x = 0.929688 * safezoneW + safezoneX;
     y = 0.88485 * safezoneH + safezoneY;
-    w = 0.0458333 * safezoneW;
-    h = 0.0549786 * safezoneH;
+    w = 0.0358333 * safezoneW;
+    h = 0.0449786 * safezoneH;
     colorText[] = {0,0,0,1};
 };
 class scoreDefaultText: RscText {
     idd = -1;
     text = "0 MB";
-    style = 0x01 + 0x0c;
+    style = 0x01;
     x = 0.929688 * safezoneW + safezoneX;
     y = 0.950824 * safezoneH + safezoneY;
-    w = 0.0458333 * safezoneW;
-    h = 0.04 * safezoneH;
+    w = 0.0358333 * safezoneW;
+    h = 0.03 * safezoneH;
     colorText[] = {1,1,1,1};
     colorBackground[] = {0,0,0,0.5};
+    sizeEx = 1;
+    lineSpacing = 0;
 };
 
 class RscTitles {
@@ -158,13 +160,14 @@ class RscTitles {
     {
         idd = -1;
         movingEnable = 0;
-        duration = 4;
+        fadein = 0;
+        fadeout = 0;
+        duration = 0;
+        enableSimulation = 0;
     };
 
-    class player_gui {
+    class player_gui:Default {
         idd = 6900;
-        movingEnable = 0;
-        duration = 100000;
         name = "playerGUI";
         onLoad = "uiNamespace setVariable ['player_display', _this select 0];";
 
@@ -178,17 +181,17 @@ class RscTitles {
                 w = 0.0286458 * safezoneW;
                 h = 0.0439828 * safezoneH;
             };
-            class scoreWest: scoreDefault {
+            class scoreWest: scoreDefaultPicture {
             	idc = 1200;
             	x = 0.820833 * safezoneW + safezoneX;
             	colorText[] = {0.1,0.1,0.8,1};
             };
-            class scoreEast: scoreDefault {
+            class scoreEast: scoreDefaultPicture {
             	idc = 1201;
             	x = 0.878125 * safezoneW + safezoneX;
             	colorText[] = {0.8,0.1,0.1,1};
             };
-            class scoreResi: scoreDefault {
+            class scoreResi: scoreDefaultPicture {
             	idc = 1202;
             	x = 0.929688 * safezoneW + safezoneX;
             	colorText[] = {0.1,0.8,0.1,1};
