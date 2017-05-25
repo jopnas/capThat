@@ -20,4 +20,4 @@ _ctrlDistanceText   = _namespaceUI displayCtrl 1202;
 _ctrlCashText       = _namespaceUI displayCtrl 1203;
 
 _ctrlDistanceText   ctrlSetText format["km %1",floor(player distance capthat_object) / 1000];
-_ctrlCashText       ctrlSetText format["$ %1",_player_credits];
+_ctrlCashText       ctrlSetText format["$  %1",_player_credits];

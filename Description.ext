@@ -199,7 +199,7 @@ class RscTitles {
             };
             class cash_text : lcdText {
                 idc = 1203;
-                text = "$ 0";
+                text = "$  0";
                 x = 0.825 * safezoneW + safezoneX;
                 y = 0.832 * safezoneH + safezoneY;
             };
