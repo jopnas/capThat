@@ -125,14 +125,12 @@ class RscPicture
     style = 48;
     colorBackground[] = {0,0,0,0};
     colorText[] = {1,1,1,1};
-    font = "TahomaB";
-    sizeEx = 0;
-    lineSpacing = 0;
-    text = "";
+    font="TahomaB";
+    SizeEx = 0.03;
 };
 
 class scoreDefaultPicture: RscPicture {
-    idd = -1;
+    idc = -1;
     text = "images\scoreicon.paa";
     style = 48;
     x = 0.929688 * safezoneW + safezoneX;
@@ -143,7 +141,7 @@ class scoreDefaultPicture: RscPicture {
 };
 
 class scoreDefaultText: RscText {
-    idd = -1;
+    idc = -1;
     text = "0 MB";
     style = 0x01 + 0x0c;
     x = 0.929688 * safezoneW + safezoneX;
@@ -153,6 +151,13 @@ class scoreDefaultText: RscText {
     colorText[] = {1,1,1,1};
     colorBackground[] = {0,0,0,0.5};
 };
+
+class lcdText: RscText {
+    colorText[] = {0,0.4,0,1};
+    colorBackground[] = {0,0,0,0};
+    shadow = 0;
+    font = "EtelkaMonospaceProBold";
+}
 
 class RscTitles {
     class Default
@@ -170,20 +175,8 @@ class RscTitles {
         onLoad = "uiNamespace setVariable ['player_display', _this select 0];";
 
         class controls {
-            class ct_transmitter_dot: RscPicture
-            {
+            class distance_background : RscPicture {
                 idc = 1200;
-                text = "images\capthat_transmitter_led_off.paa";
-                x = 0.79 * safezoneW + safezoneX;
-                y = 0.950824 * safezoneH + safezoneY;
-                w = 0.0186458 * safezoneW;
-                h = 0.0339828 * safezoneH;
-                colorBackground[] = {0,0,0,0};
-                colorText[] = {1,1,1,1};
-            };
-
-            class xp_background : RscPicture {
-                idc = 1201;
                 text = "images\capthat_transmitter_bg.paa";
                 x = 0.820833 * safezoneW + safezoneX;
                 y = 0.78485 * safezoneH + safezoneY;
@@ -191,28 +184,35 @@ class RscTitles {
                 h = 0.0329871 * safezoneH;
             };
             class cash_background : RscPicture {
-                idc = 1202;
+                idc = 1201;
                 text = "images\capthat_transmitter_bg.paa";
                 x = 0.820833 * safezoneW + safezoneX;
                 y = 0.82485 * safezoneH + safezoneY;
                 w = 0.0916667 * safezoneW;
                 h = 0.0329871 * safezoneH;
             };
-            class xp_text : RscText {
-                idc = 1203;
-                text = "XP: 0";
-                x = 0.820833 * safezoneW + safezoneX;
-                y = 0.78685 * safezoneH + safezoneY;
-                colorText[] = {1,1,1,1};
-                colorBackground[] = {0,0,0,0};
+            class distance_text : lcdText {
+                idc = 1202;
+                text = "km 0";
+                x = 0.825 * safezoneW + safezoneX;
+                y = 0.791 * safezoneH + safezoneY;
             };
-            class cash_text : RscText {
+            class cash_text : lcdText {
+                idc = 1203;
+                text = "$ 0";
+                x = 0.825 * safezoneW + safezoneX;
+                y = 0.832 * safezoneH + safezoneY;
+            };
+            class ct_transmitter_dot: RscPicture
+            {
                 idc = 1204;
-                text = "$: 0";
-                x = 0.820833 * safezoneW + safezoneX;
-                y = 0.82685 * safezoneH + safezoneY;
-                colorText[] = {1,1,1,1};
+                text = "images\capthat_transmitter_led_off.paa";
+                x = 0.8958 * safezoneW + safezoneX;
+                y = 0.7889 * safezoneH + safezoneY;
+                w = 0.015 * safezoneW;
+                h = 0.022 * safezoneH;
                 colorBackground[] = {0,0,0,0};
+                colorText[] = {1,1,1,1};
             };
 
             class scoreWest: scoreDefaultPicture {
