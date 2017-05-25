@@ -20,14 +20,16 @@ player addEventHandler ["killed", {
     _unit setVariable["hasLaptop", false, true];
 
     // Killer add XP and Credits
-    {
-        _profileNamespace = profileNamespace;
-        _player_credits = _profileNamespace getVariable["var_ct_credits",0];
-        _player_xp      = _profileNamespace getVariable["var_ct_xp",0];
-        _profileNamespace setVariable ["var_ct_credits",_player_credits + 10];
-        _profileNamespace setVariable ["var_ct_xp",_player_xp + 10];
-        saveProfileNamespace;
-    } remoteExec ["bis_fnc_call", _killer];
+    if(_killer != player)then{
+        {
+            _profileNamespace = profileNamespace;
+            _player_credits = _profileNamespace getVariable["var_ct_credits",0];
+            _player_xp      = _profileNamespace getVariable["var_ct_xp",0];
+            _profileNamespace setVariable ["var_ct_credits",_player_credits + 10];
+            _profileNamespace setVariable ["var_ct_xp",_player_xp + 10];
+            saveProfileNamespace;
+        } remoteExec ["bis_fnc_call", _killer];
+    };
 }];
 
 nul = [] spawn {
@@ -55,7 +57,8 @@ nul = [] spawn {
         [_hasLaptop] spawn updateTransmitter;
         [] execVM "scripts\updateGUI.sqf";
 
-        //hintSilent format ["hasLaptop: %1\nteam: %2\nwestScore: %3\neastScore: %4\nresiScore: %5\nCredits: %6\nXP: %7",_hasLaptop,_team,scoreTeamWest,scoreTeamEast,scoreTeamResi,_profileNamespace getVariable "var_ct_credits",_profileNamespace getVariable "var_ct_xp"];
+        systemChat str getPlayerScores player;
+        hintSilent format ["hasLaptop: %1\nA3Score: %2",_hasLaptop,scoreSide (side player)];
 		sleep 0.1;
 	};
 };

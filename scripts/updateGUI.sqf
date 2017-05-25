@@ -1,3 +1,4 @@
+private["_calcedDist"];
 disableSerialization;
 _namespaceUI = uiNamespace getVariable "player_display";
 
@@ -19,5 +20,11 @@ _player_credits     = _profileNamespace getVariable["var_ct_credits",0];
 _ctrlDistanceText   = _namespaceUI displayCtrl 1202;
 _ctrlCashText       = _namespaceUI displayCtrl 1203;
 
-_ctrlDistanceText   ctrlSetText format["km %1",floor(player distance capthat_object) / 1000];
+if(player getVariable["hasLaptop",false])then{
+    _calcedDist = "-.-";
+}else{
+    _calcedDist = floor(player distance capthat_object) / 1000;
+};
+
+_ctrlDistanceText   ctrlSetText format["km %1",_calcedDist];
 _ctrlCashText       ctrlSetText format["$  %1",_player_credits];
