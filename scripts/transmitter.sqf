@@ -2,7 +2,7 @@ params["_hasCapObj"/**/,"_capObjDistance","_showDotDelay"];
 disableSerialization;
 
 _namespaceTransmitterUI    = uiNamespace getVariable "player_display";
-_ctrlTransmitterDot        = _namespaceTransmitterUI displayCtrl 1203;
+_ctrlTransmitterDot        = _namespaceTransmitterUI displayCtrl 1200;
 
 _capObjDistance = 0;
 _showDotDelay = 0;
