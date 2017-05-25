@@ -43,8 +43,8 @@ nul = [] spawn {
             _player_credits = _profileNamespace getVariable["var_ct_credits",0];
             _player_xp      = _profileNamespace getVariable["var_ct_xp",0];
 
-            _profileNamespace setVariable ["var_ct_credits",_player_credits + 1];
-            _profileNamespace setVariable ["var_ct_xp",_player_xp + 1];
+            //_profileNamespace setVariable ["var_ct_credits",_player_credits + 1];
+            //_profileNamespace setVariable ["var_ct_xp",_player_xp + 1];
 
             saveProfileNamespace;
 
