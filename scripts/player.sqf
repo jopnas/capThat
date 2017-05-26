@@ -3,6 +3,7 @@ player setVariable["hasLaptop",false,true];
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
 
+player addAction["Open Shop","scripts\shop\shopGui.sqf",[],1,false];
 
 3 cutRsc ['player_gui','PLAIN',3,false];
 
@@ -57,7 +58,7 @@ nul = [] spawn {
         [_hasLaptop] spawn updateTransmitter;
         [] execVM "scripts\updateGUI.sqf";
 
-        systemChat str getPlayerScores player;
+        //systemChat str getPlayerScores player;
         hintSilent format ["hasLaptop: %1\nA3Score: %2",_hasLaptop,scoreSide (side player)];
 		sleep 0.1;
 	};
