@@ -1,6 +1,12 @@
 disableSerialization;
 
-systemChat "Open Shop";
+_ok         = createDialog "shopGUI";
+if (!_ok) then {
+    systemChat "Dialog couldn't be opened!"
+};
 
-_ok = createDialog "MyDialog";
-if (!_ok) then {hint "Dialog couldn't be opened!"};
+_itemlb = (findDisplay 7800) displayCtrl 1306;
+
+for "_i" from 1 to 10 do {
+    _itemlb lbAdd format["Item %1",_i];
+};
