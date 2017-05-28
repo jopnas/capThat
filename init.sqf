@@ -1,5 +1,5 @@
 if(isServer)then{
-    maxTeamScore = 50;
+    maxTeamScore = 10;
 
     scoreTeamWest = 0;
     scoreTeamEast = 0;
