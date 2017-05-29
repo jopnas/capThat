@@ -341,6 +341,42 @@ class RscListbox
 			// onLBDrop = "systemChat str ['onLBDrop',_this]; false";
 };
 
+class RscControlsGroup {
+	type = 15;
+	idc = -1;
+	style = 16;
+    x = 0;
+    y = 0;
+    w = 1;
+    h = 1;
+	shadow=0;
+
+	class VScrollbar {
+		width = 0.021;
+		autoScrollSpeed = -1;
+		autoScrollDelay = 5;
+		autoScrollRewind = 0;
+        shadow=0;
+	};
+
+	class HScrollbar {
+		height = 0.028;
+        shadow=0;
+	};
+
+	class ScrollBar	{
+        color[] = {1,1,1,0.6};
+		colorActive[] = {1,1,1,1};
+		colorDisabled[] = {1,1,1,0.3};
+		thumb = "#(argb,8,8,3)color(1,1,1,1)";
+		arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
+		arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+		border = "#(argb,8,8,3)color(1,1,1,1)";
+	};
+
+	class Controls {}; // an empty class telling the engine, no custom, additional controls
+};
+
 class RscButton {
     access = 0;
     type = 1;
@@ -390,7 +426,7 @@ class shopGUI {
 	controlsBackground[] = {  };
 	controls[] = { buttonRifles, buttonPistols, buttonLauncher, buttonGrenades, ItemListBox };
 
-    class ItemListBox: RscListBox {
+    /*class ItemListBox: RscListBox {
     	idc = 1306;
         x = 0.229043 * safezoneW + safezoneX;
     	y = 0.176985 * safezoneH + safezoneY;
@@ -400,6 +436,16 @@ class shopGUI {
         period = 0; // Oscillation time between colorSelect/colorSelectBackground2 and colorSelect2/colorSelectBackground when selected
         rowHeight = 0.1; // Row height
         itemSpacing = 0.01;
+    };*/
+
+    class shopItemGroup: RscControlsGroup {
+        idc = 1500;
+        x = 0.229043 * safezoneW + safezoneX;
+        y = 0.176985 * safezoneH + safezoneY;
+        w = 0.502068 * safezoneW;
+        h = 0.714033 * safezoneH;
+
+        class Controls {};
     };
 
     class buttonRifles: shopTabButton {

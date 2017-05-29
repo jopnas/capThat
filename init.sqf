@@ -13,5 +13,6 @@ if(isServer)then{
 };
 
 if(!isDedicated)then{
-	[] execVM "scripts\player.sqf";
+    [] execVM "scripts\player.sqf";
+    [] execVM "scripts\shop\shopFunctions.sqf";
 };
