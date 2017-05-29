@@ -13,28 +13,29 @@ shopBuildRifleList = {
         _itemBaseClass  = _className call BIS_fnc_baseWeapon;
 
         if(!(_itemBaseClass in _rifleList))then{
+            _listCount  = count _rifleList;
             _rifleList  pushBackUnique _itemBaseClass;
             _itemName   = getText(configFile >> "CfgWeapons" >> _className >> "displayName");
             _itemImg    = getText (configFile >> "CfgWeapons" >> _className >> "picture");
 
             _picture    = _display ctrlCreate ["RscPicture", -1, 1500];
             _picture    ctrlSetText format["%1",_itemImg];
-            _picture    ctrlSetPosition [0,0,3,1];
+            _picture    ctrlSetPosition [0,_listCount,3,1];
             _picture    ctrlCommit 0;
 
             _title      = _display ctrlCreate ["RscText", -1, 1500];
             _title      ctrlSetText format["%1",_itemName];
-            _title      ctrlSetPosition [1,0,1,0.5];
+            _title      ctrlSetPosition [1,_listCount,1,0.5];
             _title      ctrlCommit 0;
 
             _buttonBuy  = _display ctrlCreate ["RscButton", -1, 1500];
             _buttonBuy  ctrlSetText "Buy";
-            _buttonBuy  ctrlSetPosition [1,1,0.2,0.05];
+            _buttonBuy  ctrlSetPosition [1,_listCount + 1,0.2,0.05];
             _buttonBuy  ctrlCommit 0;
 
             _buttonEqp  = _display ctrlCreate ["RscButton", -1, 1500];
             _buttonEqp  ctrlSetText "Equip";
-            _buttonEqp  ctrlSetPosition [1.3,1,0.2,0.05];
+            _buttonEqp  ctrlSetPosition [1.3,_listCount + 1,0.2,0.05];
             _buttonEqp  ctrlCommit 0;
         };
     } forEach _riflesBase;
