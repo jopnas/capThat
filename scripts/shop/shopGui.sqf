@@ -21,24 +21,31 @@ shopBuildRifleList = {
             _itemName   = getText(configFile >> "CfgWeapons" >> _className >> "displayName");
             _itemImg    = getText (configFile >> "CfgWeapons" >> _className >> "picture");
 
+            _bg         = _display ctrlCreate ["RscPicture", -1, _shopItemGroup];
+            _bg         ctrlSetText "#(argb,8,8,3)color(0,0,0,1)";
+            _bg         ctrlSetPosition [0, _listCount * (0.15 * 2), 1.3, 0.15 * 2 + 0.05];
+            _bg         ctrlCommit 0;
+
             _picture    = _display ctrlCreate ["RscPicture", -1, _shopItemGroup];
             _picture    ctrlSetText format["%1",_itemImg];
-            _picture    ctrlSetPosition [0,_listCount * (0.15 * 2),0.2 * 2,0.15 * 2];
+            _picture    ctrlSetPosition [0, _listCount * (0.15 * 2) + 0.05, 0.2 * 2, 0.15 * 2];
             _picture    ctrlCommit 0;
 
             _title      = _display ctrlCreate ["RscText", -1, _shopItemGroup];
             _title      ctrlSetText format["%1",_itemName];
-            _title      ctrlSetPosition [0.2 * 2,_listCount * (0.15 * 2),0.5,0.1];
+            _title      ctrlSetPosition [0.1, _listCount * (0.15 * 2), 0.5, 0.1];
             _title      ctrlCommit 0;
 
             _buttonBuy  = _display ctrlCreate ["RscButton", -1, _shopItemGroup];
             _buttonBuy  ctrlSetText "Buy";
-            _buttonBuy  ctrlSetPosition [0.2 * 2,_listCount * (0.15 * 2) + 0.1,0.2,0.05];
+            _buttonBuy  ctrlSetPosition [0.2 * 2, _listCount * (0.15 * 2) + 0.1, 0.2, 0.05];
+            _buttonBuy  ctrlSetBackgroundColor [1,1,1,1];
             _buttonBuy  ctrlCommit 0;
 
             _buttonEqp  = _display ctrlCreate ["RscButton", -1, _shopItemGroup];
             _buttonEqp  ctrlSetText "Equip";
-            _buttonEqp  ctrlSetPosition [0.2 * 2 + 0.3,_listCount * (0.15 * 2) + 0.1,0.2,0.05];
+            _buttonEqp  ctrlSetPosition [0.2 * 2 + 0.3, _listCount * (0.15 * 2) + 0.1, 0.2, 0.05];
+            _buttonBuy  ctrlSetBackgroundColor [0.5,0.5,0.5,1];
             _buttonEqp  ctrlCommit 0;
         };
     } forEach _riflesBase;
