@@ -1,11 +1,13 @@
 disableSerialization;
 
 shopBuyItem = {
-
+    params["_itemClass"];
+    systemChat "Buy this";
 };
 
 shopEquipItem = {
-
+    params["_itemClass"];
+    systemChat "Equip this";
 };
 
 buildList = {
@@ -45,12 +47,14 @@ buildList = {
             _title      ctrlCommit 0;
 
             _buttonBuy  = _display ctrlCreate ["shopBuyItemButton", -1, _shopItemGroup];
+            _buttonBuy buttonSetAction "";
             //_buttonBuy  ctrlSetText "Buy";
             _buttonBuy  ctrlSetPosition [0.2 * 2, _listCount * (0.15 * 2) + 0.1];
             //_buttonBuy  ctrlSetPosition [0.2 * 2, _listCount * (0.15 * 2) + 0.1, 0.2, 0.05];
             _buttonBuy  ctrlCommit 0;
 
             _buttonEqp  = _display ctrlCreate ["shopEquipItemButton", -1, _shopItemGroup];
+            _buttonBuy buttonSetAction "";
             //_buttonEqp  ctrlSetText "Equip";
             _buttonEqp  ctrlSetPosition [0.2 * 2 + 0.3, _listCount * (0.15 * 2) + 0.1];
             //_buttonEqp  ctrlSetPosition [0.2 * 2 + 0.3, _listCount * (0.15 * 2) + 0.1, 0.2, 0.05];

@@ -363,7 +363,6 @@ class shopBuyItemButton : RscButton {
     period = 0;
     periodFocus	= 0;
     periodOver = 0;
-    action = "[] call shopBuyItem";
 };
 
 class shopEquipItemButton : RscButton {
@@ -376,7 +375,6 @@ class shopEquipItemButton : RscButton {
     period = 0;
     periodFocus	= 0;
     periodOver = 0;
-    action = "[] call shopEquipItem";
 };
 
 class shopGUI {
