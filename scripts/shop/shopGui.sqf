@@ -1,5 +1,13 @@
 disableSerialization;
 
+shopBuyItem = {
+
+};
+
+shopEquipItem = {
+
+};
+
 buildList = {
     params["_cfgList"];
     _display        = findDisplay 7800;
@@ -21,14 +29,19 @@ buildList = {
             _bg         ctrlSetPosition [0, _listCount * (0.15 * 2), 1.3, 0.15 * 2 + 0.05];
             _bg         ctrlCommit 0;
 
-            _picture    = _display ctrlCreate ["RscPicture", -1, _shopItemGroup];
+            _picture    = _display ctrlCreate ["shopItemPicture", -1, _shopItemGroup];
             _picture    ctrlSetText format["%1",_itemImg];
-            _picture    ctrlSetPosition [0, _listCount * (0.15 * 2) + 0.05, 0.2 * 2, 0.15 * 2];
+            _picture    ctrlSetPosition [0, _listCount * (0.15 * 2)];
             _picture    ctrlCommit 0;
 
-            _title      = _display ctrlCreate ["RscText", -1, _shopItemGroup];
+            _title      = _display ctrlCreate ["shopItemName", -1, _shopItemGroup];
             _title      ctrlSetText format["%1",_itemName];
-            _title      ctrlSetPosition [0.1, _listCount * (0.15 * 2), 0.5, 0.1];
+            _title      ctrlSetPosition [0.1, _listCount * (0.15 * 2)];
+            _title      ctrlCommit 0;
+
+            _title      = _display ctrlCreate ["shopItemPrice", -1, _shopItemGroup];
+            _title      ctrlSetText format["%1",_itemName];
+            _title      ctrlSetPosition [0.1, _listCount * (0.15 * 2) + 0.1];
             _title      ctrlCommit 0;
 
             _buttonBuy  = _display ctrlCreate ["shopBuyItemButton", -1, _shopItemGroup];

@@ -338,6 +338,21 @@ class shopTabButton : RscButton {
     periodOver = 0;
 };
 
+class shopItemPicture : RscPicture {
+    w = 0.2 * 2;
+    h = 0.15 * 2;
+};
+
+class shopItemName : RscText {
+    w = 0.5;
+    h = 0.1;
+};
+
+class shopItemPrice : RscText {
+    w = 0.5;
+    h = 0.1;
+};
+
 class shopBuyItemButton : RscButton {
     text = "Buy";
     w = 0.2 * safezoneW;
@@ -348,6 +363,7 @@ class shopBuyItemButton : RscButton {
     period = 0;
     periodFocus	= 0;
     periodOver = 0;
+    action = "[] call shopBuyItem";
 };
 
 class shopEquipItemButton : RscButton {
@@ -360,6 +376,7 @@ class shopEquipItemButton : RscButton {
     period = 0;
     periodFocus	= 0;
     periodOver = 0;
+    action = "[] call shopEquipItem";
 };
 
 class shopGUI {
