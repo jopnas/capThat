@@ -1,5 +1,9 @@
 // Mission Variables
 player setVariable["hasLaptop",false,true];
+
+_savedBoughtEquipment = profileNamespace getVariable["var_ct_boughtEquipment", []];
+player setVariable["boughtEquipment", _savedBoughtEquipment, false];
+
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
 

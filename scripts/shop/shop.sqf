@@ -3,6 +3,12 @@ disableSerialization;
 shopBuyItem = {
     params["_itemClass"];
     systemChat "Buy this";
+    _boughtEquipment = player getVariable["boughtEquipment", []];
+
+    _boughtEquipment pushBackUnique _itemClass;
+
+    profileNamespace setVariable["var_ct_boughtEquipment", _boughtEquipment];
+    player setVariable["boughtEquipment", _boughtEquipment, false];
 };
 
 shopEquipItem = {
@@ -48,16 +54,12 @@ buildList = {
 
             _buttonBuy  = _display ctrlCreate ["shopBuyItemButton", -1, _shopItemGroup];
             _buttonBuy buttonSetAction "";
-            //_buttonBuy  ctrlSetText "Buy";
             _buttonBuy  ctrlSetPosition [0.2 * 2, _listCount * (0.15 * 2) + 0.1];
-            //_buttonBuy  ctrlSetPosition [0.2 * 2, _listCount * (0.15 * 2) + 0.1, 0.2, 0.05];
             _buttonBuy  ctrlCommit 0;
 
             _buttonEqp  = _display ctrlCreate ["shopEquipItemButton", -1, _shopItemGroup];
             _buttonBuy buttonSetAction "";
-            //_buttonEqp  ctrlSetText "Equip";
             _buttonEqp  ctrlSetPosition [0.2 * 2 + 0.3, _listCount * (0.15 * 2) + 0.1];
-            //_buttonEqp  ctrlSetPosition [0.2 * 2 + 0.3, _listCount * (0.15 * 2) + 0.1, 0.2, 0.05];
             _buttonEqp  ctrlCommit 0;
         };
     } forEach _cfgList;
