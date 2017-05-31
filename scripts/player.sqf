@@ -3,7 +3,7 @@ player setVariable["hasLaptop",false,true];
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
 
-player addAction["Open Shop","scripts\shop\shopGui.sqf",[],6,false];
+player addAction["Open Shop","scripts\shop\shop.sqf",[],6,false];
 
 3 cutRsc ['player_gui','PLAIN',3,false];
 
