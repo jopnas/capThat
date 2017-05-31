@@ -3,8 +3,8 @@ disableSerialization;
 shopBuyItem = {
     params["_itemClass"];
     systemChat format["Buy this, %1",_itemClass];
-    _boughtEquipment = player getVariable["boughtEquipment", []];
 
+    _boughtEquipment = player getVariable["boughtEquipment", []];
     _boughtEquipment pushBackUnique _itemClass;
 
     profileNamespace setVariable["var_ct_boughtEquipment", _boughtEquipment];
@@ -14,6 +14,12 @@ shopBuyItem = {
 shopEquipItem = {
     params["_itemClass"];
     systemChat format["Equip this, %1",_itemClass];
+
+    _equipedEquipment = player getVariable["equipedEquipment", []];
+    _equipedEquipment pushBackUnique _itemClass;
+
+    profileNamespace setVariable["var_ct_equipedEquipment", _equipedEquipment];
+    player setVariable["equipedEquipment", _equipedEquipment, false];
 };
 
 buildList = {
@@ -26,6 +32,10 @@ buildList = {
     {
         _className      = configName _x;
         _itemBaseClass  = _className call BIS_fnc_baseWeapon;
+
+        _hasBought      = ( _itemBaseClass in (player getVariable["boughtEquipment",[]]) );
+        _hasEquiped     = ( _itemBaseClass in (player getVariable["equipedEquipment",[]]) );
+
 
         if(!(_itemBaseClass in _itemList))then{
             _listCount  = count _itemList;
@@ -67,6 +77,18 @@ buildList = {
             _buttonEqp  buttonSetAction format["['%1'] call shopEquipItem",_itemBaseClass];
             _buttonEqp  ctrlSetPosition [(_posBtnEqp select 0) + 0.01,  _listCount * (_posPict select 3) + (_posPict select 3) - (_posBtnBuy select 3)];
             _buttonEqp  ctrlCommit 0;
+
+            if(_hasBought)then{
+                ctrlEnable [_buttonBuy, false];
+                ctrlEnable [_buttonEqp, true];
+            }else{
+                ctrlEnable [_buttonBuy, true];
+                ctrlEnable [_buttonEqp, false];                
+            };
+
+            if(_hasEquiped && _hasBought)then{
+                player addWeapon _itemBaseClass;
+            };
         };
     } forEach _cfgList;
 

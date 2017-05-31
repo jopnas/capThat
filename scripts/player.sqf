@@ -1,8 +1,12 @@
-// Mission Variables
+removeAllWeapons player;
 player setVariable["hasLaptop",false,true];
 
-_savedBoughtEquipment = profileNamespace getVariable["var_ct_boughtEquipment", []];
+_profileNamespace = profileNamespace;
+_savedBoughtEquipment = _profileNamespace getVariable["var_ct_boughtEquipment", []];
 player setVariable["boughtEquipment", _savedBoughtEquipment, false];
+
+_savedEquipedEquipment = _profileNamespace setVariable["var_ct_equipedEquipment", []];
+player setVariable["equipedEquipment", _savedEquipedEquipment, false];
 
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
@@ -80,7 +84,6 @@ nul = [] spawn {
         [_hasLaptop] spawn updateTransmitter;
         [] execVM "scripts\updateGUI.sqf";
 
-        //systemChat str getPlayerScores player;
         hintSilent format ["hasLaptop: %1\nA3Score: %2",_hasLaptop,scoreSide (side player)];
 		sleep 0.1;
 	};

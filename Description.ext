@@ -355,6 +355,7 @@ class shopBuyItemButton : RscButton {
     x = 0.22  * safezoneW;
     colorText[] = {1,1,1,1};
     colorBackground[] = {0.5,0.5,0.5,1};
+    colorDisabled[] = {0.5,0.5,0.5,0.5};
     colorActive[] = {0,0.5,0,1};
     period = 0;
     periodFocus	= 0;
@@ -369,6 +370,7 @@ class shopEquipItemButton : RscButton {
     colorText[] = {1,1,1,1};
     colorBackground[] = {0.5,0.5,0.5,1};
     colorActive[] = {0,0.5,0,1};
+    colorDisabled[] = {0.5,0.5,0.5,0.5};
     period = 0;
     periodFocus	= 0;
     periodOver = 0;
