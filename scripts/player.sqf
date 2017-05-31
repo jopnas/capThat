@@ -7,9 +7,27 @@ player setVariable["boughtEquipment", _savedBoughtEquipment, false];
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
 
-player addAction["Open Shop","scripts\shop\shop.sqf",[],6,false];
+//player addAction["Open Shop","scripts\shop\shop.sqf",[],6,false];
+player addAction["Sit Down",{
+    player playAction "SitDown";
+},[],6,false];
 
-3 cutRsc ['player_gui','PLAIN',3,false];
+3 cutRsc ["player_gui","PLAIN",3,false];
+
+player addEventHandler ["AnimDone", {
+    params["_unit","_anim"];
+    systemChat _anim;
+    if(_anim == "SitDown" && _unit getVariable["hasLaptop",false])then{
+        [] execVM "scripts\shop\shop.sqf";
+    };
+}];
+
+player addEventHandler ["AnimChanged", {
+    params["_unit","_anim"];
+    if(_anim != "SitDown" && _unit getVariable["hasLaptop",false])then{
+        [_laptop,true] remoteExec ["hideLaptopGlobal", 2];
+    };
+}];
 
 player addEventHandler ["killed", {
     _unit       = _this select 0; // Object - Object the event handler is assigned to
