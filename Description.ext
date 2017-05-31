@@ -253,7 +253,7 @@ class ScrollBar {
    color[] = {1,1,1,0.6};
    colorActive[] = {1,1,1,1};
    colorDisabled[] = {1,1,1,0.3};
-   thumb = "#(argb,8,8,3)color(1,1,1,1)";
+   thumb = "#(argb,8,8,3)color(0.5,0.5,0.5,1)";
    arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
    arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
    border = "#(argb,8,8,3)color(1,1,1,1)";
@@ -335,24 +335,27 @@ class shopItemPicture : RscPicture {
 class shopItemName : RscText {
     text = "";
     w = (0.502068 * safezoneW) - (0.2  * safezoneW);
-    h = 0.1;
+    h = (0.15 * safezoneH) / 3;
     x = 0.22  * safezoneW;
     y = 0;
+    SizeEx = 0.02 * safezoneH;
 };
 
 class shopItemPrice : RscText {
     text = "";
     w = (0.502068 * safezoneW) - (0.2  * safezoneW);
-    h = 0.1;
+    h = (0.15 * safezoneH) / 3;
     x = 0.22  * safezoneW;
-    y = 0;
+    y = (0.15 * safezoneH) / 3;
+    SizeEx = 0.03 * safezoneH;
 };
 
 class shopBuyItemButton : RscButton {
     text = "Buy";
     w = ((0.45 * safezoneW) - (0.2  * safezoneW)) / 2;
-    h = 0.03 * safezoneH;
+    h = (0.15 * safezoneH) / 3;
     x = 0.22  * safezoneW;
+    y = ((0.15 * safezoneH) / 3) * 2
     colorText[] = {1,1,1,1};
     colorBackground[] = {0.5,0.5,0.5,1};
     colorDisabled[] = {0.5,0.5,0.5,0.5};
@@ -365,8 +368,9 @@ class shopBuyItemButton : RscButton {
 class shopEquipItemButton : RscButton {
     text = "Equip";
     w = ((0.45 * safezoneW) - (0.2  * safezoneW)) / 2;
-    h = 0.03 * safezoneH;
+    h = (0.15 * safezoneH) / 3;
     x = 0.22  * safezoneW + (((0.45 * safezoneW) - (0.2  * safezoneW)) / 2);
+    y = ((0.15 * safezoneH) / 3) * 2
     colorText[] = {1,1,1,1};
     colorBackground[] = {0.5,0.5,0.5,1};
     colorActive[] = {0,0.5,0,1};

@@ -83,7 +83,7 @@ buildList = {
                 ctrlEnable [_buttonEqp, true];
             }else{
                 ctrlEnable [_buttonBuy, true];
-                ctrlEnable [_buttonEqp, false];                
+                ctrlEnable [_buttonEqp, false];
             };
 
             if(_hasEquiped && _hasBought)then{
