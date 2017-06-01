@@ -79,11 +79,11 @@ buildList = {
             _buttonEqp  ctrlCommit 0;
 
             if(_hasBought)then{
-                ctrlEnable [_buttonBuy, false];
-                ctrlEnable [_buttonEqp, true];
+                _buttonBuy ctrlEnable false;
+                _buttonEqp ctrlEnable true;
             }else{
-                ctrlEnable [_buttonBuy, true];
-                ctrlEnable [_buttonEqp, false];
+                _buttonBuy ctrlEnable true;
+                _buttonEqp ctrlEnable false;
             };
 
             if(_hasEquiped && _hasBought)then{

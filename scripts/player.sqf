@@ -11,8 +11,11 @@ player setVariable["equipedEquipment", _savedEquipedEquipment, false];
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
 
-//player addAction["Open Shop","scripts\shop\shop.sqf",[],6,false];
-player addAction["Sit Down",{
+// DEBUG >
+    player addAction["Open Shop","scripts\shop\shop.sqf",[],6,false];
+// < DEBUG
+
+player addAction["Use Laptop",{
     player playAction "SitDown";
 },[],6,false];
 
