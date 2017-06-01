@@ -25,8 +25,8 @@ maxScore                        = 99999999999;
 respawn                         = 3;            // 3 or "BASE" - Respawn in base. Requires a marker named "respawn_west", "respawn_east", "respawn_guerrila" or "respawn_civilian". (eg: respawn_westABC, respawn_west1, respawn_west_2, etc)
 enableTeamSwitch                = 0;            // Enables or disables Team Switch functionality in MP when respawn type is 5 (SIDE). Default is 1.
 
-respawnButton                   = 1;            // Enable or disable the respawn button in the menu for INSTANT and BASE respawn types. Default is 1 (enabled).
-respawnDelay                    = 0;           // Set respawn delay in seconds.
+respawnButton                   = 0;            // Enable or disable the respawn button in the menu for INSTANT and BASE respawn types. Default is 1 (enabled).
+respawnDelay                    = 2;            // Set respawn delay in seconds.
 respawnVehicleDelay             = 11;           // Set vehicle respawn delay in seconds.
 respawnDialog                   = 1;            // Show the scoreboard and respawn countdown timer for a player if he is killed with respawnType 3. Default is 1 (true).
 respawnOnStart                  = -1;           // 1 to respawn player when he joins the game. Available only for INSTANT and BASE respawn types.
@@ -53,7 +53,7 @@ showHUD[]                       = {
 	true,	// Vehicle compass
 	true,	// Tank direction indicator
 	true,	// Commanding menu
-	true,	// Group Bar
+	false,	// Group Bar
 	true	// HUD Weapon Cursors
 };
 
