@@ -5,7 +5,7 @@ _profileNamespace = profileNamespace;
 _savedBoughtEquipment = _profileNamespace getVariable["var_ct_boughtEquipment", []];
 player setVariable["boughtEquipment", _savedBoughtEquipment, false];
 
-_savedEquipedEquipment = _profileNamespace setVariable["var_ct_equipedEquipment", []];
+_savedEquipedEquipment = _profileNamespace getVariable["var_ct_equipedEquipment", []];
 player setVariable["equipedEquipment", _savedEquipedEquipment, false];
 
 nextShowDot = 0;
@@ -17,6 +17,8 @@ updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
 
 player addAction["Use Laptop",{
     player playAction "SitDown";
+    sleep 4;
+    [] execVM "scripts\shop\shop.sqf";
 },[],6,false];
 
 3 cutRsc ["player_gui","PLAIN",3,false];
