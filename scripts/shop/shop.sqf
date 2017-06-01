@@ -43,6 +43,13 @@ buildList = {
             _itemName   = getText(configFile >> "CfgWeapons" >> _itemBaseClass >> "displayName");
             _itemImg    = getText (configFile >> "CfgWeapons" >> _itemBaseClass >> "picture");
 
+            _modes      = getArray (configFile >> "CfgWeapons" >> _itemBaseClass >> "modes");
+            _magazines  = getArray (configFile >> "CfgWeapons" >> _itemBaseClass >> "magazines");
+            _ammo       = getText (configFile >> "CfgMagazines" >> (_magazines select 0) >> "ammo");
+            _caliber    = getNumber (configFile >> "CfgAmmo" >> _ammo >> "caliber");
+
+            _price      = _caliber * (count _modes) * 1000;
+
             _bg         = _display ctrlCreate ["RscPicture", -1, _shopItemGroup];
             _picture    = _display ctrlCreate ["shopItemPicture", -1, _shopItemGroup];
             _title      = _display ctrlCreate ["shopItemName", -1, _shopItemGroup];
@@ -64,9 +71,9 @@ buildList = {
             _title      ctrlSetPosition [ctrlPosition _title select 0,  _listCount * (_posPict select 3)];
             _title      ctrlCommit 0;
 
-            _price      ctrlSetText format["$ %1",1000];
-            _price      ctrlSetPosition [ctrlPosition _price select 0,  _listCount * (_posPict select 3) + 0.1];
-            _price      ctrlCommit 0;
+            _priceText  ctrlSetText format["$ %1",_price];
+            _priceText  ctrlSetPosition [ctrlPosition _price select 0,  _listCount * (_posPict select 3) + 0.1];
+            _priceText  ctrlCommit 0;
 
             _posBtnBuy = ctrlPosition _buttonBuy;
             _buttonBuy  buttonSetAction format["['%1'] call shopBuyItem",_itemBaseClass];
