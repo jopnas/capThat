@@ -40,7 +40,7 @@ ReviveRequiredItems             = 0;            // 0: none, 1: medkit, 2: medkit
 ReviveRequiredItemsFakConsumed  = 0;            // 0: first aid kit is not consumed upon revive, 1: first aid kit is consumed
 ReviveDelay                     = 20;           // time needed to revive someone (in secs)
 ReviveMedicSpeedMultiplier      = 2;            // speed multiplier for revive performed by medic
-ReviveForceRespawnDelay         = 3;            // time needed to perform force respawn (in secs)
+ReviveForceRespawnDelay         = 0;            // time needed to perform force respawn (in secs)
 ReviveBleedOutDelay             = 120;          // unconscious state duration (in secs)
 
 disabledAI                      = 1;
