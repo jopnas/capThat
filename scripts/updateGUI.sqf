@@ -15,7 +15,7 @@ _ctrlScoreResiText ctrlSetText format["%1 MB",scoreTeamResi];
 _profileNamespace   = profileNamespace;
 _capObjDistance     = player distance capthat_object;
 _player_distance    = _profileNamespace getVariable["var_ct_xp",0];
-_player_credits     = _profileNamespace getVariable["var_ct_credits",0];
+_player_credits     = _profileNamespace getVariable["var_ct_cash",0];
 
 _ctrlDistanceText   = _namespaceUI displayCtrl 1202;
 _ctrlCashText       = _namespaceUI displayCtrl 1203;

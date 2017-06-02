@@ -1,6 +1,6 @@
 shopBuyItem = {
     params["_itemClass","_idcBuy","_idcEquip"];
-    systemChat format["Buy this, %1",_itemClass];
+    systemChat format["%1",_itemClass];
 
     _boughtEquipment = player getVariable["boughtEquipment", []];
     _boughtEquipment pushBackUnique _itemClass;
@@ -18,7 +18,7 @@ shopBuyItem = {
 
 shopEquipItem = {
     params["_itemClass","_idcEquip"];
-    systemChat format["Equip this, %1",_itemClass];
+    systemChat format["%1",_itemClass];
 
     _equipedEquipment = player getVariable["equipedEquipment", []];
     _equipedEquipment pushBackUnique _itemClass;

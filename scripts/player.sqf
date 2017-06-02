@@ -1,6 +1,11 @@
+// Transmitter
+nextShowDot = 0;
+updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
+
 removeAllWeapons player;
 player setVariable["hasLaptop",false,true];
 
+// Player Boughts and Equipted
 _profileNamespace = profileNamespace;
 _savedBoughtEquipment = _profileNamespace getVariable["var_ct_boughtEquipment", []];
 player setVariable["boughtEquipment", _savedBoughtEquipment, false];
@@ -8,11 +13,18 @@ player setVariable["boughtEquipment", _savedBoughtEquipment, false];
 _savedEquipedEquipment = _profileNamespace getVariable["var_ct_equipedEquipment", []];
 player setVariable["equipedEquipment", _savedEquipedEquipment, false];
 
-nextShowDot = 0;
-updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
-
 // DEBUG >
     player addAction["Open Shop","scripts\shop\shop.sqf",[],6,false];
+
+    player addAction["Add $2000",{
+        _player_cash = profileNamespace getVariable["var_ct_cash",0];
+        profileNamespace setVariable ["var_ct_cash",_player_cash + 2000];
+    },[],5,false];
+
+    player addAction["Add 50 XP",{
+        _player_xp = profileNamespace getVariable["var_ct_xp",0];
+        profileNamespace setVariable ["var_ct_xp",_player_xp + 50];
+    },[],4,false];
 // < DEBUG
 
 player addAction["Use Laptop",{
@@ -55,9 +67,9 @@ player addEventHandler ["killed", {
     if(_killer != player)then{
         {
             _profileNamespace = profileNamespace;
-            _player_credits = _profileNamespace getVariable["var_ct_credits",0];
+            _player_cash    = _profileNamespace getVariable["var_ct_cash",0];
             _player_xp      = _profileNamespace getVariable["var_ct_xp",0];
-            _profileNamespace setVariable ["var_ct_credits",_player_credits + 10];
+            _profileNamespace setVariable ["var_ct_cash",_player_cash + 10];
             _profileNamespace setVariable ["var_ct_xp",_player_xp + 10];
             saveProfileNamespace;
         } remoteExec ["bis_fnc_call", _killer];
@@ -74,10 +86,10 @@ nul = [] spawn {
 		if(alive player && _hasLaptop && time > _nextScoreUp)then{
             [_team,1] remoteExec ["raiseTeamScore", 2];
 
-            _player_credits = _profileNamespace getVariable["var_ct_credits",0];
+            _player_credits = _profileNamespace getVariable["var_ct_cash",0];
             _player_xp      = _profileNamespace getVariable["var_ct_xp",0];
 
-            //_profileNamespace setVariable ["var_ct_credits",_player_credits + 1];
+            //_profileNamespace setVariable ["var_ct_cash",_player_credits + 1];
             //_profileNamespace setVariable ["var_ct_xp",_player_xp + 1];
 
             saveProfileNamespace;
