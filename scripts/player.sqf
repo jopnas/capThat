@@ -43,12 +43,12 @@ player addEventHandler ["AnimDone", {
     };
 }];
 
-player addEventHandler ["AnimChanged", {
+/*player addEventHandler ["AnimChanged", {
     params["_unit","_anim"];
     if(_anim != "SitDown" && _unit getVariable["hasLaptop",false])then{
         [_laptop,true] remoteExec ["hideLaptopGlobal", 2];
     };
-}];
+}];*/
 
 player addEventHandler ["killed", {
     _unit       = _this select 0; // Object - Object the event handler is assigned to
