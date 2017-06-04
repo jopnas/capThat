@@ -27,18 +27,15 @@ player setVariable["equipedEquipment", _savedEquipedEquipment, false];
     },[],4,false];
 // < DEBUG
 
-player addAction["Use Laptop",{
+player addAction["Sit Down",{
     player playAction "SitDown";
-    sleep 4;
-    [] execVM "scripts\shop\shop.sqf";
 },[],6,false];
 
 3 cutRsc ["player_gui","PLAIN",3,false];
 
 player addEventHandler ["AnimDone", {
     params["_unit","_anim"];
-    systemChat _anim;
-    if(_anim == "SitDown" && _unit getVariable["hasLaptop",false])then{
+    if(_anim == "amovpercmstpsnonwnondnon_amovpsitmstpsnonwnondnon_ground" && _unit getVariable["hasLaptop",false])then{
         [] execVM "scripts\shop\shop.sqf";
     };
 }];
