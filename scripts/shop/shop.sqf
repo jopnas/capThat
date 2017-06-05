@@ -1,5 +1,48 @@
 disableSerialization;
 
+shopBuyItem = {
+    params["_itemClass","_idcBuy","_idcEquip","_price"];
+    systemChat format["%1, %2",_idcBuy,_idcEquip];
+    _player_cash = profileNamespace getVariable["var_ct_cash",0];
+    if(_player_cash > _price)then{
+
+        _boughtEquipment = player getVariable["boughtEquipment", []];
+        _boughtEquipment pushBackUnique _itemClass;
+
+        profileNamespace setVariable["var_ct_boughtEquipment", _boughtEquipment];
+        player setVariable["boughtEquipment", _boughtEquipment, false];
+
+        _dspl       = findDisplay 7800;
+        _btnBuy     = _dspl displayCtrl _idcBuy;
+        _btnEquip   = _dspl displayCtrl _idcEquip;
+
+        _btnBuy ctrlEnable false;
+        _btnEquip ctrlEnable true;
+
+        profileNamespace setVariable ["var_ct_cash",_player_cash - _price];
+        saveProfileNamespace;
+    };
+};
+
+shopEquipItem = {
+    params["_itemClass","_idcEquip"];
+
+    _equipedEquipment = player getVariable["equipedEquipment", []];
+    _equipedEquipment pushBackUnique _itemClass;
+
+    profileNamespace setVariable["var_ct_equipedEquipment", _equipedEquipment];
+    player setVariable["equipedEquipment", _equipedEquipment, false];
+
+    player addWeapon _itemClass;
+
+    _dspl       = findDisplay 7800;
+    _btnEquip   = _dspl displayCtrl _idcEquip;
+
+    _btnEquip ctrlEnable true;
+
+    saveProfileNamespace;
+};
+
 buildList = {
     params["_cfgList","_idc"];
 
@@ -33,8 +76,13 @@ buildList = {
             _picture    = _display ctrlCreate ["shopItemPicture", -1, _shopItemGroup];
             _title      = _display ctrlCreate ["shopItemName", -1, _shopItemGroup];
             _priceText  = _display ctrlCreate ["shopItemPrice", -1, _shopItemGroup];
-            _buttonBuy  = _display ctrlCreate ["shopBuyItemButton", 8210 + _listCount, _shopItemGroup];
-            _buttonEqp  = _display ctrlCreate ["shopEquipItemButton", 8220 + _listCount, _shopItemGroup];
+
+
+            _btn_buy_id = _idc + 7100 + (_listCount * 10);
+            _btn_Eqp_id = _idc + 7200 + (_listCount * 10);
+            _buttonBuy  = _display ctrlCreate ["shopBuyItemButton", _btn_buy_id, _shopItemGroup];
+            _buttonEqp  = _display ctrlCreate ["shopEquipItemButton",_btn_Eqp_id, _shopItemGroup];
+            systemChat format["%1, %2",_btn_buy_id,_btn_Eqp_id];
 
             _posPict    = ctrlPosition _picture;
 
@@ -51,12 +99,12 @@ buildList = {
             _priceText  ctrlCommit 0;
 
             _posBtnBuy = ctrlPosition _buttonBuy;
-            _buttonBuy  buttonSetAction format["['%1',%2,%3] call shopBuyItem",_itemBaseClass,8210 + _listCount,8220 + _listCount];
+            _buttonBuy  buttonSetAction format["['%1',%2,%3,%4] call shopBuyItem",_itemBaseClass,_btn_buy_id,_btn_Eqp_id,_price];
             _buttonBuy  ctrlSetPosition [_posBtnBuy select 0,  _listCount * (_posPict select 3) + (_posPict select 3) - (_posBtnBuy select 3)];
             _buttonBuy  ctrlCommit 0;
 
             _posBtnEqp = ctrlPosition _buttonEqp;
-            _buttonEqp  buttonSetAction format["['%1',%2] call shopEquipItem",_itemBaseClass,8220 + _listCount];
+            _buttonEqp  buttonSetAction format["['%1',%2] call shopEquipItem",_itemBaseClass,_btn_Eqp_id];
             _buttonEqp  ctrlSetPosition [_posBtnEqp select 0,  _listCount * (_posPict select 3) + (_posPict select 3) - (_posBtnBuy select 3)];
             _buttonEqp  ctrlCommit 0;
 
@@ -72,7 +120,58 @@ buildList = {
 
 };
 
-createDialog "shopGUI";
+shopBuildLists = {
+    _cfgList = "(
+        (getNumber (_x >> 'scope') == 2) &&
+        (getText (_x >> 'nameSound') == 'rifle') &&
+        (count  (getArray (_x >> 'muzzles')) == 1)
+    )" configClasses (configFile >> "CfgWeapons");
+    [_cfgList,1500] call buildList;
 
+    _cfgList = "(
+        (getNumber (_x >> 'scope') == 2) &&
+        (getText (_x >> 'nameSound') == 'Pistol')
+    )" configClasses (configFile >> "CfgWeapons");
+    [_cfgList,1501] call buildList;
+
+    _cfgList = "(
+        (getNumber (_x >> 'scope') == 2) &&
+        (getText (_x >> 'nameSound') == 'atlauncher')
+    )" configClasses (configFile >> "CfgWeapons");
+    [_cfgList,1502] call buildList;
+};
+
+openRifleShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlRi = _dspl displayCtrl 1500;
+    _ctrlPi = _dspl displayCtrl 1501;
+    _ctrlLa = _dspl displayCtrl 1502;
+    _ctrlRi ctrlShow true;
+    _ctrlPi ctrlShow false;
+    _ctrlLa ctrlShow false;
+};
+
+openPistolShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlRi = _dspl displayCtrl 1500;
+    _ctrlPi = _dspl displayCtrl 1501;
+    _ctrlLa = _dspl displayCtrl 1502;
+    _ctrlRi ctrlShow false;
+    _ctrlPi ctrlShow true;
+    _ctrlLa ctrlShow false;
+};
+
+openLauncherShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlRi = _dspl displayCtrl 1500;
+    _ctrlPi = _dspl displayCtrl 1501;
+    _ctrlLa = _dspl displayCtrl 1502;
+    _ctrlRi ctrlShow false;
+    _ctrlPi ctrlShow false;
+    _ctrlLa ctrlShow true;
+};
+
+createDialog "shopGUI";
 [] call shopBuildLists;
+
 [] call openRifleShop;

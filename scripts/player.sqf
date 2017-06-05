@@ -19,11 +19,13 @@ player setVariable["equipedEquipment", _savedEquipedEquipment, false];
     player addAction["Add $2000",{
         _player_cash = profileNamespace getVariable["var_ct_cash",0];
         profileNamespace setVariable ["var_ct_cash",_player_cash + 2000];
+        saveProfileNamespace;
     },[],5,false];
 
     player addAction["Add 50 XP",{
         _player_xp = profileNamespace getVariable["var_ct_xp",0];
         profileNamespace setVariable ["var_ct_xp",_player_xp + 50];
+        saveProfileNamespace;
     },[],4,false];
 // < DEBUG
 

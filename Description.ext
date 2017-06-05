@@ -177,8 +177,27 @@ class RscTitles {
         onLoad = "uiNamespace setVariable ['player_display', _this select 0];";
 
         class controls {
-            class distance_background : RscPicture {
+            class xp_background : RscPicture {
+                idc = -1;
+                text = "images\capthat_transmitter_bg.paa";
+                x = 0.820833 * safezoneW + safezoneX;
+                y = 0.74485 * safezoneH + safezoneY;
+                w = 0.0916667 * safezoneW;
+                h = 0.0329871 * safezoneH;
+            };
+            class xp_bars : RscPicture {
                 idc = 1200;
+                style = 48;
+                text = "images\capthat_xp_bars.paa";
+                x = 0.828 * safezoneW + safezoneX;
+                y = 0.7509 * safezoneH + safezoneY;
+                w = 0.064 * safezoneW;
+                h = 0.02 * safezoneH;
+                colorText[] = {0,0.4,0,1};
+            };
+
+            class distance_background : RscPicture {
+                idc = -1;
                 text = "images\capthat_transmitter_bg.paa";
                 x = 0.820833 * safezoneW + safezoneX;
                 y = 0.78485 * safezoneH + safezoneY;
@@ -186,7 +205,7 @@ class RscTitles {
                 h = 0.0329871 * safezoneH;
             };
             class cash_background : RscPicture {
-                idc = 1201;
+                idc = -1;
                 text = "images\capthat_transmitter_bg.paa";
                 x = 0.820833 * safezoneW + safezoneX;
                 y = 0.82485 * safezoneH + safezoneY;
@@ -389,9 +408,9 @@ class shopEquipItemButton : RscButton {
 };
 
 class shopGUI {
-	  idd = 7800;
-	  movingEnable = 0;
-	  objects[] = {};
+	idd = 7800;
+	movingEnable = 0;
+	objects[] = {};
     controlsBackground[] = {};
     controls[] = { buttonRifles, buttonPistols, buttonLauncher, shopRiflesGroup, shopPistolsGroup, shopLauncherGroup };
 
