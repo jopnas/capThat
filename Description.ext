@@ -394,7 +394,7 @@ class shopEquipItemButton : RscButton {
     text = "Equip";
     w = ((0.5 * safezoneW) - (0.2  * safezoneW)) / 2;
     h = (0.15 * safezoneH) / 3;
-    x = 0.22  * safezoneW + (((0.45 * safezoneW) - (0.2  * safezoneW)) / 2);
+    x = (0.2  * safezoneW) + (((0.5 * safezoneW) - (0.2  * safezoneW)) / 2);
     y = ((0.15 * safezoneH) / 3) * 2
     colorText[] = {1,1,1,1};
     colorDisabled[] = {0.3,0.3,0.3,1};

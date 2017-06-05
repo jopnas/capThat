@@ -4,7 +4,7 @@ shopBuyItem = {
     params["_itemClass","_idcBuy","_idcEquip","_price"];
     systemChat format["%1, %2",_idcBuy,_idcEquip];
     _player_cash = profileNamespace getVariable["var_ct_cash",0];
-    if(_player_cash > _price)then{
+    if(_player_cash >= _price)then{
 
         _boughtEquipment = player getVariable["boughtEquipment", []];
         _boughtEquipment pushBackUnique _itemClass;
