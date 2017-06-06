@@ -9,10 +9,10 @@ if(isServer)then{
     publicVariable "scoreTeamEast";
     publicVariable "scoreTeamResi";
 
-	[] execVM "scripts\server.sqf";
+	[] execVM "scripts\server\server.sqf";
 };
 
 if(!isDedicated)then{
-    [] execVM "scripts\player.sqf";
+    [] execVM "scripts\client\player.sqf";
     [] execVM "scripts\shop\shopFunctions.sqf";
 };
