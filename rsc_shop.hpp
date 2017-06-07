@@ -1,6 +1,13 @@
 #define tabWidth (0.0796933 * safezoneW)
 #define tabHeight (0.0796933 * safezoneW)
 
+// Loadingscreen
+class pageLoadingScreen: RscPicture {
+    idc = -1;
+    text = "";
+};
+
+// Items
 class shopTopTabButton : RscButton {
     w = tabWidth;
     h = tabHeight;

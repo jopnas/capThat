@@ -1,4 +1,5 @@
 disableSerialization;
+shopCtrls = [];
 
 shopBuyItem = {
     params["_itemClass","_idcBuy","_idcEquip","_price"];
@@ -117,30 +118,43 @@ buildList = {
             };
         };
     } forEach _cfgList;
-
+    shopCtrls pushBackUnique _idc;
 };
 
+// Init Groups
 shopBuildLists = {
-    _cfgList = "(
-        (getNumber (_x >> 'scope') == 2) &&
-        (getText (_x >> 'nameSound') == 'rifle') &&
-        (count  (getArray (_x >> 'muzzles')) == 1)
-    )" configClasses (configFile >> "CfgWeapons");
-    [_cfgList,1500] call buildList;
+    // Weapons
+    [RifleList,1500] call buildList;
+    [PistolList,1501] call buildList;
+    [LauncherList,1502] call buildList;
 
-    _cfgList = "(
-        (getNumber (_x >> 'scope') == 2) &&
-        (getText (_x >> 'nameSound') == 'Pistol')
-    )" configClasses (configFile >> "CfgWeapons");
-    [_cfgList,1501] call buildList;
+    // Attatchments
+    [OpticList,1503] call buildList;
+    [SurpressorList,1504] call buildList;
+    [BipodList,1505] call buildList;
 
-    _cfgList = "(
-        (getNumber (_x >> 'scope') == 2) &&
-        (getText (_x >> 'nameSound') == 'atlauncher')
-    )" configClasses (configFile >> "CfgWeapons");
-    [_cfgList,1502] call buildList;
+    // Clothes
+    [HeadgearList,1506] call buildList;
+    [UniformList,1507] call buildList;
+    [VestList,1508] call buildList;
+    [BackpackList,1509] call buildList;
 };
 
+// Toggle Shops
+togglePage = {
+    params["_showIdc"];
+    _dspl       = findDisplay 7800;
+    _showCtrl   = _dspl displayCtrl _x;
+    {
+        _thisCtrl = _dspl displayCtrl _x;
+        if(ctrlShown _thisCtrl) exitWith {
+            _thisCtrl ctrlShow false;
+            _showCtrl ctrlShow true;
+        };
+    } forEach shopCtrls;
+};
+
+// Weaponshop
 openRifleShop = {
     _dspl   = findDisplay 7800;
     _ctrlRi = _dspl displayCtrl 1500;
@@ -171,7 +185,85 @@ openLauncherShop = {
     _ctrlLa ctrlShow true;
 };
 
+// Attatchmentshop
+openOpticShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlRi = _dspl displayCtrl 1503;
+    _ctrlPi = _dspl displayCtrl 1504;
+    _ctrlLa = _dspl displayCtrl 1505;
+    _ctrlRi ctrlShow true;
+    _ctrlPi ctrlShow false;
+    _ctrlLa ctrlShow false;
+};
+
+openSuppressorShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlRi = _dspl displayCtrl 1503;
+    _ctrlPi = _dspl displayCtrl 1504;
+    _ctrlLa = _dspl displayCtrl 1505;
+    _ctrlRi ctrlShow false;
+    _ctrlPi ctrlShow true;
+    _ctrlLa ctrlShow false;
+};
+
+openBipodShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlRi = _dspl displayCtrl 1503;
+    _ctrlPi = _dspl displayCtrl 1504;
+    _ctrlLa = _dspl displayCtrl 1505;
+    _ctrlRi ctrlShow false;
+    _ctrlPi ctrlShow false;
+    _ctrlLa ctrlShow true;
+};
+
+// Clothshop
+openHeadgearShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlClHe = _dspl displayCtrl 1506;
+    _ctrlClUn = _dspl displayCtrl 1507;
+    _ctrlClVe = _dspl displayCtrl 1508;
+    _ctrlBaPa = _dspl displayCtrl 1509;
+    _ctrlClHe ctrlShow true;
+    _ctrlClUn ctrlShow false;
+    _ctrlClVe ctrlShow false;
+    _ctrlBaPa ctrlShow false;
+};
+
+openUniformShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlClHe = _dspl displayCtrl 1506;
+    _ctrlClUn = _dspl displayCtrl 1507;
+    _ctrlClVe = _dspl displayCtrl 1508;
+    _ctrlBaPa = _dspl displayCtrl 1509;
+    _ctrlClHe ctrlShow false;
+    _ctrlClUn ctrlShow true;
+    _ctrlClVe ctrlShow false;
+    _ctrlBaPa ctrlShow false;
+};
+
+openVestShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlClHe = _dspl displayCtrl 1506;
+    _ctrlClUn = _dspl displayCtrl 1507;
+    _ctrlClVe = _dspl displayCtrl 1508;
+    _ctrlBaPa = _dspl displayCtrl 1509;
+    _ctrlClHe ctrlShow false;
+    _ctrlClUn ctrlShow false;
+    _ctrlClVe ctrlShow true;
+    _ctrlBaPa ctrlShow false;
+};
+
+openBackpackShop = {
+    _dspl   = findDisplay 7800;
+    _ctrlClHe = _dspl displayCtrl 1506;
+    _ctrlClUn = _dspl displayCtrl 1507;
+    _ctrlClVe = _dspl displayCtrl 1508;
+    _ctrlBaPa = _dspl displayCtrl 1509;
+    _ctrlClHe ctrlShow false;
+    _ctrlClUn ctrlShow false;
+    _ctrlClVe ctrlShow false;
+    _ctrlBaPa ctrlShow true;
+};
+
 createDialog "shopGUI";
 [] call shopBuildLists;
-
-[] call openRifleShop;
