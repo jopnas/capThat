@@ -349,92 +349,102 @@ class shopGUI {
     	idc = 1600;
     	text = "Weapons";
         y = 0.176985 * safezoneH + safezoneY; // 1st
-        action = "[] call openWeaponsShop";
+        action = "[[1700,1701,1702]] call toggleTabs";
     };
     class tabAttatchments: shopSideTabButton {
     	idc = 1601;
     	text = "Attatchments";
         y = (0.176985 * safezoneH + safezoneY) + tabHeight; // 2nd
-        action = "[] call openAttatchmentsShop";
+        action = "[[1703,17004,1705]] call toggleTabs";
     };
     class tabClothes: shopSideTabButton {
     	idc = 1602;
     	text = "Clothes";
         y = (0.176985 * safezoneH + safezoneY) + (tabHeight * 2); // 3dt
-        action = "[] call openClothesShop";
+        action = "[[1706,1707,1708,1709]] call toggleTabs";
     };
 
     // Weapons Top-Tabs
     class tabRifles: shopTopTabButton {
-    	idc = 1603;
+    	idc = 1700;
     	text = "Rifles";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
-        action = "[] call openRifleShop";
+        action = "[1500] call togglePage";
+        //action = "[] call openRifleShop";
     };
     class tabPistols: shopTopTabButton {
-    	idc = 1604;
+    	idc = 1701;
     	text = "Pistols";
     	x = (0.229043 * safezoneW + safezoneX) + tabWidth; // 2nd
-        action = "[] call openPistolShop";
+        action = "[1501] call togglePage";
+        //action = "[] call openPistolShop";
     };
     class tabLauncher: shopTopTabButton {
-    	idc = 1605;
+    	idc = 1702;
     	text = "Launcher";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
-        action = "[] call openLauncherShop";
+        action = "[1502] call togglePage";
+        //action = "[] call openLauncherShop";
     };
 
     // Attatchments Top-Tabs
     class tabOptics: shopTopTabButton {
-    	idc = 1603;
+    	idc = 1703;
     	text = "Optics";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
-        action = "[] call openOpticShop";
+        action = "[1503] call togglePage";
+        //action = "[] call openOpticShop";
     };
     class tabSuppressors: shopTopTabButton {
-    	idc = 1604;
+    	idc = 1704;
     	text = "Suppressors";
     	x = (0.229043 * safezoneW + safezoneX) + tabWidth; // 2nd
-        action = "[] call openSuppressorShop";
+        action = "[1504] call togglePage";
+        //action = "[] call openSuppressorShop";
     };
     class tabBipods: shopTopTabButton {
-    	idc = 1605;
+    	idc = 1705;
     	text = "Bipods";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
-        action = "[] call openBipodShop";
+        action = "[1505] call togglePage";
+        //action = "[] call openBipodShop";
     };
 
     // Clothes Top-Tabs
     class tabHeadgear: shopTopTabButton {
-    	idc = 1606;
+    	idc = 1706;
     	text = "Headgear";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
-        action = "[] call openHeadgearShop";
+        action = "[1506] call togglePage";
+        //action = "[] call openHeadgearShop";
     };
     class tabUniforms: shopTopTabButton {
-    	idc = 1607;
+    	idc = 1707;
     	text = "Uniforms";
     	x = 0.229043 * safezoneW + safezoneX; // 2nd
-        action = "[] call openUniformShop";
+        action = "[1507] call togglePage";
+        //action = "[] call openUniformShop";
     };
     class tabVests: shopTopTabButton {
-    	idc = 1608;
+    	idc = 1708;
     	text = "Vests";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
-        action = "[] call openVestShop";
+        action = "[1608] call togglePage";
+        //action = "[] call openVestShop";
     };
     class tabBackpacks: shopTopTabButton {
-    	idc = 1609;
+    	idc = 1709;
     	text = "Backpacks";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 3); // 4th
-        action = "[] call openBackpackShop";
+        action = "[1509] call togglePage";
+        //action = "[] call openBackpackShop";
     };
 };
 
 class CfgDebriefing {
     class wonCapThat {
         title = "Download Complete";
-        subtitle = "You Won The Match";
+        subtitle = "Your team wins";
         description = "you successfully downloaded the file";
         pictureBackground = "";
         picture = "";
@@ -442,7 +452,7 @@ class CfgDebriefing {
     };
     class failedCapThat {
         title = "Download Incomplete";
-        subtitle = "You Lost The Match";
+        subtitle = "Your team loses";
         description = "you failed to downloaded the file";
         pictureBackground = "";
         picture = "";

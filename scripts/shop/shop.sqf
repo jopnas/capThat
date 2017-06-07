@@ -141,6 +141,19 @@ shopBuildLists = {
 };
 
 // Toggle Shops
+toggleTabs = {
+    params["_showIdcs"];
+    _dspl       = findDisplay 7800;
+    _showCtrl   = _dspl displayCtrl _x;
+    {
+        _thisCtrl = _dspl displayCtrl _x;
+        if(ctrlShown _thisCtrl) exitWith {
+            _thisCtrl ctrlShow false;
+            _showCtrl ctrlShow true;
+        };
+    } forEach _showIdcs;
+};
+
 togglePage = {
     params["_showIdc"];
     _dspl       = findDisplay 7800;
@@ -155,7 +168,7 @@ togglePage = {
 };
 
 // Weaponshop
-openRifleShop = {
+/*openRifleShop = {
     _dspl   = findDisplay 7800;
     _ctrlRi = _dspl displayCtrl 1500;
     _ctrlPi = _dspl displayCtrl 1501;
@@ -214,7 +227,7 @@ openBipodShop = {
     _ctrlRi ctrlShow false;
     _ctrlPi ctrlShow false;
     _ctrlLa ctrlShow true;
-};
+};*/
 
 // Clothshop
 openHeadgearShop = {
