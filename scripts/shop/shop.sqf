@@ -1,5 +1,6 @@
 disableSerialization;
 shopCtrls = [];
+tabsCtrls = [7000,1701,1702,1703,17004,1705,1706,1707,1708,1709];
 
 shopBuyItem = {
     params["_itemClass","_idcBuy","_idcEquip","_price"];
@@ -144,14 +145,19 @@ shopBuildLists = {
 toggleTabs = {
     params["_showIdcs"];
     _dspl       = findDisplay 7800;
-    _showCtrl   = _dspl displayCtrl _x;
     {
         _thisCtrl = _dspl displayCtrl _x;
-        if(ctrlShown _thisCtrl) exitWith {
+        if(ctrlShown _thisCtrl) then {
             _thisCtrl ctrlShow false;
-            _showCtrl ctrlShow true;
         };
-    } forEach _showIdcs;
+
+        if (_forEachIndex + 1 == count tabsCtrls) then {
+            {
+                _showCtrl = _dspl displayCtrl _x;
+                _showCtrl ctrlShow true;
+            } forEach _showIdcs;
+        };
+    } forEach tabsCtrls;
 };
 
 togglePage = {
