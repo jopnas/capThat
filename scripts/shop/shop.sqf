@@ -134,6 +134,7 @@ shopBuildLists = {
 // Toggle Shops
 toggleTabs = {
     params["_showIdcs"];
+    systemChat str(_showIdcs);
     _dspl       = findDisplay 7800;
     {
         _thisCtrl = _dspl displayCtrl _x;
@@ -153,7 +154,8 @@ toggleTabs = {
 togglePage = {
     params["_showIdc"];
     _dspl       = findDisplay 7800;
-    _showCtrl   = _dspl displayCtrl _x;
+    _showCtrl   = _dspl displayCtrl _showIdc;
+    systemChat str(_showCtrl);
     {
         _thisCtrl = _dspl displayCtrl _x;
         if(ctrlShown _thisCtrl) exitWith {

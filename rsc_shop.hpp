@@ -21,7 +21,8 @@ class shopTopTabButton : RscButton {
 };
 
 class shopSideTabButton : shopTopTabButton {
-    x = (0.176985 * safezoneH + safezoneY) - (0.0796933 * safezoneW);
+    colorText[] = {1,0,1,1};
+    x = (0.229043 * safezoneW + safezoneX) - tabWidth;
 };
 
 class shopItemPicture : RscPicture {

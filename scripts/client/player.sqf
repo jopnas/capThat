@@ -1,6 +1,6 @@
 // Transmitter
 nextShowDot = 0;
-updateTransmitter = compile preprocessFile "scripts\transmitter.sqf";
+updateTransmitter = compile preprocessFile "scripts\client\transmitter.sqf";
 
 removeAllWeapons player;
 player setVariable["hasLaptop",false,true];
@@ -27,6 +27,8 @@ player setVariable["equipedEquipment", _savedEquipedEquipment, false];
         profileNamespace setVariable ["var_ct_xp",_player_xp + 50];
         saveProfileNamespace;
     },[],4,false];
+
+    player addAction["Reset Lists","scripts\shop\shopItemLists.sqf",[],6,false];
 // < DEBUG
 
 player addAction["Sit Down",{
@@ -98,7 +100,7 @@ nul = [] spawn {
 
         // GUI Score
         [_hasLaptop] spawn updateTransmitter;
-        [] execVM "scripts\updateGUI.sqf";
+        [] execVM "scripts\client\updateGUI.sqf";
 
         hintSilent format ["hasLaptop: %1\nA3Score: %2",_hasLaptop,scoreSide (side player)];
 		sleep 0.1;

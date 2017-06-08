@@ -1,6 +1,6 @@
-#define scorePicTop (0.88485 * safezoneH + safezoneY);
-#define scorePicWidth (0.035 * safezoneW);
-#define scorePicHeight (0.044 * safezoneH);
+#define scorePicTop (0.88485 * safezoneH + safezoneY)
+#define scorePicWidth (0.035 * safezoneW)
+#define scorePicHeight (0.044 * safezoneH)
 
 class scoreDefaultPicture: RscPicture {
     idc = -1;

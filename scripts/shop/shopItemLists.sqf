@@ -17,7 +17,8 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
     _fncItemType    = _x call bis_fnc_itemType;
     _itemCategory   = _fncItemType select 0;
     _itemType       = _fncItemType select 1;
-    if(getnumber (configFile >> "cfgWeapons" >> _x >> "scope") > 0)then{
+
+    if(getnumber (configFile >> "cfgWeapons" >> _x >> "scope") > 1)then{
         // Cloth
         if(_itemCategory == "Equipment")then{
             if(_itemType == "Headgear")then{
@@ -59,13 +60,12 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
 
         // Weapons
         if(_itemCategory == "Weapon")then{
-            _modes      = getArray (configFile >> "CfgWeapons" >> _class >> "modes");
-            _inertia    = getArray (configFile >> "CfgWeapons" >> _class >> "inertia");
-            _magazines  = getArray (configFile >> "CfgWeapons" >> _class >> "magazines");
+            _modes      = getArray (configFile >> "CfgWeapons" >> _x >> "modes");
+            _inertia    = getNumber (configFile >> "CfgWeapons" >> _x >> "inertia");
+            _magazines  = getArray (configFile >> "CfgWeapons" >> _x >> "magazines");
 
-            _mass       = getNumber (configFile >> "CfgMagazines" >> (_magazines select 0) >> "mass");
             _ammo       = getText (configFile >> "CfgMagazines" >> (_magazines select 0) >> "ammo");
-
+            _mass       = getNumber (configFile >> "CfgMagazines" >> (_magazines select 0) >> "mass");
             _caliber    = getNumber (configFile >> "CfgAmmo" >> _ammo >> "caliber");
 
             if(count(getArray (configFile >> "cfgWeapons" >> _x >> "LinkedItems")) == 0)then{
@@ -78,6 +78,7 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
                     RifleList pushBackUnique [_x,_price];
                 };
                 if(_itemType in _launcherTypes)then{
+                    systemChat format["%1, %2, %3",_x,_magazines select 0,_mass];
                     _price      = 4 * (_mass + _inertia);
                     LauncherList pushBackUnique [_x,_price];
                 };

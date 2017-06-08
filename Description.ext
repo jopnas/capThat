@@ -421,7 +421,7 @@ class shopGUI {
     	idc = 1708;
     	text = "Vests";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
-        action = "[1608] call togglePage";
+        action = "[1508] call togglePage";
     };
     class tabBackpacks: shopTopTabButton {
     	idc = 1709;
