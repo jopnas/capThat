@@ -78,7 +78,6 @@ buildList = {
             _buttonEqp  = _display ctrlCreate ["shopEquipItemButton",_btn_Eqp_id, _shopItemGroup];
 
             _posPict    = ctrlPosition _picture;
-
             _picture    ctrlSetText format["%1",_itemImg];
             _picture    ctrlSetPosition [0, _listCount * (_posPict select 3)];
             _picture    ctrlCommit 0;
@@ -224,7 +223,7 @@ openBipodShop = {
     _ctrlRi ctrlShow false;
     _ctrlPi ctrlShow false;
     _ctrlLa ctrlShow true;
-};*/
+};
 
 // Clothshop
 openHeadgearShop = {
@@ -273,7 +272,7 @@ openBackpackShop = {
     _ctrlClUn ctrlShow false;
     _ctrlClVe ctrlShow false;
     _ctrlBaPa ctrlShow true;
-};
+};*/
 
 createDialog "shopGUI";
 [] call shopBuildLists;

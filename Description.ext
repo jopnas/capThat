@@ -370,21 +370,18 @@ class shopGUI {
     	text = "Rifles";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
         action = "[1500] call togglePage";
-        //action = "[] call openRifleShop";
     };
     class tabPistols: shopTopTabButton {
     	idc = 1701;
     	text = "Pistols";
     	x = (0.229043 * safezoneW + safezoneX) + tabWidth; // 2nd
         action = "[1501] call togglePage";
-        //action = "[] call openPistolShop";
     };
     class tabLauncher: shopTopTabButton {
     	idc = 1702;
     	text = "Launcher";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
         action = "[1502] call togglePage";
-        //action = "[] call openLauncherShop";
     };
 
     // Attatchments Top-Tabs
@@ -393,21 +390,18 @@ class shopGUI {
     	text = "Optics";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
         action = "[1503] call togglePage";
-        //action = "[] call openOpticShop";
     };
     class tabSuppressors: shopTopTabButton {
     	idc = 1704;
     	text = "Suppressors";
     	x = (0.229043 * safezoneW + safezoneX) + tabWidth; // 2nd
         action = "[1504] call togglePage";
-        //action = "[] call openSuppressorShop";
     };
     class tabBipods: shopTopTabButton {
     	idc = 1705;
     	text = "Bipods";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
         action = "[1505] call togglePage";
-        //action = "[] call openBipodShop";
     };
 
     // Clothes Top-Tabs
@@ -416,28 +410,24 @@ class shopGUI {
     	text = "Headgear";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
         action = "[1506] call togglePage";
-        //action = "[] call openHeadgearShop";
     };
     class tabUniforms: shopTopTabButton {
     	idc = 1707;
     	text = "Uniforms";
     	x = 0.229043 * safezoneW + safezoneX; // 2nd
         action = "[1507] call togglePage";
-        //action = "[] call openUniformShop";
     };
     class tabVests: shopTopTabButton {
     	idc = 1708;
     	text = "Vests";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
         action = "[1608] call togglePage";
-        //action = "[] call openVestShop";
     };
     class tabBackpacks: shopTopTabButton {
     	idc = 1709;
     	text = "Backpacks";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 3); // 4th
         action = "[1509] call togglePage";
-        //action = "[] call openBackpackShop";
     };
 };
 
