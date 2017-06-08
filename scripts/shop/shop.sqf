@@ -53,28 +53,20 @@ buildList = {
 
     _itemList  = [];
     {
-        _className      = configName _x;
-        _itemBaseClass  = _className call BIS_fnc_baseWeapon;
+        _class          = _x select 0;
+        _price          = _x select 1;
 
-        _hasBought      = ( _itemBaseClass in (player getVariable["boughtEquipment",[]]) );
-        _hasEquiped     = ( _itemBaseClass in (player getVariable["equipedEquipment",[]]) );
+        _hasBought      = ( _class in (player getVariable["boughtEquipment",[]]) );
+        _hasEquiped     = ( _class in (player getVariable["equipedEquipment",[]]) );
 
 
-        if(!(_itemBaseClass in _itemList))then{
+        if(!(_class in _itemList))then{
             _listCount  = count _itemList;
-            _itemList   pushBackUnique _itemBaseClass;
+            _itemList   pushBackUnique _class;
 
-            _itemName   = getText(configFile >> "CfgWeapons" >> _itemBaseClass >> "displayName");
-            _itemImg    = getText (configFile >> "CfgWeapons" >> _itemBaseClass >> "picture");
+            _itemName   = getText(configFile >> "CfgWeapons" >> _class >> "displayName");
+            _itemImg    = getText (configFile >> "CfgWeapons" >> _class >> "picture");
 
-            _modes      = getArray (configFile >> "CfgWeapons" >> _itemBaseClass >> "modes");
-            _magazines  = getArray (configFile >> "CfgWeapons" >> _itemBaseClass >> "magazines");
-            _ammo       = getText (configFile >> "CfgMagazines" >> (_magazines select 0) >> "ammo");
-            _caliber    = getNumber (configFile >> "CfgAmmo" >> _ammo >> "caliber");
-
-            _price      = _caliber * (count _modes) * 1000;
-
-            //_bg         = _display ctrlCreate ["RscPicture", -1, _shopItemGroup];
             _picture    = _display ctrlCreate ["shopItemPicture", -1, _shopItemGroup];
             _title      = _display ctrlCreate ["shopItemName", -1, _shopItemGroup];
             _priceText  = _display ctrlCreate ["shopItemPrice", -1, _shopItemGroup];
@@ -84,7 +76,6 @@ buildList = {
             _btn_Eqp_id = _idc + 7200 + (_listCount * 10);
             _buttonBuy  = _display ctrlCreate ["shopBuyItemButton", _btn_buy_id, _shopItemGroup];
             _buttonEqp  = _display ctrlCreate ["shopEquipItemButton",_btn_Eqp_id, _shopItemGroup];
-            systemChat format["%1, %2",_btn_buy_id,_btn_Eqp_id];
 
             _posPict    = ctrlPosition _picture;
 
@@ -101,12 +92,12 @@ buildList = {
             _priceText  ctrlCommit 0;
 
             _posBtnBuy = ctrlPosition _buttonBuy;
-            _buttonBuy  buttonSetAction format["['%1',%2,%3,%4] call shopBuyItem",_itemBaseClass,_btn_buy_id,_btn_Eqp_id,_price];
+            _buttonBuy  buttonSetAction format["['%1',%2,%3,%4] call shopBuyItem",_class,_btn_buy_id,_btn_Eqp_id,_price];
             _buttonBuy  ctrlSetPosition [_posBtnBuy select 0,  _listCount * (_posPict select 3) + (_posPict select 3) - (_posBtnBuy select 3)];
             _buttonBuy  ctrlCommit 0;
 
             _posBtnEqp = ctrlPosition _buttonEqp;
-            _buttonEqp  buttonSetAction format["['%1',%2] call shopEquipItem",_itemBaseClass,_btn_Eqp_id];
+            _buttonEqp  buttonSetAction format["['%1',%2] call shopEquipItem",_class,_btn_Eqp_id];
             _buttonEqp  ctrlSetPosition [_posBtnEqp select 0,  _listCount * (_posPict select 3) + (_posPict select 3) - (_posBtnBuy select 3)];
             _buttonEqp  ctrlCommit 0;
 
