@@ -242,126 +242,66 @@ class shopGUI {
     };
 
     // Weapons Group
-    class shopRiflesGroup: RscControlsGroup {
+    class shopRiflesGroup: shopGroup {
         idc = 1500;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
-    class shopPistolsGroup: RscControlsGroup {
+    class shopPistolsGroup: shopGroup {
         idc = 1501;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
-    class shopLauncherGroup: RscControlsGroup {
+    class shopLauncherGroup: shopGroup {
         idc = 1502;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
     // Attatchments Group
-    class shopOpticsGroup: RscControlsGroup {
+    class shopOpticsGroup: shopGroup {
         idc = 1503;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
-    class shopSuppressorsGroup: RscControlsGroup {
+    class shopSuppressorsGroup: shopGroup {
         idc = 1504;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
-    class shopBipodsGroup: RscControlsGroup {
+    class shopBipodsGroup: shopGroup {
         idc = 1505;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
     // Clothes Groups
-    class shopHeadgearGroup: RscControlsGroup {
+    class shopHeadgearGroup: shopGroup {
         idc = 1506;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
-    class shopUniformsGroup: RscControlsGroup {
+    class shopUniformsGroup: shopGroup {
         idc = 1507;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
-    class shopVestsGroup: RscControlsGroup {
+    class shopVestsGroup: shopGroup {
         idc = 1508;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
-    class shopBackpacksGroup: RscControlsGroup {
+    class shopBackpacksGroup: shopGroup {
         idc = 1509;
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
-        x = 0.229043 * safezoneW + safezoneX;
-        y = 0.176985 * safezoneH + safezoneY;
-        colorBackground[] = {0.2,0.2,0.2,1};
-        class Controls {};
     };
 
     // Category Side-Tabs
     class tabWeapons: shopSideTabButton {
     	idc = 1600;
     	text = "Weapons";
-        y = 0.176985 * safezoneH + safezoneY; // 1st
-        action = "[[1700,1701,1702]] call toggleTabs";
+        y = groupY; // 1st
+        action = "[[1700,1701,1702],1500] call toggleCats";
     };
     class tabAttatchments: shopSideTabButton {
     	idc = 1601;
     	text = "Attatchments";
-        y = (0.176985 * safezoneH + safezoneY) + tabHeight; // 2nd
-        action = "[[1703,17004,1705]] call toggleTabs";
+        y = groupY + tabHeight; // 2nd
+        action = "[[1703,17004,1705],1503] call toggleCats";
     };
     class tabClothes: shopSideTabButton {
     	idc = 1602;
     	text = "Clothes";
-        y = (0.176985 * safezoneH + safezoneY) + (tabHeight * 2); // 3dt
-        action = "[[1706,1707,1708,1709]] call toggleTabs";
+        y = groupY + tabHeight * 2; // 3dt
+        action = "[[1706,1707,1708,1709],1506] call toggleCats";
     };
 
     // Weapons Top-Tabs
@@ -369,19 +309,19 @@ class shopGUI {
     	idc = 1700;
     	text = "Rifles";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
-        action = "[1500] call togglePage";
+        action = "[1500] call toggleTypes";
     };
     class tabPistols: shopTopTabButton {
     	idc = 1701;
     	text = "Pistols";
     	x = (0.229043 * safezoneW + safezoneX) + tabWidth; // 2nd
-        action = "[1501] call togglePage";
+        action = "[1501] call toggleTypes";
     };
     class tabLauncher: shopTopTabButton {
     	idc = 1702;
     	text = "Launcher";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
-        action = "[1502] call togglePage";
+        action = "[1502] call toggleTypes";
     };
 
     // Attatchments Top-Tabs
@@ -389,19 +329,19 @@ class shopGUI {
     	idc = 1703;
     	text = "Optics";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
-        action = "[1503] call togglePage";
+        action = "[1503] call toggleTypes";
     };
     class tabSuppressors: shopTopTabButton {
     	idc = 1704;
     	text = "Suppressors";
     	x = (0.229043 * safezoneW + safezoneX) + tabWidth; // 2nd
-        action = "[1504] call togglePage";
+        action = "[1504] call toggleTypes";
     };
     class tabBipods: shopTopTabButton {
     	idc = 1705;
     	text = "Bipods";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
-        action = "[1505] call togglePage";
+        action = "[1505] call toggleTypes";
     };
 
     // Clothes Top-Tabs
@@ -409,25 +349,25 @@ class shopGUI {
     	idc = 1706;
     	text = "Headgear";
     	x = 0.229043 * safezoneW + safezoneX; // 1st
-        action = "[1506] call togglePage";
+        action = "[1506] call toggleTypes";
     };
     class tabUniforms: shopTopTabButton {
     	idc = 1707;
     	text = "Uniforms";
     	x = 0.229043 * safezoneW + safezoneX; // 2nd
-        action = "[1507] call togglePage";
+        action = "[1507] call toggleTypes";
     };
     class tabVests: shopTopTabButton {
     	idc = 1708;
     	text = "Vests";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
-        action = "[1508] call togglePage";
+        action = "[1508] call toggleTypes";
     };
     class tabBackpacks: shopTopTabButton {
     	idc = 1709;
     	text = "Backpacks";
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 3); // 4th
-        action = "[1509] call togglePage";
+        action = "[1509] call toggleTypes";
     };
 };
 

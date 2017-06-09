@@ -1,3 +1,5 @@
+#define groupX (0.229043 * safezoneW + safezoneX)
+#define groupY (0.176985 * safezoneH + safezoneY)
 #define tabWidth (0.0796933 * safezoneW)
 #define tabHeight (0.0796933 * safezoneW)
 
@@ -5,6 +7,16 @@
 class pageLoadingScreen: RscPicture {
     idc = -1;
     text = "";
+};
+
+// Group
+class shopGroup: RscControlsGroup {
+    w = 0.5 * safezoneW;
+    h = 0.714033 * safezoneH;
+    x = groupX;
+    y = groupY;
+    colorBackground[] = {0.2,0.2,0.2,1};
+    class Controls {};
 };
 
 // Items
@@ -20,14 +32,22 @@ class shopTopTabButton : RscButton {
     periodOver = 0;
 };
 
-class shopSideTabButton : shopTopTabButton {
+class shopSideTabButton : RscButton {
+    w = tabWidth;
+    h = tabHeight;
+    x = groupX - tabWidth;
+    y = groupY;
     colorText[] = {1,0,1,1};
-    x = (0.229043 * safezoneW + safezoneX) - tabWidth;
+    colorBackground[] = {0.1,0.3,0.1,1};
+    colorActive[] = {0,0.5,0,1};
+    period = 0;
+    periodFocus	= 0;
+    periodOver = 0;
 };
 
-class shopItemPicture : RscPicture {
+class shopItemPicture : RscPictureKeepAspect {
     text = "";
-    style = 48;
+    //style = 48;
     w = 0.2  * safezoneW;
     h = 0.15 * safezoneH;
     x = 0;

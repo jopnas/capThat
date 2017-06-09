@@ -1,6 +1,6 @@
 disableSerialization;
-shopCtrls = [];
-tabsCtrls = [7000,1701,1702,1703,17004,1705,1706,1707,1708,1709];
+curTabCtrls    = [1700,1701,1702,1703,1704,1705,1706,1707,1708,1709];
+curGroupCtrl   = 1500;
 
 shopBuyItem = {
     params["_itemClass","_idcBuy","_idcEquip","_price"];
@@ -109,7 +109,8 @@ buildList = {
             };
         };
     } forEach _cfgList;
-    shopCtrls pushBackUnique _idc;
+
+    _shopItemGroup ctrlShow false;
 };
 
 // Init Groups
@@ -129,152 +130,47 @@ shopBuildLists = {
     [UniformList,1507] call buildList;
     [VestList,1508] call buildList;
     [BackpackList,1509] call buildList;
+
+    // Show first Category and first type
+    [[1700,1701,1702],1500] call toggleCats;
 };
 
-// Toggle Shops
-toggleTabs = {
+// Toggle Side-Tabs
+toggleCats = {
     params["_showIdcs"];
-    systemChat str(_showIdcs);
-    _dspl       = findDisplay 7800;
-    {
-        _thisCtrl = _dspl displayCtrl _x;
-        if(ctrlShown _thisCtrl) then {
-            _thisCtrl ctrlShow false;
-        };
+    _catShowTabs    = _showIdcs select 0;
+    _catFirstType   = _showIdcs select 1;
+    _dspl           = findDisplay 7800;
+    _count          = count curTabCtrls;
 
-        if (_forEachIndex + 1 == count tabsCtrls) then {
-            {
-                _showCtrl = _dspl displayCtrl _x;
-                _showCtrl ctrlShow true;
-            } forEach _showIdcs;
+    {
+        _hideCtrl = _dspl displayCtrl _x;
+        _hideCtrl ctrlShow false;
+        if(_forEachIndex + 1 == _count)then{
+            curTabCtrls = _catShowTabs;
+            [_catFirstType] call toggleTypes;
         };
-    } forEach tabsCtrls;
+    } forEach curTabCtrls;
+
+    {
+        _showCtrl = _dspl displayCtrl _x;
+        _showCtrl ctrlShow true;
+    } forEach _catShowTabs;
 };
 
-togglePage = {
+// Toggle Top-Tabs
+toggleTypes = {
     params["_showIdc"];
     _dspl       = findDisplay 7800;
     _showCtrl   = _dspl displayCtrl _showIdc;
-    systemChat str(_showCtrl);
-    {
-        _thisCtrl = _dspl displayCtrl _x;
-        if(ctrlShown _thisCtrl) exitWith {
-            _thisCtrl ctrlShow false;
-            _showCtrl ctrlShow true;
-        };
-    } forEach shopCtrls;
-};
+    _hideCtrl   = _dspl displayCtrl curGroupCtrl;
 
-// Weaponshop
-/*openRifleShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlRi = _dspl displayCtrl 1500;
-    _ctrlPi = _dspl displayCtrl 1501;
-    _ctrlLa = _dspl displayCtrl 1502;
-    _ctrlRi ctrlShow true;
-    _ctrlPi ctrlShow false;
-    _ctrlLa ctrlShow false;
-};
+    _hideCtrl ctrlShow false;
+    _showCtrl ctrlShow true;
 
-openPistolShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlRi = _dspl displayCtrl 1500;
-    _ctrlPi = _dspl displayCtrl 1501;
-    _ctrlLa = _dspl displayCtrl 1502;
-    _ctrlRi ctrlShow false;
-    _ctrlPi ctrlShow true;
-    _ctrlLa ctrlShow false;
+    curGroupCtrl = _showCtrl;
 };
-
-openLauncherShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlRi = _dspl displayCtrl 1500;
-    _ctrlPi = _dspl displayCtrl 1501;
-    _ctrlLa = _dspl displayCtrl 1502;
-    _ctrlRi ctrlShow false;
-    _ctrlPi ctrlShow false;
-    _ctrlLa ctrlShow true;
-};
-
-// Attatchmentshop
-openOpticShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlRi = _dspl displayCtrl 1503;
-    _ctrlPi = _dspl displayCtrl 1504;
-    _ctrlLa = _dspl displayCtrl 1505;
-    _ctrlRi ctrlShow true;
-    _ctrlPi ctrlShow false;
-    _ctrlLa ctrlShow false;
-};
-
-openSuppressorShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlRi = _dspl displayCtrl 1503;
-    _ctrlPi = _dspl displayCtrl 1504;
-    _ctrlLa = _dspl displayCtrl 1505;
-    _ctrlRi ctrlShow false;
-    _ctrlPi ctrlShow true;
-    _ctrlLa ctrlShow false;
-};
-
-openBipodShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlRi = _dspl displayCtrl 1503;
-    _ctrlPi = _dspl displayCtrl 1504;
-    _ctrlLa = _dspl displayCtrl 1505;
-    _ctrlRi ctrlShow false;
-    _ctrlPi ctrlShow false;
-    _ctrlLa ctrlShow true;
-};
-
-// Clothshop
-openHeadgearShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlClHe = _dspl displayCtrl 1506;
-    _ctrlClUn = _dspl displayCtrl 1507;
-    _ctrlClVe = _dspl displayCtrl 1508;
-    _ctrlBaPa = _dspl displayCtrl 1509;
-    _ctrlClHe ctrlShow true;
-    _ctrlClUn ctrlShow false;
-    _ctrlClVe ctrlShow false;
-    _ctrlBaPa ctrlShow false;
-};
-
-openUniformShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlClHe = _dspl displayCtrl 1506;
-    _ctrlClUn = _dspl displayCtrl 1507;
-    _ctrlClVe = _dspl displayCtrl 1508;
-    _ctrlBaPa = _dspl displayCtrl 1509;
-    _ctrlClHe ctrlShow false;
-    _ctrlClUn ctrlShow true;
-    _ctrlClVe ctrlShow false;
-    _ctrlBaPa ctrlShow false;
-};
-
-openVestShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlClHe = _dspl displayCtrl 1506;
-    _ctrlClUn = _dspl displayCtrl 1507;
-    _ctrlClVe = _dspl displayCtrl 1508;
-    _ctrlBaPa = _dspl displayCtrl 1509;
-    _ctrlClHe ctrlShow false;
-    _ctrlClUn ctrlShow false;
-    _ctrlClVe ctrlShow true;
-    _ctrlBaPa ctrlShow false;
-};
-
-openBackpackShop = {
-    _dspl   = findDisplay 7800;
-    _ctrlClHe = _dspl displayCtrl 1506;
-    _ctrlClUn = _dspl displayCtrl 1507;
-    _ctrlClVe = _dspl displayCtrl 1508;
-    _ctrlBaPa = _dspl displayCtrl 1509;
-    _ctrlClHe ctrlShow false;
-    _ctrlClUn ctrlShow false;
-    _ctrlClVe ctrlShow false;
-    _ctrlBaPa ctrlShow true;
-};*/
 
 createDialog "shopGUI";
 [] call shopBuildLists;
+
