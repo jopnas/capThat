@@ -24,17 +24,17 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
             if(_itemType == "Headgear")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price = _mass * 10;
-                HeadgearList pushBackUnique [_x,_price];
+                HeadgearList pushBackUnique [_x,_price,"CfgWeapons"];
             };
             if(_itemType == "Vest")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price = _mass * 15;
-                VestList pushBackUnique [_x,_price];
+                VestList pushBackUnique [_x,_price,"CfgWeapons"];
             };
             if(_itemType == "Uniform" && _x != "U_BasicBody")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price = _mass * 20;
-                UniformList pushBackUnique [_x,_price];
+                UniformList pushBackUnique [_x,_price,"CfgWeapons"];
             };
         };
 
@@ -43,18 +43,18 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
             if(_itemType == "AccessoryBipod")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price = _mass * 10;
-                BipodList pushBackUnique [_x,_price];
+                BipodList pushBackUnique [_x,_price,"CfgWeapons"];
             };
             if(_itemType == "AccessoryMuzzle")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price = _mass * 20;
-                SurpressorList pushBackUnique [_x,_price];
+                SurpressorList pushBackUnique [_x,_price,"CfgWeapons"];
             };
             if(_itemType == "AccessorySights")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _modes = count(getArray (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "OpticsModes"));
                 _price = _mass *  _modes;
-                OpticList pushBackUnique [_x,_price];
+                OpticList pushBackUnique [_x,_price,"CfgWeapons"];
             };
         };
 
@@ -71,15 +71,15 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
             if(count(getArray (configFile >> "cfgWeapons" >> _x >> "LinkedItems")) == 0)then{
                 if(_itemType == "Handgun")then{
                     _price      = 2000 * (_caliber + _inertia);
-                    PistolList pushBackUnique [_x,_price];
+                    PistolList pushBackUnique [_x,_price,"CfgWeapons"];
                 };
                 if(_itemType in _rifleTypes)then{
                     _price      = 3000 * (_caliber + _inertia);
-                    RifleList pushBackUnique [_x,_price];
+                    RifleList pushBackUnique [_x,_price,"CfgWeapons"];
                 };
                 if(_itemType in _launcherTypes)then{
                     _price      = 4000 * (_mass + _inertia);
-                    LauncherList pushBackUnique [_x,_price];
+                    LauncherList pushBackUnique [_x,_price,"CfgWeapons"];
                 };
             };
         };
@@ -99,6 +99,6 @@ _vehicleList = (configFile >> "CfgVehicles") call BIS_fnc_getCfgSubClasses;
     if( !(_x in _excludeBackpacks) && _countTransport == 0 && getNumber (configFile >> 'CfgVehicles' >> _x >> 'maximumLoad') > 0 && getNumber (configFile >> 'CfgVehicles' >> _x >> 'isbackpack') == 1 && getNumber (configFile >> 'CfgVehicles' >> _x >> 'scope') > 0)then{
         _maxLoad    = getNumber (configFile >> "CfgVehicles" >> _x >> "maximumLoad");
         _price      = _maxLoad * 10;
-        BackpackList pushBackUnique [_x,_price];
+        BackpackList pushBackUnique [_x,_price,"CfgVehicles"];
     };
 } forEach _vehicleList;

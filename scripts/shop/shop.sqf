@@ -1,5 +1,8 @@
 disableSerialization;
 
+player setVariable["curTabCtrls",[1700,1701,1702,1703,1704,1705,1706,1707,1708,1709],false];
+player setVariable["curGroupCtrl",[1500],false];
+
 shopBuyItem = {
     params["_itemClass","_idcBuy","_idcEquip","_price"];
     _player_cash = profileNamespace getVariable["var_ct_cash",0];
@@ -43,7 +46,7 @@ shopEquipItem = {
 };
 
 buildList = {
-    params["_cfgList","_idc"];
+    params["_cfgList","_idc","_cfgName"];
 
     _display            = findDisplay 7800;
     _shopItemGroup      = _display displayCtrl _idc;
@@ -61,8 +64,8 @@ buildList = {
             _listCount  = count _itemList;
             _itemList   pushBackUnique _class;
 
-            _itemName   = getText(configFile >> "CfgWeapons" >> _class >> "displayName");
-            _itemImg    = getText (configFile >> "CfgWeapons" >> _class >> "picture");
+            _itemName   = getText(configFile >> _cfgName >> _class >> "displayName");
+            _itemImg    = getText (configFile >> _cfgName >> _class >> "picture");
 
             _picture    = _display ctrlCreate ["shopItemPicture", -1, _shopItemGroup];
             _title      = _display ctrlCreate ["shopItemName", -1, _shopItemGroup];
