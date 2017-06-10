@@ -29,24 +29,49 @@ shopBuyItem = {
 shopEquipItem = {
     params["_itemClass","_idcEquip"];
 
+    _fncItemType    = _itemClass call bis_fnc_itemType;
+    _itemCategory   = _fncItemType select 0;
+    _itemType       = _fncItemType select 1;
+
+    systemChat format["%1, %2, %3",_itemClass,_itemCategory,_itemType] ;
+
     _equipedEquipment = player getVariable["equipedEquipment", []];
     _equipedEquipment pushBackUnique _itemClass;
 
     profileNamespace setVariable["var_ct_equipedEquipment", _equipedEquipment];
     player setVariable["equipedEquipment", _equipedEquipment, false];
 
-    player addWeapon _itemClass;
+
+    if(_itemCategory == "Weapon" || _itemType == "Headgear")then{
+        player addWeapon _itemClass;
+    };
+
+    if(_itemType == "Backpack")then{
+        player addBackpack _itemClass;
+    };
+
+    if(_itemType == "Vest")then{
+        player addVest _itemClass;
+    };
+
+    if(_itemType == "Uniform")then{
+        player forceAddUniform _itemClass;
+    };
+
+    if(_itemCategory == "Item")then{
+        player addPrimaryWeaponItem _itemClass;
+    };
 
     _dspl       = findDisplay 7800;
     _btnEquip   = _dspl displayCtrl _idcEquip;
 
     _btnEquip ctrlEnable true;
 
-    saveProfileNamespace;
+    saveProfileNamespace; 
 };
 
 buildList = {
-    params["_cfgList","_idc","_cfgName"];
+    params["_cfgList","_idc"];
 
     _display            = findDisplay 7800;
     _shopItemGroup      = _display displayCtrl _idc;
@@ -55,6 +80,7 @@ buildList = {
     {
         _class          = _x select 0;
         _price          = _x select 1;
+        _cfgName        = _x select 2;
 
         _hasBought      = ( _class in (player getVariable["boughtEquipment",[]]) );
         _hasEquiped     = ( _class in (player getVariable["equipedEquipment",[]]) );

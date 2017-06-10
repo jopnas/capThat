@@ -47,7 +47,7 @@ class shopSideTabButton : RscButton {
 
 class shopItemPicture : RscPicture {
     text = "";
-    style = 48;
+    style = 2096;
     w = 0.2  * safezoneW;
     h = 0.15 * safezoneH;
     x = 0;

@@ -41,19 +41,19 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
         //Attatchments
         if(_itemCategory == "Item")then{
             if(_itemType == "AccessoryBipod")then{
-                _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
-                _price = _mass * 10;
+                _mass       = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
+                _price      = _mass * 10;
                 BipodList pushBackUnique [_x,_price,"CfgWeapons"];
             };
             if(_itemType == "AccessoryMuzzle")then{
-                _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
-                _price = _mass * 20;
+                _mass       = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
+                _price      = _mass * 20;
                 SurpressorList pushBackUnique [_x,_price,"CfgWeapons"];
             };
             if(_itemType == "AccessorySights")then{
-                _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
-                _modes = count(getArray (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "OpticsModes"));
-                _price = _mass *  _modes;
+                _mass       = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
+                _modes      =  (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "OpticsModes") call BIS_fnc_getCfgSubClasses;
+                _price      = _mass * 20 * (count _modes);
                 OpticList pushBackUnique [_x,_price,"CfgWeapons"];
             };
         };
@@ -68,7 +68,7 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
             _mass       = getNumber (configFile >> "CfgMagazines" >> (_magazines select 0) >> "mass");
             _caliber    = getNumber (configFile >> "CfgAmmo" >> _ammo >> "caliber");
 
-            if(count(getArray (configFile >> "cfgWeapons" >> _x >> "LinkedItems")) == 0)then{
+            if(!isClass(configFile >> "cfgWeapons" >> _x >> "LinkedItems"))then{
                 if(_itemType == "Handgun")then{
                     _price      = 2000 * (_caliber + _inertia);
                     PistolList pushBackUnique [_x,_price,"CfgWeapons"];
