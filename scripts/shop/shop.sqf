@@ -1,10 +1,7 @@
 disableSerialization;
-curTabCtrls    = [1700,1701,1702,1703,1704,1705,1706,1707,1708,1709];
-curGroupCtrl   = 1500;
 
 shopBuyItem = {
     params["_itemClass","_idcBuy","_idcEquip","_price"];
-    systemChat format["%1, %2",_idcBuy,_idcEquip];
     _player_cash = profileNamespace getVariable["var_ct_cash",0];
     if(_player_cash >= _price)then{
 
@@ -137,38 +134,36 @@ shopBuildLists = {
 
 // Toggle Side-Tabs
 toggleCats = {
-    params["_showIdcs"];
-    _catShowTabs    = _showIdcs select 0;
-    _catFirstType   = _showIdcs select 1;
+    params["_catShowTabs","_catFirstType"];
+    _curTabCtrls    = player getVariable "curTabCtrls";
     _dspl           = findDisplay 7800;
-    _count          = count curTabCtrls;
 
     {
         _hideCtrl = _dspl displayCtrl _x;
         _hideCtrl ctrlShow false;
-        if(_forEachIndex + 1 == _count)then{
-            curTabCtrls = _catShowTabs;
-            [_catFirstType] call toggleTypes;
-        };
-    } forEach curTabCtrls;
+    } forEach _curTabCtrls;
 
     {
         _showCtrl = _dspl displayCtrl _x;
         _showCtrl ctrlShow true;
     } forEach _catShowTabs;
+
+    player setVariable["curTabCtrls",_catShowTabs,false];
+    [_catFirstType] call toggleTypes;
 };
 
 // Toggle Top-Tabs
 toggleTypes = {
     params["_showIdc"];
+    _curGroupCtrl = player getVariable "curGroupCtrl";
     _dspl       = findDisplay 7800;
     _showCtrl   = _dspl displayCtrl _showIdc;
-    _hideCtrl   = _dspl displayCtrl curGroupCtrl;
+    _hideCtrl   = _dspl displayCtrl (_curGroupCtrl select 0);
 
     _hideCtrl ctrlShow false;
     _showCtrl ctrlShow true;
 
-    curGroupCtrl = _showCtrl;
+    player setVariable["curGroupCtrl",[_showIdc],false];
 };
 
 createDialog "shopGUI";

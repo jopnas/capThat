@@ -219,6 +219,9 @@ class shopGUI {
 	objects[] = {};
     controlsBackground[] = {};
     controls[] = {
+        tabWeapons,
+        tabAttatchments,
+        tabClothes,
         tabRifles,
         tabPistols,
         tabLauncher,
@@ -295,7 +298,7 @@ class shopGUI {
     	idc = 1601;
     	text = "Attatchments";
         y = groupY + tabHeight; // 2nd
-        action = "[[1703,17004,1705],1503] call toggleCats";
+        action = "[[1703,1704,1705],1503] call toggleCats";
     };
     class tabClothes: shopSideTabButton {
     	idc = 1602;
@@ -354,7 +357,7 @@ class shopGUI {
     class tabUniforms: shopTopTabButton {
     	idc = 1707;
     	text = "Uniforms";
-    	x = 0.229043 * safezoneW + safezoneX; // 2nd
+    	x = 0.229043 * safezoneW + safezoneX + tabWidth; // 2nd
         action = "[1507] call toggleTypes";
     };
     class tabVests: shopTopTabButton {

@@ -1,7 +1,7 @@
 #define groupX (0.229043 * safezoneW + safezoneX)
 #define groupY (0.176985 * safezoneH + safezoneY)
 #define tabWidth (0.0796933 * safezoneW)
-#define tabHeight (0.0796933 * safezoneW)
+#define tabHeight (0.035 * safezoneW)
 
 // Loadingscreen
 class pageLoadingScreen: RscPicture {
@@ -45,9 +45,9 @@ class shopSideTabButton : RscButton {
     periodOver = 0;
 };
 
-class shopItemPicture : RscPictureKeepAspect {
+class shopItemPicture : RscPicture {
     text = "";
-    //style = 48;
+    style = 48;
     w = 0.2  * safezoneW;
     h = 0.15 * safezoneH;
     x = 0;

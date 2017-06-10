@@ -70,16 +70,15 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
 
             if(count(getArray (configFile >> "cfgWeapons" >> _x >> "LinkedItems")) == 0)then{
                 if(_itemType == "Handgun")then{
-                    _price      = 2 * (_caliber + _inertia);
+                    _price      = 2000 * (_caliber + _inertia);
                     PistolList pushBackUnique [_x,_price];
                 };
                 if(_itemType in _rifleTypes)then{
-                    _price      = 3 * (_caliber + _inertia);
+                    _price      = 3000 * (_caliber + _inertia);
                     RifleList pushBackUnique [_x,_price];
                 };
                 if(_itemType in _launcherTypes)then{
-                    systemChat format["%1, %2, %3",_x,_magazines select 0,_mass];
-                    _price      = 4 * (_mass + _inertia);
+                    _price      = 4000 * (_mass + _inertia);
                     LauncherList pushBackUnique [_x,_price];
                 };
             };
