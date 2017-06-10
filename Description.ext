@@ -217,7 +217,9 @@ class shopGUI {
 	idd = 7800;
 	movingEnable = 0;
 	objects[] = {};
-    controlsBackground[] = {};
+    controlsBackground[] = {
+        shopBackground
+    };
     controls[] = {
         tabWeapons,
         tabAttatchments,
@@ -242,6 +244,16 @@ class shopGUI {
         shopUniformsGroup,
         shopVestsGroup,
         shopBackpacksGroup
+    };
+
+    // BG
+    class shopBackground: RscPicture {
+        idc = 1499;
+        text = "#(argb,8,8,3)color(0.2,0.2,0.2,1)";
+        w = 0.5 * safezoneW;
+        h = 0.714033 * safezoneH;
+        x = groupX;
+        y = groupY;
     };
 
     // Weapons Group
