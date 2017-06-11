@@ -42,8 +42,22 @@ shopEquipItem = {
     player setVariable["equipedEquipment", _equipedEquipment, false];
 
 
-    if(_itemCategory == "Weapon" || _itemType == "Headgear")then{
+    if(_itemType == "Headgear")then{
         player addWeapon _itemClass;
+    };
+
+    if(_itemCategory == "Weapon")then{
+        if(_itemClass in LauncherList)then{
+            _addMags = 2;
+        };
+        if(_itemClass in RifleList)then{
+            _addMags = 4;
+        };
+        if(_itemClass in PistolList)then{
+            _addMags = 2;
+        };
+
+        [player, _itemClass, _addMags] call BIS_fnc_addWeapon;
     };
 
     if(_itemType == "Backpack")then{
