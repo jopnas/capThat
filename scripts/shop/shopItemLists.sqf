@@ -9,8 +9,8 @@ UniformList     = [];
 VestList        = [];
 BackpackList    = [];
 
-_rifleTypes     = ["AssaultRifle","MachineGun","Shotgun","Rifle","SubmachineGun","SniperRifle"];
-_launcherTypes  = ["GrenadeLauncher","Launcher","MissileLauncher","Mortar","RocketLauncher"];
+rifleTypes     = ["AssaultRifle","MachineGun","Shotgun","Rifle","SubmachineGun","SniperRifle"];
+launcherTypes  = ["GrenadeLauncher","Launcher","MissileLauncher","Mortar","RocketLauncher"];
 _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
 {
     private["_itemType"];
@@ -73,11 +73,11 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
                     _price      = 2000 * (_caliber + _inertia);
                     PistolList pushBackUnique [_x,_price,"CfgWeapons"];
                 };
-                if(_itemType in _rifleTypes)then{
+                if(_itemType in rifleTypes)then{
                     _price      = 3000 * (_caliber + _inertia);
                     RifleList pushBackUnique [_x,_price,"CfgWeapons"];
                 };
-                if(_itemType in _launcherTypes)then{
+                if(_itemType in launcherTypes)then{
                     _price      = 4000 * (_mass + _inertia);
                     LauncherList pushBackUnique [_x,_price,"CfgWeapons"];
                 };
