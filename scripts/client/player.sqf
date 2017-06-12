@@ -103,15 +103,31 @@ _addPlayersItems = {
 // DEBUG >
     player addAction["Open Shop","scripts\shop\shop.sqf",[],6,false];
 
-    player addAction["Add $2000",{
+    player addAction["Add $20.000",{
         _player_cash = profileNamespace getVariable["var_ct_cash",0];
-        profileNamespace setVariable ["var_ct_cash",_player_cash + 2000];
+        profileNamespace setVariable ["var_ct_cash",_player_cash + 20000];
         saveProfileNamespace;
     },[],5,false];
+
+    player addAction["Reset Cash",{
+        profileNamespace setVariable ["var_ct_cash",0];
+        saveProfileNamespace;
+    },[],4,false];
 
     player addAction["Add 50 XP",{
         _player_xp = profileNamespace getVariable["var_ct_xp",0];
         profileNamespace setVariable ["var_ct_xp",_player_xp + 50];
+        saveProfileNamespace;
+    },[],4,false];
+
+    player addAction["Reset XP",{
+        profileNamespace setVariable ["var_ct_xp",0];
+        saveProfileNamespace;
+    },[],4,false];
+
+    player addAction["Reset Equipment",{
+        player setVariable["equipedEquipment", [["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]], false];
+        profileNamespace setVariable ["equipedEquipment",[["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]]];
         saveProfileNamespace;
     },[],4,false];
 
@@ -128,15 +144,16 @@ player addEventHandler ["AnimDone", {
     params["_unit","_anim"];
     if(_anim == "amovpercmstpsnonwnondnon_amovpsitmstpsnonwnondnon_ground" && _unit getVariable["hasLaptop",false])then{
         [] execVM "scripts\shop\shop.sqf";
+        [(attachedObjects player) select 0,false] remoteExec ["hideLaptopGlobal", 2];
     };
 }];
 
-/*player addEventHandler ["AnimChanged", {
+player addEventHandler ["AnimChanged", {
     params["_unit","_anim"];
-    if(_anim != "SitDown" && _unit getVariable["hasLaptop",false])then{
-        [_laptop,true] remoteExec ["hideLaptopGlobal", 2];
+    if(_anim != "amovpercmstpsnonwnondnon_amovpsitmstpsnonwnondnon_ground" && _unit getVariable["hasLaptop",false])then{
+        [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];
     };
-}];*/
+}];
 
 player addEventHandler ["killed", {
     _unit       = _this select 0; // Object - Object the event handler is assigned to
