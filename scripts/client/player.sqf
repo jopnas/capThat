@@ -161,6 +161,7 @@ player addEventHandler ["killed", {
         [_x,false] remoteExec ["hideLaptopGlobal", 2];
     } forEach attachedObjects _unit;
     _unit setVariable["hasLaptop", false, true];
+    [false] remoteExec ["setIsDownloading", 2];
 
     // Killer add XP and Credits
     if(_killer != player)then{

@@ -5,6 +5,7 @@ _laptop addAction["Take Laptop", {
 	_caller = _this select 1;
 
     [_laptop,true] remoteExec ["hideLaptopGlobal", 2];
+	[true] remoteExec ["setIsDownloading", 2];
 
 	_laptop attachTo[_caller, [0.1, 0.1, 0.15], "Pelvis"];
 	_caller setVariable["hasLaptop", true, true];
@@ -20,6 +21,7 @@ _laptop addAction["Take Laptop", {
         _caller removeAction _actID;
 
         [_laptop,false] remoteExec ["hideLaptopGlobal", 2];
+		[false] remoteExec ["setIsDownloading", 2];
 
 	}, [_laptop], 5, false];
 
