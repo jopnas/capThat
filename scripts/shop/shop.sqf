@@ -1,5 +1,8 @@
 disableSerialization;
 
+shopOpen = true;
+[(attachedObjects player) select 0,false] remoteExec ["hideLaptopGlobal", 2];
+
 player setVariable["curTabCtrls",[1700,1701,1702,1703,1704,1705,1706,1707,1708,1709],false];
 player setVariable["curGroupCtrl",[1500],false];
 
@@ -248,4 +251,9 @@ toggleTypes = {
 
 createDialog "shopGUI";
 [] call shopBuildLists;
+
+(findDisplay 7800) displayAddEventHandler ["onUnload", {
+    shopOpen = false;
+    [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];
+}];
 

@@ -2,6 +2,8 @@
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\client\transmitter.sqf";
 
+shopOpen = false;
+
 removeAllWeapons player;
 removeAllItems player; 
 removeBackpack player;
@@ -118,25 +120,25 @@ _addPlayersItems = {
         _player_xp = profileNamespace getVariable["var_ct_xp",0];
         profileNamespace setVariable ["var_ct_xp",_player_xp + 50];
         saveProfileNamespace;
-    },[],4,false];
+    },[],3,false];
 
     player addAction["Reset XP",{
         profileNamespace setVariable ["var_ct_xp",0];
         saveProfileNamespace;
-    },[],4,false];
+    },[],2,false];
 
     player addAction["Reset Equipment",{
         player setVariable["equipedEquipment", [["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]], false];
         profileNamespace setVariable ["equipedEquipment",[["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]]];
         saveProfileNamespace;
-    },[],4,false];
+    },[],1,false];
 
     player addAction["Reset Lists","scripts\shop\shopItemLists.sqf",[],6,false];
 // < DEBUG
 
 player addAction["Sit Down",{
     player playAction "SitDown";
-},[],6,false];
+},[],0,false];
 
 3 cutRsc ["player_gui","PLAIN",3,false];
 
@@ -144,14 +146,6 @@ player addEventHandler ["AnimDone", {
     params["_unit","_anim"];
     if(_anim == "amovpercmstpsnonwnondnon_amovpsitmstpsnonwnondnon_ground" && _unit getVariable["hasLaptop",false])then{
         [] execVM "scripts\shop\shop.sqf";
-        [(attachedObjects player) select 0,false] remoteExec ["hideLaptopGlobal", 2];
-    };
-}];
-
-player addEventHandler ["AnimChanged", {
-    params["_unit","_anim"];
-    if(_anim != "amovpercmstpsnonwnondnon_amovpsitmstpsnonwnondnon_ground" && _unit getVariable["hasLaptop",false])then{
-        [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];
     };
 }];
 
