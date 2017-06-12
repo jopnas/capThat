@@ -102,8 +102,12 @@ shopEquipItem = {
 buildList = {
     params["_cfgList","_idc"];
 
-    _display            = findDisplay 7800;
-    _shopItemGroup      = _display displayCtrl _idc;
+    _sortedArray    = _cfgList apply { _x select 1;_x};
+    _sortedArray sort true;
+
+    _display        = findDisplay 7800;
+    _shopItemGroup  = _display displayCtrl _idc;
+    _shopItemGroup ctrlShow false;
 
     _itemList  = [];
     {
@@ -113,7 +117,6 @@ buildList = {
 
         _hasBought      = ( _class in (player getVariable["boughtEquipment",[]]) );
         _hasEquiped     = ( _class in (player getVariable["equipedEquipment",[]]) );
-
 
         if(!(_class in _itemList))then{
             _listCount  = count _itemList;
@@ -163,31 +166,50 @@ buildList = {
                 _buttonEqp ctrlEnable false;
             };
         };
-    } forEach _cfgList;
-
-    _shopItemGroup ctrlShow false;
+    } forEach _sortedArray;
 };
 
 // Init Groups
 shopBuildLists = {
+    // Show shop loadingscreen
+    _display                = findDisplay 7800;
+    _shopLoadingScreen      = _display ctrlCreate ["pageLoadingScreen", 9999];
+    
+
     // Weapons
-    [RifleList,1500] call buildList;
-    [PistolList,1501] call buildList;
-    [LauncherList,1502] call buildList;
+    _RifleListReady         = [RifleList,1500] spawn buildList;
+    _PistolListReady        = [PistolList,1501] spawn buildList;
+    _LauncherListReady      = [LauncherList,1502] spawn buildList;
 
     // Attatchments
-    [OpticList,1503] call buildList;
-    [SurpressorList,1504] call buildList;
-    [BipodList,1505] call buildList;
+    _OpticListReady         = [OpticList,1503] spawn buildList;
+    _SurpressorListReady    = [SurpressorList,1504] spawn buildList;
+    _BipodListReady         = [BipodList,1505] spawn buildList;
 
     // Clothes
-    [HeadgearList,1506] call buildList;
-    [UniformList,1507] call buildList;
-    [VestList,1508] call buildList;
-    [BackpackList,1509] call buildList;
+    _HeadgearListReady      = [HeadgearList,1506] spawn buildList;
+    _UniformListReady       = [UniformList,1507] spawn buildList;
+    _VestListReady          = [VestList,1508] spawn buildList;
+    _BackpackListReady      = [BackpackList,1509] spawn buildList;
 
     // Show first Category and first type
-    [[1700,1701,1702],1500] call toggleCats;
+    _toggleFirstTabsReady   = [[1700,1701,1702],1500] spawn toggleCats;
+
+    waitUntil {
+        scriptDone _RifleListReady &&
+        scriptDone _PistolListReady &&
+        scriptDone _LauncherListReady &&
+        scriptDone _OpticListReady &&
+        scriptDone _SurpressorListReady &&
+        scriptDone _BipodListReady &&
+        scriptDone _HeadgearListReady &&
+        scriptDone _UniformListReady &&
+        scriptDone _VestListReady &&
+        scriptDone _BackpackListReady &&
+        scriptDone _toggleFirstTabsReady
+    };
+
+     _shopLoadingScreen ctrlShow false;
 };
 
 // Toggle Side-Tabs

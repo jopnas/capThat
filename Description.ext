@@ -6,7 +6,7 @@ class Header
 };
 
 author                          = "NotSure";
-OnLoadName                      = "CapThat v0.02";
+OnLoadName                      = "CapThat v0.15";
 OnLoadMission                   = "Welcome to CapThat!";
 
 onLoadIntro                     = "onLoadIntro text"
