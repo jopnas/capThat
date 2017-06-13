@@ -100,6 +100,7 @@ class CfgSounds {
 };
 
 // GUI
+#include "rsc_defines.hpp"
 #include "rsc_base.hpp"
 #include "rsc_match.hpp"
 #include "rsc_shop.hpp"

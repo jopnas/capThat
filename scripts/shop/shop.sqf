@@ -176,7 +176,7 @@ buildList = {
 shopBuildLists = {
     // Show shop loadingscreen
     _display                = findDisplay 7800;
-    _shopLoadingScreen      = _display ctrlCreate ["pageLoadingScreen", 9999];
+    _shopLoadingScreen      = _display ctrlCreate ["pageLoadingScreen", 9990];
     
 
     // Weapons

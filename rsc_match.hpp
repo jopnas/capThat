@@ -5,7 +5,7 @@
 class scoreDefaultPicture: RscPicture {
     idc = -1;
     text = "images\scoreicon.paa";
-    style = 48;
+    style = ST_PICTURE;
     x = 0.929688 * safezoneW + safezoneX;
     y = scorePicTop;
     w = scorePicWidth;
