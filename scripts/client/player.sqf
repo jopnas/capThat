@@ -28,13 +28,20 @@ _savedEquipedEquipment = _profileNamespace getVariable["var_ct_equipedEquipment"
 ];
 player setVariable["equipedEquipment", _savedEquipedEquipment, false];
 
+_lastWeapon = "";
 {
-    _typeX = _x;
     {
         if(_x != "")then{
-            [_x] call addPlayersItems;
+            _fncItemType    = _x call bis_fnc_itemType;
+            _itemCategory   = _fncItemType select 0;
+            _itemType       = _fncItemType select 1;
+
+            if(_itemCategory == "Weapon")then{
+                _lastWeapon = _x;
+            };
+            [_x,_lastWeapon] call addPlayersItems;
         };
-    } forEach _typeX; 
+    } forEach _x; 
 } forEach _savedEquipedEquipment;
 
 
@@ -65,7 +72,7 @@ player setVariable["equipedEquipment", _savedEquipedEquipment, false];
 
     player addAction["Reset Equipment",{
         player setVariable["equipedEquipment", [["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]], false];
-        profileNamespace setVariable ["equipedEquipment",[["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]]];
+        profileNamespace setVariable ["var_ct_equipedEquipment",[["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]]];
         saveProfileNamespace;
     },[],1,false];
 

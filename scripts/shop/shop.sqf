@@ -1,7 +1,9 @@
 disableSerialization;
 
 shopOpen = true;
-[(attachedObjects player) select 0,false] remoteExec ["hideLaptopGlobal", 2];
+if(count (attachedObjects player) > 0)then{
+    [(attachedObjects player) select 0,false] remoteExec ["hideLaptopGlobal", 2];
+};
 
 player setVariable["curTabCtrls",[1700,1701,1702,1703,1704,1705,1706,1707,1708,1709],false];
 player setVariable["curGroupCtrl",[1500],false];
@@ -66,20 +68,17 @@ shopEquipItem = {
     };
 
     if(_itemCategory == "Item")then{
-        player addPrimaryWeaponItem _itemClass;
+        player addWeaponItem [currentWeapon player, _itemClass];
     };
 
     _dspl       = findDisplay 7800;
     _btnEquip   = _dspl displayCtrl _idcEquip;
 
     _btnEquip ctrlEnable true;
-
-    profileNamespace setVariable["var_ct_equipedEquipment", _equipedEquipment];
-    player setVariable["equipedEquipment", _equipedEquipment, false];
-    saveProfileNamespace; 
 };
 
 buildList = {
+    disableSerialization;
     params["_cfgList","_idc"];
 
     _sortedArray    = _cfgList apply { _x select 1;_x};
@@ -151,8 +150,7 @@ buildList = {
 
 // Init Groups
 shopBuildLists = {
-    // Show shop loadingscreen
-    _display                = findDisplay 7800;
+    params["_display"];
     _shopLoadingScreen      = _display ctrlCreate ["pageLoadingScreen", 9990];
     // _shopLoadingScreen ctrlSetAngle 45
 
@@ -194,6 +192,7 @@ shopBuildLists = {
 
 // Toggle Side-Tabs
 toggleCats = {
+    disableSerialization;
     params["_catShowTabs","_catFirstType"];
     _curTabCtrls    = player getVariable "curTabCtrls";
     _dspl           = findDisplay 7800;
@@ -227,12 +226,15 @@ toggleTypes = {
 };
 
 createDialog "shopGUI";
-[] call shopBuildLists;
+_display = findDisplay 7800;
+[_display] call shopBuildLists;
 
-(findDisplay 7800) displayAddEventHandler ["onUnload", {
-    systemChat "shop closed";
+_display displayAddEventHandler ["Unload", {
+    systemChat "closed Shop";
     shopOpen = false;
-    [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];
-    [] spawn savePlayerEquipment;
+    if(count (attachedObjects player) > 0)then{
+        [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];
+    };
+    [] call savePlayerEquipment;
 }];
 

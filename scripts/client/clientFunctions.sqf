@@ -51,10 +51,11 @@ savePlayerEquipment = {
 	_profileNamespace setVariable["var_ct_equipedEquipment", _equipedEquipment];
 	_player setVariable["equipedEquipment", _equipedEquipment, false];
 	saveProfileNamespace;
+    systemChat "closed Shop";
 };
 
 addPlayersItems = {
-    params["_itemClass","_addMags"];
+    params["_itemClass","_lastWeapon","_addMags"];
     _fncItemType    = _itemClass call bis_fnc_itemType;
     _itemCategory   = _fncItemType select 0;
     _itemType       = _fncItemType select 1;
@@ -89,6 +90,7 @@ addPlayersItems = {
     };
 
     if(_itemCategory == "Item")then{ 
-        player addPrimaryWeaponItem _itemClass;
+        systemChat _lastWeapon;
+        player addWeaponItem [_lastWeapon,_itemClass];
     };
 };
