@@ -154,7 +154,7 @@ shopBuildLists = {
     // Show shop loadingscreen
     _display                = findDisplay 7800;
     _shopLoadingScreen      = _display ctrlCreate ["pageLoadingScreen", 9990];
-    
+    // _shopLoadingScreen ctrlSetAngle 45
 
     // Weapons
     _RifleListReady         = [RifleList,1500] spawn buildList;
