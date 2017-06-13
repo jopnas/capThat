@@ -28,75 +28,11 @@ _savedEquipedEquipment = _profileNamespace getVariable["var_ct_equipedEquipment"
 ];
 player setVariable["equipedEquipment", _savedEquipedEquipment, false];
 
-_addPlayersItems = {
-    params["_itemClass","_addMags"];
-    _fncItemType    = _itemClass call bis_fnc_itemType;
-    _itemCategory   = _fncItemType select 0;
-    _itemType       = _fncItemType select 1;
-
-    _equipedEquipment = player getVariable "equipedEquipment";
-
-    if(_itemCategory == "Weapon")then{
-        if(_itemType in rifleTypes)then{
-            _addMags = 4;
-            (_equipedEquipment select 0) set [0,_itemClass];
-        };
-        if(_itemType == "Handgun")then{
-            _addMags = 6;
-            (_equipedEquipment select 1) set [0,_itemClass];
-        };
-        if(_itemType in launcherTypes)then{
-            _addMags = 2;
-            (_equipedEquipment select 2) set [0,_itemClass];
-        };
-        systemChat format["%1, %2, %3",_itemType in rifleTypes,_itemType in launcherTypes,_itemType == "Handgun"];
-        [player, _itemClass, _addMags] call BIS_fnc_addWeapon;
-    };
-
-     if(_itemType == "Headgear")then{
-        player addWeapon _itemClass;
-        (_equipedEquipment select 3) set [0,_itemClass];
-    };
-
-    if(_itemType == "Uniform")then{
-        player forceAddUniform _itemClass;
-        (_equipedEquipment select 3) set [1,_itemClass];
-    };
-
-    if(_itemType == "Vest")then{
-        player addVest _itemClass;
-        (_equipedEquipment select 3) set [2,_itemClass];
-    };
-
-    if(_itemType == "Backpack")then{
-        player addBackpack _itemClass;
-        (_equipedEquipment select 3) set [3,_itemClass];
-    };
-
-    if(_itemCategory == "Item")then{ 
-        player addPrimaryWeaponItem _itemClass;
-
-        if(_itemType == "AccessoryMuzzle")then{
-            (_equipedEquipment select 0) set [1,_itemClass];
-        };
-        if(_itemType == "AccessoryBipod")then{
-            (_equipedEquipment select 0) set [2,_itemClass];
-        };
-        if(_itemType == "AccessoryPointer")then{
-            (_equipedEquipment select 0) set [3,_itemClass];
-        };
-        if(_itemType == "AccessorySights")then{
-            (_equipedEquipment select 0) set [4,_itemClass];
-        };
-    };
-};
-
 {
     _typeX = _x;
     {
         if(_x != "")then{
-            [_x] call _addPlayersItems;
-            systemChat str _x;
+            [_x] call addPlayersItems;
         };
     } forEach _typeX; 
 } forEach _savedEquipedEquipment;

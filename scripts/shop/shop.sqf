@@ -51,7 +51,6 @@ shopEquipItem = {
             _addMags = 2;
             (_equipedEquipment select 2) set [0,_itemClass];
         };
-        systemChat format["%1, %2, %3",_itemType in rifleTypes,_itemType in launcherTypes,_itemType == "Handgun"];
         [player, _itemClass, _addMags] call BIS_fnc_addWeapon;
     };
 
@@ -255,5 +254,6 @@ createDialog "shopGUI";
 (findDisplay 7800) displayAddEventHandler ["onUnload", {
     shopOpen = false;
     [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];
+    [] spawn savePlayerEquipment;
 }];
 
