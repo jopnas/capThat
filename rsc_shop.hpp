@@ -3,64 +3,6 @@
 #define tabWidth (0.0796933 * safezoneW)
 #define tabHeight (0.035 * safezoneW)
 
-// Loadingscreen
-class pageLoadingScreen: RscControlsGroup {
-    w = 0.5 * safezoneW + tabWidth;
-    h = 0.714033 * safezoneH + tabHeight;
-    x = groupX - tabWidth;
-    y = 0.125983 * safezoneH + safezoneY;
-    colorBackground[] = {1,1,1,1};
-
-    class Controls {
-        class shopLoadingBackground: RscPicture {
-            idc = "9991";
-            w = 0.5 * safezoneW + tabWidth;
-            h = 0.714033 * safezoneH + tabHeight;
-            x = groupX - tabWidth;
-            y = 0.125983 * safezoneH + safezoneY;
-            text = "#(argb,8,8,3)color(1,1,1,1)";
-        };
-        class shopTitle: RscText {
-            idc = "9992";
-            w = 0.5 * safezoneW + tabWidth;
-            h = 0.3 * safezoneH + tabHeight;
-            x = groupX - tabWidth;
-            y = 0.125983 * safezoneH + safezoneY;            
-            text = "CapThat Shop";
-            style = ST_CENTER;
-            font = "EtelkaMonospaceProBold";
-            SizeEx = 0.02 * safezoneH;
-            colorText[] = {0,0,0,1};
-            colorBackground[] = {0,0,0,0};
-        };
-
-        class shopLoadingSpinner: RscPicture {
-            idc = "9993";
-            w = 0.5 * safezoneW + tabWidth;
-            h = 0.3 * safezoneH + tabHeight;
-            x = groupX - tabWidth;
-            y = 0.125983 * safezoneH + safezoneY;            
-            text = "images\scoreicon.paa";
-            style = ST_PICTURE;
-            colorText[] = {0,0,0,1};
-        };
-
-        class shopSubtitle: RscText {
-            idc = "9994";
-            w = 0.5 * safezoneW + tabWidth;
-            h = 0.3 * safezoneH + tabHeight;
-            x = groupX - tabWidth;
-            y = (0.125983 * safezoneH + safezoneY);            
-            text = "loading...";
-            style = ST_CENTER;
-            font = "EtelkaMonospaceProBold";
-            SizeEx = 0.01 * safezoneH;
-            colorText[] = {0,0,0,0.8};
-            colorBackground[] = {0,0,0,0};
-        };
-    };
-};
-
 // Group
 class shopGroup: RscControlsGroup {
     w = 0.5 * safezoneW;

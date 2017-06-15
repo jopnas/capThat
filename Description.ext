@@ -244,7 +244,8 @@ class shopGUI {
         shopHeadgearGroup,
         shopUniformsGroup,
         shopVestsGroup,
-        shopBackpacksGroup
+        shopBackpacksGroup,
+        shopLoadingBackground
     };
 
     // BG
@@ -302,21 +303,21 @@ class shopGUI {
 
     // Category Side-Tabs
     class tabWeapons: shopSideTabButton {
-    	idc = 1600;
+    	idc = 1551;
     	text = "Weapons";
         y = groupY; // 1st
         action = "[[1700,1701,1702],1500] call toggleCats";
     };
     class tabAttatchments: shopSideTabButton {
-    	idc = 1601;
+    	idc = 1552;
     	text = "Attatchments";
         y = groupY + tabHeight; // 2nd
         action = "[[1703,1704,1705],1503] call toggleCats";
     };
     class tabClothes: shopSideTabButton {
-    	idc = 1602;
+    	idc = 1553;
     	text = "Clothes";
-        y = groupY + tabHeight * 2; // 3dt
+        y = groupY + (tabHeight * 2); // 3dt
         action = "[[1706,1707,1708,1709],1506] call toggleCats";
     };
 
@@ -385,6 +386,65 @@ class shopGUI {
     	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 3); // 4th
         action = "[1509] call toggleTypes";
     };
+
+    // Loadingscreen
+    class pageLoadingScreen: RscControlsGroup {
+        idc = 9990;
+        w = 0.5 * safezoneW + tabWidth;
+        h = 0.714033 * safezoneH + tabHeight;
+        x = groupX - tabWidth;
+        y = 0.125983 * safezoneH + safezoneY;
+        colorBackground[] = {1,1,1,1};
+
+        class Controls {
+            class shopLoadingBackground: RscPicture {
+                idc = 9991;
+                w = 0.5 * safezoneW + tabWidth;
+                h = 0.714033 * safezoneH + tabHeight;
+                x = groupX - tabWidth;
+                y = 0.125983 * safezoneH + safezoneY;
+                text = "#(argb,8,8,3)color(1,1,1,1)";
+            };
+            class shopTitle: RscText {
+                idc = 9992;
+                w = 0.5 * safezoneW + tabWidth;
+                h = 0.3 * safezoneH + tabHeight;
+                x = groupX - tabWidth;
+                y = 0.125983 * safezoneH + safezoneY;            
+                text = "CapThat Shop";
+                style = ST_CENTER;
+                font = "EtelkaMonospaceProBold";
+                SizeEx = 0.02 * safezoneH;
+                colorText[] = {0,0,0,1};
+                colorBackground[] = {0,0,0,0};
+            };
+
+            class shopLoadingSpinner: RscPicture {
+                idc = 9993;
+                w = 0.5 * safezoneW + tabWidth;
+                h = 0.3 * safezoneH + tabHeight;
+                x = groupX - tabWidth;
+                y = 0.125983 * safezoneH + safezoneY;            
+                text = "images\scoreicon.paa";
+                style = ST_PICTURE;
+                colorText[] = {0,0,0,1};
+            };
+
+            class shopSubtitle: RscText {
+                idc = 9994;
+                w = 0.5 * safezoneW + tabWidth;
+                h = 0.3 * safezoneH + tabHeight;
+                x = groupX - tabWidth;
+                y = (0.125983 * safezoneH + safezoneY);            
+                text = "loading...";
+                style = ST_CENTER;
+                font = "EtelkaMonospaceProBold";
+                SizeEx = 0.01 * safezoneH;
+                colorText[] = {0,0,0,0.8};
+                colorBackground[] = {0,0,0,0};
+            };
+        };
+    };    
 };
 
 class CfgDebriefing {
