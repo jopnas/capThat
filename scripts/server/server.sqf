@@ -76,6 +76,31 @@ raiseTeamScore = {
     };
 };
 
+// Place Laptop
+_loacationsArray = [];
+_mapLocations = (configfile >> "CfgWorlds" >> worldName >> "Names") call BIS_fnc_getCfgSubClasses;
+{
+    _type = (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "type");
+    if(_type == "CityCenter")then{
+        _size   = 0;
+        _pos    = (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "position");
+        _sizeX  = (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "radiusA");
+        _sizeY  = (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "radiusB");
+        if(_sizeX > _sizeY)then{
+            _size = _sizeX;
+        }else{
+            _size = _sizeY;
+        };
+        _loacationsArray pushBackUnique [_pos,_sizeX,_sizeY_size];
+    };
+} forEach _mapLocations;
+_rdmLoc = selectRandom _loacationsArray;
+_laptopMarker = createMarker ["_Laptop_", _rdmLoc select 0];
+_laptopMarker setMarkerShape "RECTANGLE";
+_laptopMarker setMarkerSize [_rdmLoc select 1,_rdmLoc select 2];
+_laptopMarker setMarkerAlpha 0.5;
+_laptopMarker setMarkerColor "ColorGreen";
+
 [] spawn ={
     _nextPing = time
     while(true)do{
