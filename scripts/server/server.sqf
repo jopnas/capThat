@@ -95,11 +95,30 @@ _mapLocations = (configfile >> "CfgWorlds" >> worldName >> "Names") call BIS_fnc
     };
 } forEach _mapLocations;
 _rdmLoc = selectRandom _loacationsArray;
-_laptopMarker = createMarker ["_Laptop_", _rdmLoc select 0];
-_laptopMarker setMarkerShape "RECTANGLE";
-_laptopMarker setMarkerSize [_rdmLoc select 1,_rdmLoc select 2];
-_laptopMarker setMarkerAlpha 0.5;
-_laptopMarker setMarkerColor "ColorGreen";
+_rdmLocPos    = _rdmLoc select 0;
+_laptopAreaMarker = createMarker ["_LaptopArea_", _rdmLocPos];
+_laptopAreaMarker setMarkerShape "RECTANGLE";
+_laptopAreaMarker setMarkerSize [_rdmLoc select 1,_rdmLoc select 2];
+_laptopAreaMarker setMarkerAlpha 0.5;
+_laptopAreaMarker setMarkerColor "ColorGreen";
+
+_buildingsInRdmLoc = nearestObjects [_rdmLocPos, ["House", "Building"], _rdmLoc select 2];
+{
+    _numDoors = getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "numberOfDoors");
+    if(_numDoors == 0)then{
+        _buildingsInRdmLoc = _buildingsInRdmLoc - [_x];
+    };
+}forEach _buildingsInRdmLoc;
+
+_rdmHouseInLoc = selectRandom _buildingsInRdmLoc;
+
+_laptopMarker = createMarker ["_Laptop_", _rdmLocPos];
+_laptopMarker setMarkerShape "ICON";
+_laptopMarker setMarkerType "mil_objective";
+_laptopMarker setMarkerColor "ColorRed";
+
+_laptopVeh = createVehicle ["Land_Laptop_unfolded_F", selectRandom(_rdmHouseInLoc buildingPos -1), [], 0, "NONE"];
+_laptopVeh call "scripts\server\laptop.sqf";
 
 [] spawn ={
     _nextPing = time
