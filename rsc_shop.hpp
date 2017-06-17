@@ -8,26 +8,26 @@
 // Loadingscreen
 class pageLoadingScreen: RscControlsGroup {
     idc = 9990;
-    w = groupW ;
-    h = groupH;
-    x = groupX;
-    y = groupY;
+    w = groupW + tabWidth;
+    h = groupH + tabHeight;
+    x = groupX - tabWidth;
+    y = groupY - tabHeight;
     colorBackground[] = {1,1,1,1};
 
     class Controls {
         class shopLoadingBackground: RscPicture {
             idc = 9991;
-            w = groupW ;
-            h = groupH;
-            x = groupX;
-            y = groupY;
+            w = groupW + tabWidth;
+            h = groupH + tabHeight;
+            x = groupX - tabWidth;
+            y = groupY - tabHeight;
             text = "#(argb,8,8,3)color(1,1,1,1)";
         };
         class shopTitle: RscText {
             idc = 9992;
-            w = groupW + tabWidth;
+            w = groupW;
             h = 0.3 * safezoneH + tabHeight;
-            x = groupX - tabWidth;
+            x = groupX;
             y = 0.125983 * safezoneH + safezoneY;            
             text = "CapThat Shop";
             style = ST_CENTER;
@@ -39,9 +39,9 @@ class pageLoadingScreen: RscControlsGroup {
 
         class shopSubtitle: RscText {
             idc = 9994;
-            w = groupW + tabWidth;
-            h = 0.3 * safezoneH + tabHeight;
-            x = groupX - tabWidth;
+            w = groupW;
+            h = 0.6 * safezoneH + tabHeight;
+            x = groupX;
             y = (0.125983 * safezoneH + safezoneY);            
             text = "loading...";
             style = ST_CENTER;
