@@ -2,6 +2,8 @@
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\client\transmitter.sqf";
 
+[] execVM "scripts\client\supplyDrop.sqf";
+
 shopOpen = false;
 
 removeAllWeapons player;
