@@ -1,12 +1,62 @@
 #define groupX (0.229043 * safezoneW + safezoneX)
 #define groupY (0.176985 * safezoneH + safezoneY)
+#define groupW (0.5 * safezoneW)
+#define groupH (0.714033 * safezoneH)
 #define tabWidth (0.0796933 * safezoneW)
 #define tabHeight (0.035 * safezoneW)
 
+// Loadingscreen
+class pageLoadingScreen: RscControlsGroup {
+    idc = 9990;
+    w = groupW ;
+    h = groupH;
+    x = groupX;
+    y = groupY;
+    colorBackground[] = {1,1,1,1};
+
+    class Controls {
+        class shopLoadingBackground: RscPicture {
+            idc = 9991;
+            w = groupW ;
+            h = groupH;
+            x = groupX;
+            y = groupY;
+            text = "#(argb,8,8,3)color(1,1,1,1)";
+        };
+        class shopTitle: RscText {
+            idc = 9992;
+            w = groupW + tabWidth;
+            h = 0.3 * safezoneH + tabHeight;
+            x = groupX - tabWidth;
+            y = 0.125983 * safezoneH + safezoneY;            
+            text = "CapThat Shop";
+            style = ST_CENTER;
+            font = "EtelkaMonospaceProBold";
+            SizeEx = 0.02 * safezoneH;
+            colorText[] = {0,0,0,1};
+            colorBackground[] = {0,0,0,0};
+        };
+
+        class shopSubtitle: RscText {
+            idc = 9994;
+            w = groupW + tabWidth;
+            h = 0.3 * safezoneH + tabHeight;
+            x = groupX - tabWidth;
+            y = (0.125983 * safezoneH + safezoneY);            
+            text = "loading...";
+            style = ST_CENTER;
+            font = "EtelkaMonospaceProBold";
+            SizeEx = 0.01 * safezoneH;
+            colorText[] = {0,0,0,0.8};
+            colorBackground[] = {0,0,0,0};
+        };
+    };
+};   
+
 // Group
 class shopGroup: RscControlsGroup {
-    w = 0.5 * safezoneW;
-    h = 0.714033 * safezoneH;
+    w = groupW;
+    h = groupH;
     x = groupX;
     y = groupY;
     colorBackground[] = {0.2,0.2,0.2,1};
@@ -17,7 +67,7 @@ class shopGroup: RscControlsGroup {
 class shopTopTabButton : RscButton {
     w = tabWidth;
     h = tabHeight;
-    y = 0.125983 * safezoneH + safezoneY;
+    y = groupY - tabHeight;
     colorText[] = {1,1,1,1};
     colorBackground[] = {0.2,0.2,0.2,1};
     colorActive[] = {0,0.5,0,1};

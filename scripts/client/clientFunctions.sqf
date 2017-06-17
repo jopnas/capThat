@@ -51,7 +51,6 @@ savePlayerEquipment = {
 	_profileNamespace setVariable["var_ct_equipedEquipment", _equipedEquipment];
 	_player setVariable["equipedEquipment", _equipedEquipment, false];
 	saveProfileNamespace;
-    systemChat "closed Shop";
 };
 
 addPlayersItems = {
@@ -90,7 +89,6 @@ addPlayersItems = {
     };
 
     if(_itemCategory == "Item")then{ 
-        systemChat _lastWeapon;
         player addWeaponItem [_lastWeapon,_itemClass];
     };
 };

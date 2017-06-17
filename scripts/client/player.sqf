@@ -7,6 +7,7 @@ shopOpen = false;
 removeAllWeapons player;
 removeAllItems player; 
 removeBackpack player;
+removeUniform player;
 
 player setVariable["hasLaptop",false,true];
 

@@ -187,6 +187,7 @@ shopBuildLists = {
         scriptDone _toggleFirstTabsReady
     };
 
+    sleep 5;
      _shopLoadingScreen ctrlShow false;
 };
 
@@ -230,7 +231,6 @@ _display = findDisplay 7800;
 [_display] call shopBuildLists;
 
 _display displayAddEventHandler ["Unload", {
-    systemChat "closed Shop";
     shopOpen = false;
     if(count (attachedObjects player) > 0)then{
         [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];

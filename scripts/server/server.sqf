@@ -7,26 +7,35 @@ setIsDownloading = {
     isDownloading = _status;
 };
 
+createMarker["laptopPing", getPos capthat_object];
+"laptopPing" setMarkerShape "Ellipse";
+"laptopPing" setMarkerColor "ColorGreen";
+"laptopPing" setMarkerSize [0,0];
+"laptopPing" setMarkerAlpha 1;
+
 showPing = {
-    _duration   = 3;
+    _duration   = 5;
     _startTime  = time;
-    _laptopPing = createMarker["laptopPing", getPos capthat_object];
-    _laptopPing setMarkerShape "Ellipse";
-    _laptopPing setMarkerColor "ColorGreen";
-    _laptopPing setMarkerSize [0,0];
-    _laptopPing setMarkerAlpha 1;
+
+    _alphaStep = 0.02;
+
+    "laptopPing" setMarkerPos getPos capthat_object;
+
+
     while{true}do{
-        _curSize    = (getMarkerSize _laptopPing) select 0;
-        _curAlpha   = markerAlpha _laptopPing;
-        _newAlpha = (_curAlpha - (1 / (_duration * 60)));
+        _curSize    = (getMarkerSize "laptopPing") select 0;
+        _curAlpha   = markerAlpha "laptopPing";
+        _newAlpha = _curAlpha - _alphaStep;
         if(_newAlpha < 0)then{
             _newAlpha = 0;
         };
-        _laptopPing setMarkerAlpha _newAlpha;
-        _laptopPing setMarkerPos (getPos capthat_object);
-        _laptopPing setMarkerSize [_curSize + 0.1,_curSize + 0.1];
+
+        "laptopPing" setMarkerAlpha _newAlpha;
+        "laptopPing" setMarkerPos (getPos capthat_object);
+        "laptopPing" setMarkerSize [_curSize + 2,_curSize + 2];
         if(time > _startTime + _duration) exitWith {
-            deleteMarker "laptopPing";
+            "laptopPing" setMarkerSize [0,0];
+            "laptopPing" setMarkerAlpha 1;
         };
         sleep 0.1;
     };
@@ -79,50 +88,55 @@ raiseTeamScore = {
 // Place Laptop
 _loacationsArray = [];
 _mapLocations = (configfile >> "CfgWorlds" >> worldName >> "Names") call BIS_fnc_getCfgSubClasses;
+
 {
-    _type = (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "type");
-    if(_type == "CityCenter")then{
+    _type = getText(configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "type");
+    if(_type == "NameCity" || _type == "NameVillage")then{
         _size   = 0;
-        _pos    = (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "position");
-        _sizeX  = (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "radiusA");
-        _sizeY  = (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "radiusB");
-        if(_sizeX > _sizeY)then{
-            _size = _sizeX;
-        }else{
-            _size = _sizeY;
-        };
-        _loacationsArray pushBackUnique [_pos,_sizeX,_sizeY_size];
+        _pos    = getArray (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "position");
+        _size  = getNumber (configfile >> "CfgWorlds" >> worldName >> "Names" >> _x >> "radiusA");
+
+        _impPos = [(_pos select 0) + (_size/2),(_pos select 1) - (_size/2)];
+        _loacationsArray pushBackUnique [_impPos,_size + (_size/2)];
+
+        /*createMarker [format["_LaptopArea_%1",_forEachIndex], _impPos];
+        format["_LaptopArea_%1",_forEachIndex] setMarkerShape "RECTANGLE";
+        format["_LaptopArea_%1",_forEachIndex] setMarkerSize [_size + (_size/2),_size + (_size/2)];
+        format["_LaptopArea_%1",_forEachIndex] setMarkerColor "ColorRed";*/
     };
 } forEach _mapLocations;
+
 _rdmLoc = selectRandom _loacationsArray;
+
 _rdmLocPos    = _rdmLoc select 0;
 _laptopAreaMarker = createMarker ["_LaptopArea_", _rdmLocPos];
 _laptopAreaMarker setMarkerShape "RECTANGLE";
-_laptopAreaMarker setMarkerSize [_rdmLoc select 1,_rdmLoc select 2];
+_laptopAreaMarker setMarkerSize [_rdmLoc select 1,_rdmLoc select 1];
 _laptopAreaMarker setMarkerAlpha 0.5;
 _laptopAreaMarker setMarkerColor "ColorGreen";
 
-_buildingsInRdmLoc = nearestObjects [_rdmLocPos, ["House", "Building"], _rdmLoc select 2];
+_enterableBuildings = [];
+_buildingsInRdmLoc = nearestObjects [_rdmLocPos, ["House", "Building"], _rdmLoc select 1];
 {
     _numDoors = getNumber (configFile >> "CfgVehicles" >> typeOf _x >> "numberOfDoors");
-    if(_numDoors == 0)then{
-        _buildingsInRdmLoc = _buildingsInRdmLoc - [_x];
+    if(_numDoors > 0)then{
+        _enterableBuildings pushBackUnique _x;
     };
 }forEach _buildingsInRdmLoc;
 
-_rdmHouseInLoc = selectRandom _buildingsInRdmLoc;
+_rdmHouseInLoc = selectRandom _enterableBuildings;
+_laptopPos = selectRandom(_rdmHouseInLoc buildingPos -1);
 
-_laptopMarker = createMarker ["_Laptop_", _rdmLocPos];
+_laptopMarker = createMarker ["_Laptop_", _laptopPos];
 _laptopMarker setMarkerShape "ICON";
 _laptopMarker setMarkerType "mil_objective";
 _laptopMarker setMarkerColor "ColorRed";
 
-_laptopVeh = createVehicle ["Land_Laptop_unfolded_F", selectRandom(_rdmHouseInLoc buildingPos -1), [], 0, "NONE"];
-_laptopVeh call "scripts\server\laptop.sqf";
+capthat_object setPos _laptopPos;
 
-[] spawn ={
-    _nextPing = time
-    while(true)do{
+[] spawn {
+    _nextPing = time;
+    while{true}do{
 
 		if(isDownloading && time > _nextPing)then{
             [] call showPing;

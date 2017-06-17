@@ -28,5 +28,3 @@ if(_hasCapObj)then{
         _ctrlTransmitterLED ctrlSetText "images\capthat_transmitter_led_off.paa";
     }
 };
-
-//systemChat format["hasCapObj: %1, capObj distance: %2, _showDotDelay: %3",_hasCapObj,_capObjDistance,_showDotDelay];
