@@ -2,14 +2,14 @@
 nextShowDot = 0;
 updateTransmitter = compile preprocessFile "scripts\client\transmitter.sqf";
 
-[] execVM "scripts\client\supplyDrop.sqf";
-
 shopOpen = false;
 
 removeAllWeapons player;
 removeAllItems player; 
 removeBackpack player;
 removeUniform player;
+removeVest player;
+removeHeadgear player;
 
 player setVariable["hasLaptop",false,true];
 
@@ -57,7 +57,10 @@ _lastWeapon = "";
         saveProfileNamespace;
     },[],5,false];
 
-    player addAction["Reset Cash",{
+    player addAction["Supply Drop","scripts\client\cratedrop.sqf",[],4,false];
+
+
+    /*player addAction["Reset Cash",{
         profileNamespace setVariable ["var_ct_cash",0];
         saveProfileNamespace;
     },[],4,false];
@@ -71,7 +74,7 @@ _lastWeapon = "";
     player addAction["Reset XP",{
         profileNamespace setVariable ["var_ct_xp",0];
         saveProfileNamespace;
-    },[],2,false];
+    },[],2,false];*/
 
     player addAction["Reset Equipment",{
         player setVariable["equipedEquipment", [["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]], false];
@@ -82,9 +85,9 @@ _lastWeapon = "";
     player addAction["Reset Lists","scripts\shop\shopItemLists.sqf",[],6,false];
 // < DEBUG
 
-player addAction["Sit Down",{
+/*player addAction["Sit Down",{
     player playAction "SitDown";
-},[],0,false];
+},[],0,false];*/
 
 3 cutRsc ["player_gui","PLAIN",3,false];
 
