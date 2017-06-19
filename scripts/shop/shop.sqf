@@ -81,8 +81,7 @@ buildList = {
     disableSerialization;
     params["_cfgList","_idc"];
 
-    _sortedArray    = _cfgList apply { _x select 1;_x};
-    _sortedArray sort true;
+    _cfgList sort true;
 
     _display        = findDisplay 7800;
     _shopItemGroup  = _display displayCtrl _idc;
@@ -90,8 +89,8 @@ buildList = {
 
     _itemList  = [];
     {
-        _class          = _x select 0;
-        _price          = _x select 1;
+        _price          = _x select 0;
+        _class          = _x select 1;
         _cfgName        = _x select 2;
 
         _hasBought      = ( _class in (player getVariable["boughtEquipment",[]]) );
@@ -151,9 +150,9 @@ buildList = {
 // Init Groups
 shopBuildLists = {
     params["_display"];
-    _shopLoadingScreen      = _display ctrlCreate ["pageLoadingScreen", 9990];
-    // _shopLoadingScreen ctrlSetAngle 45
-
+    _shopLoadingScreen  = _display ctrlCreate ["pageLoadingScreen", 9990];
+    _loadingAniCtrl     = _display displayCtrl 9994;
+    
     // Weapons
     _RifleListReady         = [RifleList,1500] spawn buildList;
     _PistolListReady        = [PistolList,1501] spawn buildList;
@@ -173,22 +172,46 @@ shopBuildLists = {
     // Show first Category and first type
     _toggleFirstTabsReady   = [[1700,1701,1702],1500] spawn toggleCats;
 
-    waitUntil {
-        scriptDone _RifleListReady &&
-        scriptDone _PistolListReady &&
-        scriptDone _LauncherListReady &&
-        scriptDone _OpticListReady &&
-        scriptDone _SurpressorListReady &&
-        scriptDone _BipodListReady &&
-        scriptDone _HeadgearListReady &&
-        scriptDone _UniformListReady &&
-        scriptDone _VestListReady &&
-        scriptDone _BackpackListReady &&
-        scriptDone _toggleFirstTabsReady
-    };
+    _loadingAniFrame    = 1;
+    while {true} do {
+        switch (_loadingAniFrame) do {
+            case 1: {
+                _loadingAniCtrl ctrlSetText "loading";
+            };
+            case 2: {
+                _loadingAniCtrl ctrlSetText "loading.";
+            };
+            case 3: {
+                _loadingAniCtrl ctrlSetText "loading..";
+            };
+            case 4: {
+                _loadingAniCtrl ctrlSetText "loading...";
+            };
+        };
 
-    sleep 5;
-     _shopLoadingScreen ctrlShow false;
+        if(       
+            scriptDone _RifleListReady &&
+            scriptDone _PistolListReady &&
+            scriptDone _LauncherListReady &&
+            scriptDone _OpticListReady &&
+            scriptDone _SurpressorListReady &&
+            scriptDone _BipodListReady &&
+            scriptDone _HeadgearListReady &&
+            scriptDone _UniformListReady &&
+            scriptDone _VestListReady &&
+            scriptDone _BackpackListReady &&
+            scriptDone _toggleFirstTabsReady
+        )exitWith{
+            sleep 5;
+            _shopLoadingScreen ctrlShow false;
+        };
+        if(_loadingAniFrame == 4){
+            _loadingAniFrame = 1;
+        }else{
+            _loadingAniFrame = _loadingAniFrame + 1;
+        };
+        sleep 0.5;
+    };    
 };
 
 // Toggle Side-Tabs
@@ -236,5 +259,6 @@ _display displayAddEventHandler ["Unload", {
         [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];
     };
     [] call savePlayerEquipment;
+    [] execVM "somepath\file.sqf";"scripts\client\supplyDropper.sqf";
 }];
 

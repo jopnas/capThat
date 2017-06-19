@@ -27,17 +27,17 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
             if(_itemType == "Headgear")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price = _mass * 10;
-                HeadgearList pushBackUnique [_x,_price,"CfgWeapons"];
+                HeadgearList pushBackUnique [_price,_x,"CfgWeapons"];
             };
             if(_itemType == "Vest")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price = _mass * 15;
-                VestList pushBackUnique [_x,_price,"CfgWeapons"];
+                VestList pushBackUnique [_price,_x,"CfgWeapons"];
             };
             if(_itemType == "Uniform" && _x != "U_BasicBody")then{
                 _mass = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price = _mass * 20;
-                UniformList pushBackUnique [_x,_price,"CfgWeapons"];
+                UniformList pushBackUnique [_price,_x,"CfgWeapons"];
             };
         };
 
@@ -46,18 +46,18 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
             if(_itemType == "AccessoryBipod")then{
                 _mass       = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price      = _mass * 10;
-                BipodList pushBackUnique [_x,_price,"CfgWeapons"];
+                BipodList pushBackUnique [_price,_x,"CfgWeapons"];
             };
             if(_itemType == "AccessoryMuzzle")then{
                 _mass       = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _price      = _mass * 20;
-                SurpressorList pushBackUnique [_x,_price,"CfgWeapons"];
+                SurpressorList pushBackUnique [_price,_x,"CfgWeapons"];
             };
             if(_itemType == "AccessorySights")then{
                 _mass       = getNumber (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "mass");
                 _modes      =  (configFile >> "cfgWeapons" >> _x >> "ItemInfo" >> "OpticsModes") call BIS_fnc_getCfgSubClasses;
                 _price      = _mass * 20 * (count _modes);
-                OpticList pushBackUnique [_x,_price,"CfgWeapons"];
+                OpticList pushBackUnique [_price,_x,"CfgWeapons"];
             };
         };
 
@@ -74,15 +74,15 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
             if(!isClass(configFile >> "cfgWeapons" >> _x >> "LinkedItems"))then{
                 if(_itemType == "Handgun")then{
                     _price      = 2000 * (_caliber + _inertia);
-                    PistolList pushBackUnique [_x,_price,"CfgWeapons"];
+                    PistolList pushBackUnique [_price,_x,"CfgWeapons"];
                 };
                 if(_itemType in rifleTypes)then{
                     _price      = 3000 * (_caliber + _inertia);
-                    RifleList pushBackUnique [_x,_price,"CfgWeapons"];
+                    RifleList pushBackUnique [_price,_x,"CfgWeapons"];
                 };
                 if(_itemType in launcherTypes)then{
                     _price      = 400 * (_mass + _inertia);
-                    LauncherList pushBackUnique [_x,_price,"CfgWeapons"];
+                    LauncherList pushBackUnique [_price,_x,"CfgWeapons"];
                 };
             };
         };
@@ -102,6 +102,6 @@ _vehicleList = (configFile >> "CfgVehicles") call BIS_fnc_getCfgSubClasses;
     if( !(_x in _excludeBackpacks) && _countTransport == 0 && getNumber (configFile >> 'CfgVehicles' >> _x >> 'maximumLoad') > 0 && getNumber (configFile >> 'CfgVehicles' >> _x >> 'isbackpack') == 1 && getNumber (configFile >> 'CfgVehicles' >> _x >> 'scope') > 0)then{
         _maxLoad    = getNumber (configFile >> "CfgVehicles" >> _x >> "maximumLoad");
         _price      = _maxLoad * 10;
-        BackpackList pushBackUnique [_x,_price,"CfgVehicles"];
+        BackpackList pushBackUnique [_price,_x,"CfgVehicles"];
     };
 } forEach _vehicleList;

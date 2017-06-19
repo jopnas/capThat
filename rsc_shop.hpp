@@ -1,9 +1,9 @@
-#define groupX (0.229043 * safezoneW + safezoneX)
-#define groupY (0.176985 * safezoneH + safezoneY)
-#define groupW (0.5 * safezoneW)
-#define groupH (0.714033 * safezoneH)
-#define tabWidth (0.0796933 * safezoneW)
-#define tabHeight (0.035 * safezoneW)
+#define groupX (0.329043 * safezoneW + safezoneX)
+#define groupY (0.276985 * safezoneH + safezoneY)
+#define groupW (0.3 * safezoneW)
+#define groupH (0.5* safezoneH)
+#define tabWidth (0.0696933 * safezoneW)
+#define tabHeight (0.025 * safezoneW)
 
 // Loadingscreen
 class pageLoadingScreen: RscControlsGroup {
@@ -25,28 +25,28 @@ class pageLoadingScreen: RscControlsGroup {
         };
         class shopTitle: RscText {
             idc = 9992;
-            w = groupW;
-            h = 0.3 * safezoneH + tabHeight;
-            x = groupX;
-            y = 0.125983 * safezoneH + safezoneY;            
+            w = groupW + tabWidth;
+            h = 0.2 * safezoneH;
+            x = groupX - tabWidth;
+            y = groupY - tabHeight;            
             text = "CapThat Shop";
             style = ST_CENTER;
             font = "EtelkaMonospaceProBold";
-            SizeEx = 0.02 * safezoneH;
+            SizeEx = 0.03 * safezoneH;
             colorText[] = {0,0,0,1};
             colorBackground[] = {0,0,0,0};
         };
 
         class shopSubtitle: RscText {
             idc = 9994;
-            w = groupW;
-            h = 0.6 * safezoneH + tabHeight;
-            x = groupX;
-            y = (0.125983 * safezoneH + safezoneY);            
-            text = "loading...";
+            w = groupW + tabWidth;
+            h = 0.2 * safezoneH;
+            x = groupX - tabWidth;
+            y = (groupY - tabHeight) + (0.2 * safezoneH);            
+            text = "loading";
             style = ST_CENTER;
             font = "EtelkaMonospaceProBold";
-            SizeEx = 0.01 * safezoneH;
+            SizeEx = 0.02 * safezoneH;
             colorText[] = {0,0,0,0.8};
             colorBackground[] = {0,0,0,0};
         };
