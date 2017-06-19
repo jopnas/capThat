@@ -27,7 +27,7 @@ _equipList = [
 ];
 */
 _savedEquipedEquipment = _profileNamespace getVariable["var_ct_equipedEquipment", 
-    [["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]]
+    [["", "", "", "", ""],["", "", "", "", ""],[startPistol, "", "", "", ""],["", selectRandom freeUniforms, "", ""]]
 ];
 player setVariable["equipedEquipment", _savedEquipedEquipment, false];
 
@@ -49,40 +49,40 @@ _lastWeapon = "";
 
 
 // DEBUG >
-    player addAction["Open Shop","scripts\shop\shop.sqf",[],6,false];
+    player addAction["Open Shop","scripts\shop\shop.sqf",[],0.7,false];
 
     player addAction["Add $20.000",{
         _player_cash = profileNamespace getVariable["var_ct_cash",0];
         profileNamespace setVariable ["var_ct_cash",_player_cash + 20000];
         saveProfileNamespace;
-    },[],5,false];
+    },[],0.6,false];
 
-    player addAction["Supply Drop","scripts\client\cratedrop.sqf",[],4,false];
+    player addAction["Supply Drop","scripts\client\supplyDropper.sqf",[],0.5,false];
 
 
     /*player addAction["Reset Cash",{
         profileNamespace setVariable ["var_ct_cash",0];
         saveProfileNamespace;
-    },[],4,false];
+    },[],0.4,false];
 
     player addAction["Add 50 XP",{
         _player_xp = profileNamespace getVariable["var_ct_xp",0];
         profileNamespace setVariable ["var_ct_xp",_player_xp + 50];
         saveProfileNamespace;
-    },[],3,false];
+    },[],0.3,false];
 
     player addAction["Reset XP",{
         profileNamespace setVariable ["var_ct_xp",0];
         saveProfileNamespace;
-    },[],2,false];*/
+    },[],0.2,false];*/
 
     player addAction["Reset Equipment",{
         player setVariable["equipedEquipment", [["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]], false];
         profileNamespace setVariable ["var_ct_equipedEquipment",[["", "", "", "", ""],["", "", "", "", ""],["", "", "", "", ""],["", "", "", ""]]];
         saveProfileNamespace;
-    },[],1,false];
+    },[],0.1,false];
 
-    player addAction["Reset Lists","scripts\shop\shopItemLists.sqf",[],6,false];
+    player addAction["Reset Lists","scripts\shop\shopItemLists.sqf",[],0,false];
 // < DEBUG
 
 /*player addAction["Sit Down",{
