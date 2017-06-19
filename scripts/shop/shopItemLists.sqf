@@ -81,7 +81,7 @@ _weaponsList = (configFile >> "CfgWeapons") call BIS_fnc_getCfgSubClasses;
                     RifleList pushBackUnique [_x,_price,"CfgWeapons"];
                 };
                 if(_itemType in launcherTypes)then{
-                    _price      = 4000 * (_mass + _inertia);
+                    _price      = 400 * (_mass + _inertia);
                     LauncherList pushBackUnique [_x,_price,"CfgWeapons"];
                 };
             };
