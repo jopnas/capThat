@@ -251,8 +251,8 @@ class shopGUI {
     class shopBackground: RscPicture {
         idc = 1499;
         text = "#(argb,8,8,3)color(0.2,0.2,0.2,1)";
-        w = 0.5 * safezoneW;
-        h = 0.714033 * safezoneH;
+        w = groupW;
+        h = groupH;
         x = groupX;
         y = groupY;
     };
@@ -324,19 +324,19 @@ class shopGUI {
     class tabRifles: shopTopTabButton {
     	idc = 1700;
     	text = "Rifles";
-    	x = 0.229043 * safezoneW + safezoneX; // 1st
+    	x = groupX; // 1st
         action = "[1500] call toggleTypes";
     };
     class tabPistols: shopTopTabButton {
     	idc = 1701;
     	text = "Pistols";
-    	x = (0.229043 * safezoneW + safezoneX) + tabWidth; // 2nd
+    	x = groupX + tabWidth; // 2nd
         action = "[1501] call toggleTypes";
     };
     class tabLauncher: shopTopTabButton {
     	idc = 1702;
     	text = "Launcher";
-    	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
+    	x = groupX + (tabWidth * 2); // 3dt
         action = "[1502] call toggleTypes";
     };
 
@@ -344,19 +344,19 @@ class shopGUI {
     class tabOptics: shopTopTabButton {
     	idc = 1703;
     	text = "Optics";
-    	x = 0.229043 * safezoneW + safezoneX; // 1st
+    	x = groupX; // 1st
         action = "[1503] call toggleTypes";
     };
     class tabSuppressors: shopTopTabButton {
     	idc = 1704;
     	text = "Suppressors";
-    	x = (0.229043 * safezoneW + safezoneX) + tabWidth; // 2nd
+    	x = groupX + tabWidth; // 2nd
         action = "[1504] call toggleTypes";
     };
     class tabBipods: shopTopTabButton {
     	idc = 1705;
     	text = "Bipods";
-    	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
+    	x = groupX + (tabWidth * 2); // 3dt
         action = "[1505] call toggleTypes";
     };
 
@@ -364,25 +364,25 @@ class shopGUI {
     class tabHeadgear: shopTopTabButton {
     	idc = 1706;
     	text = "Headgear";
-    	x = 0.229043 * safezoneW + safezoneX; // 1st
+    	x = groupX; // 1st
         action = "[1506] call toggleTypes";
     };
     class tabUniforms: shopTopTabButton {
     	idc = 1707;
     	text = "Uniforms";
-    	x = 0.229043 * safezoneW + safezoneX + tabWidth; // 2nd
+    	x = groupX + tabWidth; // 2nd
         action = "[1507] call toggleTypes";
     };
     class tabVests: shopTopTabButton {
     	idc = 1708;
     	text = "Vests";
-    	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 2); // 3dt
+    	x = groupX + (tabWidth * 2); // 3dt
         action = "[1508] call toggleTypes";
     };
     class tabBackpacks: shopTopTabButton {
     	idc = 1709;
     	text = "Backpacks";
-    	x = (0.229043 * safezoneW + safezoneX) + (tabWidth * 3); // 4th
+    	x = groupX + (tabWidth * 3); // 4th
         action = "[1509] call toggleTypes";
     }; 
 };

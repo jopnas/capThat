@@ -144,7 +144,7 @@ buildList = {
                 _buttonEqp ctrlEnable false;
             };
         };
-    } forEach _sortedArray;
+    } forEach _cfgList;
 };
 
 // Init Groups
@@ -205,7 +205,7 @@ shopBuildLists = {
             sleep 5;
             _shopLoadingScreen ctrlShow false;
         };
-        if(_loadingAniFrame == 4){
+        if(_loadingAniFrame == 4)then{
             _loadingAniFrame = 1;
         }else{
             _loadingAniFrame = _loadingAniFrame + 1;
@@ -259,6 +259,6 @@ _display displayAddEventHandler ["Unload", {
         [(attachedObjects player) select 0,true] remoteExec ["hideLaptopGlobal", 2];
     };
     [] call savePlayerEquipment;
-    [] execVM "somepath\file.sqf";"scripts\client\supplyDropper.sqf";
+    [] execVM "scripts\client\supplyDropper.sqf";
 }];
 

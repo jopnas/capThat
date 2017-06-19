@@ -5,6 +5,8 @@
 #define tabWidth (0.0696933 * safezoneW)
 #define tabHeight (0.025 * safezoneW)
 
+#define itemHeight (0.1 * safezoneH)
+
 // Loadingscreen
 class pageLoadingScreen: RscControlsGroup {
     idc = 9990;
@@ -92,8 +94,8 @@ class shopSideTabButton : RscButton {
 class shopItemPicture : RscPicture {
     text = "";
     style = 2096;
-    w = 0.2  * safezoneW;
-    h = 0.15 * safezoneH;
+    w = groupW / 2;
+    h = itemHeight;
     x = 0;
     y = 0;
     colorBackground[] = {0.2,0.2,0.2,1};
@@ -101,9 +103,9 @@ class shopItemPicture : RscPicture {
 
 class shopItemName : RscText {
     text = "";
-    w = (0.502068 * safezoneW) - (0.2  * safezoneW);
-    h = (0.15 * safezoneH) / 3;
-    x = 0.2  * safezoneW;
+    w = groupW / 2;
+    h = itemHeight / 3;
+    x = groupW / 2;
     y = 0;
     SizeEx = 0.02 * safezoneH;
     colorBackground[] = {0.2,0.2,0.2,1};
@@ -111,20 +113,20 @@ class shopItemName : RscText {
 
 class shopItemPrice : RscText {
     text = "";
-    w = (0.502068 * safezoneW) - (0.2  * safezoneW);
-    h = (0.15 * safezoneH) / 3;
-    x = 0.2  * safezoneW;
-    y = (0.15 * safezoneH) / 3;
+    w = groupW / 2;
+    h = itemHeight / 3;
+    x = groupW / 2;
+    y = itemHeight / 3;
     SizeEx = 0.03 * safezoneH;
     colorBackground[] = {0.2,0.2,0.2,1};
 };
 
 class shopBuyItemButton : RscButton {
     text = "Buy";
-    w = ((0.5 * safezoneW) - (0.2  * safezoneW)) / 2;
-    h = (0.15 * safezoneH) / 3;
-    x = 0.2  * safezoneW;
-    y = ((0.15 * safezoneH) / 3) * 2
+    w = groupW / 4;
+    h = itemHeight / 3;
+    x = groupW / 2;
+    y = (itemHeight / 3) * 2
     colorText[] = {1,1,1,1};
     colorDisabled[] = {0.3,0.3,0.3,1};
     colorActive[] = {0,0.5,0,1};
@@ -138,10 +140,10 @@ class shopBuyItemButton : RscButton {
 
 class shopEquipItemButton : RscButton {
     text = "Equip";
-    w = ((0.5 * safezoneW) - (0.2  * safezoneW)) / 2;
-    h = (0.15 * safezoneH) / 3;
-    x = (0.2  * safezoneW) + (((0.5 * safezoneW) - (0.2  * safezoneW)) / 2);
-    y = ((0.15 * safezoneH) / 3) * 2
+    w = groupW / 4;
+    h = itemHeight / 3;
+    x = (groupW / 2) + (groupW / 4);
+    y = (itemHeight / 3) * 2
     colorText[] = {1,1,1,1};
     colorDisabled[] = {0.3,0.3,0.3,1};
     colorActive[] = {0,0.5,0,1};
