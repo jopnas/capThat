@@ -132,7 +132,9 @@ _laptopMarker setMarkerShape "ICON";
 _laptopMarker setMarkerType "mil_objective";
 _laptopMarker setMarkerColor "ColorRed";
 
-capthat_object setPos _laptopPos;
+_placeOnObjects = ["Land_CampingChair_V1_F","Land_CampingTable_small_F","Land_CampingChair_V2_F","Land_ChairPlastic_F","Land_ChairWood_F","Land_WoodenTable_small_F","Land_Pallets_stack_F","Land_TablePlastic_01_F"];
+_placeOnThis = _createVehicle [selectRandom _placeOnObjects, _laptopPos, [], 0, "none"];
+capthat_object setVehiclePosition [(getPos _placeOnThis) select 0,(getPos _placeOnThis) select 1,((getPos _placeOnThis) select 2) + 1.5];
 
 [] spawn {
     _nextPing = time;
